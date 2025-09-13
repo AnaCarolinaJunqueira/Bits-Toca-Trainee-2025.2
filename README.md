@@ -1,8 +1,8 @@
-# **Trainee 2025.1**
+# **Trainee 2025.2**
 
-# **Nome do seu blog**
+# **Bit's Toca**
 
-## **Projeto Trainee, Code Jr, 2025.1**
+## **Projeto Trainee, Code Jr, 2025.2**
 
 | **Sumário** |
 |-------------|
@@ -21,7 +21,7 @@
 
 #### Scrum Master:
 
-* [Nome do Scrum](coloque o link do github).
+* [Ana Carolina](https://github.com/AnaCarolinaJunqueira).
 
 #### Links Úteis:
 
