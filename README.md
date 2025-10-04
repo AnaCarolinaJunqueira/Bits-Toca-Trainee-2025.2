@@ -13,9 +13,9 @@
 
 #### Desenvolvedores:
 
-* [Trainee 1](coloque o link do github)
-* [Trainee 2](coloque o link do github)
-* [Trainee 3](coloque o link do github)
+* [Laura Maria](https://github.com/LauraMariaHub)
+* [Bruno Keil](https://github.com/bruno-keil)
+* [Larissa Tiburcio](https://github.com/larissatiburcio)
 * [Trainee 4](coloque o link do github)
 
 
