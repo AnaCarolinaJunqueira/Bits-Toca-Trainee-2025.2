@@ -9,9 +9,14 @@ let featuredAutoPlayInterval;
 const FEATURED_AUTO_PLAY_DELAY = 5000;
 const FEATURED_HOVER_CLASS = 'is-hovered';
 let isFeaturedHoverLocked = false;
+const isTouchPrimary = window.matchMedia('(hover: none)').matches || 'ontouchstart' in window;
 
 function clearFeaturedHover() {
     featuredSlides.forEach(slide => slide.classList.remove(FEATURED_HOVER_CLASS));
+
+    if (isTouchPrimary && featuredPost) {
+        featuredPost.classList.remove('is-touch-active');
+    }
 }
 
 function setFeaturedHover(index, shouldHover, relatedTarget) {
@@ -28,6 +33,20 @@ function setFeaturedHover(index, shouldHover, relatedTarget) {
         }
 
         slide.classList.toggle(FEATURED_HOVER_CLASS, shouldHover);
+
+        if (isTouchPrimary && featuredPost) {
+            if (shouldHover) {
+                featuredPost.classList.add('is-touch-active');
+            } else {
+                const hasActiveSlide = Array.from(featuredSlides).some(activeSlide =>
+                    activeSlide.classList.contains(FEATURED_HOVER_CLASS)
+                );
+
+                if (!hasActiveSlide) {
+                    featuredPost.classList.remove('is-touch-active');
+                }
+            }
+        }
     });
 }
 
@@ -114,6 +133,45 @@ window.addEventListener('resize', () => {
 if (featuredSlides.length > 0) {
     showFeaturedSlide(0, false);
     startFeaturedAutoPlay();
+
+    // Enable tap-to-toggle behavior for featured slides on touch devices.
+    if (isTouchPrimary) {
+        featuredSlides.forEach(slide => {
+            slide.addEventListener('click', event => {
+                event.preventDefault();
+                event.stopPropagation();
+
+                const isActive = slide.classList.contains(FEATURED_HOVER_CLASS);
+
+                if (isActive) {
+                    slide.classList.remove(FEATURED_HOVER_CLASS);
+                    isFeaturedHoverLocked = false;
+                    featuredPost.classList.remove('is-touch-active');
+                    startFeaturedAutoPlay();
+                    return;
+                }
+
+                clearFeaturedHover();
+                featuredPost.classList.add('is-touch-active');
+                slide.classList.add(FEATURED_HOVER_CLASS);
+                isFeaturedHoverLocked = true;
+                stopFeaturedAutoPlay();
+            });
+        });
+
+        document.addEventListener('click', event => {
+            if (!isFeaturedHoverLocked) {
+                return;
+            }
+
+            if (!featuredPost.contains(event.target)) {
+                clearFeaturedHover();
+                featuredPost.classList.remove('is-touch-active');
+                isFeaturedHoverLocked = false;
+                startFeaturedAutoPlay();
+            }
+        });
+    }
 }
 
 // Recent Posts Carousel
@@ -122,14 +180,28 @@ const carouselItems = document.querySelectorAll('.carousel-item');
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
 const carousel = document.querySelector('.carousel');
+const carouselControls = document.querySelector('.carousel-controls');
+const CAROUSEL_ACTIVE_CLASS = 'is-active';
 
 let currentIndex = 0;
 const totalItems = dots.length;
 let isAnimating = false;
+let activeCarouselItem = null;
+
+function clearCarouselActiveState() {
+    if (carouselItems.length === 0) {
+        return;
+    }
+
+    carouselItems.forEach(item => item.classList.remove(CAROUSEL_ACTIVE_CLASS));
+    activeCarouselItem = null;
+}
 
 function updateCarousel(direction = 'right') {
     if (isAnimating) return;
     isAnimating = true;
+
+    clearCarouselActiveState();
 
     dots.forEach(d => d.classList.remove('active'));
     dots[currentIndex].classList.add('active');
@@ -195,6 +267,38 @@ rightArrow.addEventListener('click', () => {
     currentIndex = (currentIndex + 1) % totalItems;
     updateCarousel('right');
 });
+
+if (isTouchPrimary && carouselItems.length > 0) {
+    // Mirror hover behavior with tap interactions for carousel cards on touch devices.
+    carouselItems.forEach(item => {
+        item.addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isActive = item.classList.contains(CAROUSEL_ACTIVE_CLASS);
+
+            clearCarouselActiveState();
+
+            if (!isActive) {
+                item.classList.add(CAROUSEL_ACTIVE_CLASS);
+                activeCarouselItem = item;
+            }
+        });
+    });
+
+    document.addEventListener('click', event => {
+        if (!activeCarouselItem) {
+            return;
+        }
+
+        const isInsideCarousel = (carousel && carousel.contains(event.target)) ||
+            (carouselControls && carouselControls.contains(event.target));
+
+        if (!isInsideCarousel) {
+            clearCarouselActiveState();
+        }
+    });
+}
 
 // CTA button functionality
 document.querySelector('.cta-button').addEventListener('click', () => {
