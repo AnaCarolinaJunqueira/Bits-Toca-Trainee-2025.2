@@ -9,7 +9,7 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/hero-background.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), no-repeat center center/cover;
     height: 633px;
     display: flex;
     justify-content: center;
@@ -574,8 +574,12 @@ body {
 /* Responsive Design */
 
 @media (max-width: 768px) {
+    .hero, .hero-with-image {
+        height: auto;
+        min-height: 70vh;
+    }
     .hero-overlay {
-        width: min(600px, 95vw);
+        width: min(60px, 9vw);
         padding: 40px 30px;
         gap: 30px;
         min-height: 250px;
@@ -600,8 +604,9 @@ body {
     }
 
     .carousel-item {
-        width: 80%;
+        width: 100%;
         max-width: 300px;
+        min-height: auto;
     }
 
     .about-content {
@@ -630,10 +635,6 @@ body {
     
     .carousel-section {
         max-width: 95%;
-    }
-    
-    .carousel-item {
-        padding: 10px;
     }
     
     .carousel-item img {
@@ -709,19 +710,26 @@ body {
     }
     
     .carousel-item {
-        width: calc((100% - 16px) / 3);
-        aspect-ratio: 1 / 1;
-        padding: 8px;
+        width: 100%;
     }
     
     .carousel-item img {
-        height: 120px;
+        height: 100%;
     }
     
     .carousel-item .carousel-item-title {
         font-size: 0.65rem;
         height: 40px;
         padding: 0 10px;
+    }
+
+    .carousel-item .carousel-item-glass {
+        height: 40px;
+    }
+    
+    .carousel-item .carousel-item-description{
+        font-size: 0.95rem;
+        height: 100%;
     }
     
     .carousel-nav {
