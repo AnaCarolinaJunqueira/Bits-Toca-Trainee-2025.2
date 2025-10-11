@@ -206,7 +206,7 @@ function updateCarousel(direction = 'right') {
     dots.forEach(d => d.classList.remove('active'));
     dots[currentIndex].classList.add('active');
     
-    // Add exit animation to all items
+    // Exit animation for items
     carouselItems.forEach(item => {
         item.style.transition = 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out';
         if (direction === 'right') {
@@ -268,8 +268,8 @@ rightArrow.addEventListener('click', () => {
     updateCarousel('right');
 });
 
+// Mirror hover behavior with tap interactions for carousel cards on touch devices.
 if (isTouchPrimary && carouselItems.length > 0) {
-    // Mirror hover behavior with tap interactions for carousel cards on touch devices.
     carouselItems.forEach(item => {
         item.addEventListener('click', event => {
             event.preventDefault();

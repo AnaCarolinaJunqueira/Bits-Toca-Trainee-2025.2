@@ -134,7 +134,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Featured Container and Slides */
 .featured-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
@@ -245,7 +244,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Featured Dots */
 .featured-dots {
     position: absolute;
     bottom: 20px;
@@ -289,7 +287,7 @@ body {
     transform: scale(1.1);
 }
 
-/* Carousel Section - Three Cards Layout */
+/* Carousel Section */
 .carousel-section {
     margin: 30px auto;
     max-width: 1200px;
@@ -471,7 +469,7 @@ body {
     background-color: #000;
     border-radius: 50%;
     transition: all 0.5s ease;
-    pointer-events: none; /* Make dots non-clickable */
+    pointer-events: none;
 }
 
 .dot.active {
