@@ -1,29 +1,59 @@
-body {
-    font-family: 'VT323', monospace;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(180deg, #FADED2 21.63%, rgba(255, 170, 221, 0.93) 43.27%, rgba(220, 151, 165, 0.96) 75.48%, #55768C 100%);
-    line-height: 1.6;
+:root {
+    --font-primary: 'VT323', monospace;
+    --font-secundary: 'Roboto', sans-serif;
+    --color-background-start: #FADED2;
+    --color-background-mid1: rgba(255, 170, 221, 0.93);
+    --color-background-mid2: rgba(220, 151, 165, 0.96);
+    --color-background-end: #55768C;
+    --gradient-background: linear-gradient(180deg, var(--color-background-start) 21.63%, var(--color-background-mid1) 43.27%, var(--color-background-mid2) 75.48%, var(--color-background-end) 100%);
+    --color-button: #55768C;
+    --color-button-hover: #B83556;
+    --color-text-primary: #FADED2;
+    --color-text-secondary: #000;
+    --overlay-bg-color: rgba(0, 0, 0, 0.35);
+    --overlay-border-color: rgba(255, 255, 255, 0.15);
+    --overlay-box-shadow-color: rgba(0, 0, 0, 0.3);
+    --overlay-boder-color:rgba(255, 255, 255, 0.7);
 }
 
-/* Hero Section */
-.hero {
-    position: relative;
-    height: 633px;
+/* -------------- ESTILOS GERAIS -------------- */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    background: var(--gradient-background);
+    line-height: 1.6;
+    gap: 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/*-----------------------------------------------*/
+
+/* ---------------- COMPONENTES ---------------- */
+
+/* ---------------- Hero Section ---------------- */
+.hero-with-image {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.hero-with-image {
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/hero.png') no-repeat center center/cover;
     height: 633px;
+    width: 100vw;
     position: relative;
     overflow: hidden;
 }
 
 .hero-with-image::before {
-    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -37,82 +67,75 @@ body {
 }
 
 .hero-overlay {
-    text-align: center;
-    color: #FADED2;
-    background: rgba(0, 0, 0, 0.35);
-    padding: 50px 40px;
-    border-radius: 15px;
-    width: min(800px, 90vw);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 40px;
+
+    background: rgba(0, 0, 0, 0.35);
+    padding: 50px 40px;
+    border-radius: 15px;
+    width: 800px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .hero-overlay h1 {
-    color: #FADED2;
+    color: var(--color-text-primary);
     text-align: center;
-    font-family: 'VT323', monospace;
+    font-family: var(--font-primary);
     font-size: 50px;
-    font-style: normal;
-    font-weight: 400;
     line-height: normal;
     margin: 0;
 }
 
 .hero-overlay p {
-    color: #FADED2;
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.8rem;
+    color: var(--color-text-primary);
+    font-family: var(--font-secundary);
+    font-size: 0.95rem;
     margin: 0;
     opacity: 0.9;
 }
 
 .cta-button {
     padding: 15px 30px;
-    background-color: #55768C;
-    color: #FADED2;
+    background-color: var(--color-button);
+    color: var(--color-text-primary);
     border-radius: 15px;
     border: none;
     cursor: pointer;
     font-size: 12px;
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-secundary);
     transition: all 0.3s ease;
     text-transform: uppercase;
 }
 
 .cta-button:hover {
-    background-color: #B83556;
+    background-color: var(--color-button-hover);
     transform: translateY(-2px);
 }
 
-/* Content Section*/
-.content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+/* ---------------------------------------------- */
+
+/* ------------- Post em destaque --------------- */
 
 .featured {
     text-align: center;
     padding: 40px 20px;
+    margin:0;
 }
 
 .featured h2 {
-    color: #FADED2;
+    width: 100vw;
+    color: var(--color-text-primary);
     font-size: 3rem;
     margin-bottom: 30px;
-    color: #333;
-    font-family: 'VT323', monospace; 
+    color: var(--color-text-secondary);
+    font-family: var(--font-primary); 
     text-align: center;
 }
 
-/* Main Featured Post */
 .featured-post {
     position: relative;
     margin: 30px auto;
@@ -120,8 +143,8 @@ body {
     max-width: 1200px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .featured-post:hover {
@@ -154,8 +177,8 @@ body {
     right: 0;
     width: 100%;
     height: 60px;
-    color: #FADED2;
-    background: rgba(0, 0, 0, 0.35);
+    color: var(--color-text-primary);
+    background: var(--overlay-bg-color);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -213,8 +236,8 @@ body {
 }
 
 .featured-description {
-    color: #FADED2;
-    font-family: 'Roboto', sans-serif;
+    color: var(--color-text-primary);
+    font-family: var(--font-secundary);
     font-size: 1rem;
 }
 
@@ -238,7 +261,7 @@ body {
 .featured-dot {
     width: 12px;
     height: 12px;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--overlay-bg-color);
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.5s ease;
@@ -249,10 +272,6 @@ body {
     width: 30px;
     border-radius: 15px;
     background: #F5CD69;
-    box-shadow: 
-        inset 0 2px 4px rgba(0, 0, 0, 0.2),
-        inset 0 -2px 4px rgba(255, 255, 255, 0.3),
-        0 0 10px rgba(255, 255, 255, 0.5);
     border-color: rgba(255, 255, 255, 1);
 }
 
@@ -261,11 +280,28 @@ body {
     transform: scale(1.1);
 }
 
-/* Carousel Section */
+
+/* ---------------------------------------------- */
+
+/* ------------- Carrossel de Posts ------------- */
 .carousel-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 30px auto;
     max-width: 1200px;
     width: 100%;
+    margin:0;
+}
+
+.carousel-section h2 {
+    width: 100vw;
+    font-family: var(--font-primary);
+    text-align: center;
+    font-size: 3rem;
+    color: var(--color-text-secondary);
+    margin:0;
 }
 
 .carousel {
@@ -307,11 +343,10 @@ body {
     left: 0;
     right: 0;
     height: 50px;
-    background: rgba(0, 0, 0, 0.15);
+    background: var(--overlay-bg-color);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 0 0 15px 15px;
-    box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2;
     display: flex;
@@ -326,7 +361,7 @@ body {
 }
 
 .carousel-item-title {
-    color: #FADED2;
+    color: var(--color-text-primary);
     font-size: 1.5rem;
     transition: opacity 0.5s ease;
     opacity: 1;
@@ -362,8 +397,8 @@ body {
 }
 
 .carousel-item-description {
-    color: #FADED2;
-    font-family: 'Roboto', sans-serif;
+    color: var(--color-text-primary);
+    font-family: var(--font-secundary);
     font-size: 1.2rem;
     text-align: center;
 }
@@ -384,7 +419,7 @@ body {
     display: inline-block;
     width: 12px;
     height: 12px;
-    background-color: #000;
+    background-color: var(--color-text-secondary);
     border-radius: 50%;
     transition: all 0.5s ease;
     pointer-events: none;
@@ -406,7 +441,12 @@ body {
     color : #F5CD69;
 }
 
+/* ---------------------------------------------- */
+
+/* ------------------ Sobre Nós ------------------ */
+
 .about {
+    width: 80vw;
     position: relative;
     padding: 25px 20px 60px;
     border-radius: 20px;
@@ -418,7 +458,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.20);
+    background: rgba(0, 0, 0, 0.10);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.15);
@@ -438,12 +478,12 @@ body {
 }
 
 .about h2 {
-    font-family: 'VT323', monospace;
+    font-family: var(--font-primary);
     text-align: center;
     font-size: 3rem;
     margin-top: 10px;
     margin-bottom: 30px;
-    color: #FADED2;
+    color: var(--color-text-primary);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 3;
@@ -473,10 +513,10 @@ body {
 }
 
 .about-content p {
-    font-family: 'Roboto', sans-serif;
+    font-family: var(--font-secundary);
     font-size: 1rem;
     line-height: 1.8;
-    color: #FADED2;
+    color: var(--color-text-primary);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     text-align: justify;
 }
