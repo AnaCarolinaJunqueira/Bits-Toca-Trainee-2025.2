@@ -72,6 +72,7 @@ main {
     justify-content: center;
     align-items: center;
     gap: 40px;
+    text-align: center;
 
     background: rgba(0, 0, 0, 0.35);
     padding: 50px 40px;
@@ -190,7 +191,7 @@ main {
     border-radius: 0 0 15px 15px;
     text-align: center;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
+    z-index: 2; /* Garante que o texto fique acima da imagem.*/
 }
 
 .featured-slide:hover .featured-text,
@@ -224,7 +225,7 @@ main {
     opacity: 0;
     transition: opacity 0s, height 0s ease 0.5s;
     pointer-events: none;
-    z-index: 3;
+    z-index: 3; /* Garante que a descrição apareça acima do título.*/
 }
 
 .featured-slide:hover .featured-description-overlay,
@@ -322,6 +323,7 @@ main {
     transition: transform 0.5s ease;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .carousel-item:hover,
@@ -518,10 +520,12 @@ main {
     line-height: 1.8;
     color: var(--color-text-primary);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    text-align: justify;
+    text-align: center;
 }
 
-/* Responsive Design */
+/* -------------------------------------------------------- */
+
+/* -------------------- Responsividade -------------------- */
 
 @media (max-width: 768px) {
     .hero, .hero-with-image {
@@ -615,38 +619,40 @@ main {
 }
 
 @media (max-width: 480px) {
-    .hero {
-        height: min(500px, 100vh);
-    }
 
     .hero-with-image {
-        height: min(400px, 60vh);
+        height: auto;
+        min-height: 60vh;
         background-size:  contain;
     }
 
     .hero-overlay {
-        width: 30vw;
-        padding: 40px 30px;
-        gap: 30px;
-        min-height: 250px;
+        width: 60vw;
+        gap: 20px;
+        padding: 0px 20px 0px 20px;
+
     }
     
     .hero-overlay h1 {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
+        font-family: var(--font-primary);
     }
     
     .hero-overlay p {
-        font-size: 0.95rem;
+        font-size: 0.8rem;
+        font-family: var(--font-secundary);
     }
 
     .cta-button {
         padding: 10px 20px;
         font-size: clamp(9px, 2.5vw, 12px);
+        font-family: var(--font-secundary);
     }
 
     .featured h2,
+    .carousel-section h2,
     .about h2 {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
     }
 
     .cta-button {
@@ -659,12 +665,23 @@ main {
         height: 100px;
     }
 
+    .carousel-section {
+        max-width: 80vw;
+        padding: 0px;
+        overflow: hidden;
+    }
+
     .carousel {
-        gap: 8px;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.5s ease-in-out;
     }
     
     .carousel-item {
+        flex: 0 0 100%;
         width: 100%;
+        max-width: none;
+        aspect-ratio: 1 / 1;
     }
     
     .carousel-item img {
@@ -701,7 +718,9 @@ main {
     }
     
     .featured-post img {
-        height: 250px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/8;
     }
     
     .featured-text {
@@ -733,10 +752,4 @@ main {
     }
 }
 
-@media (max-width: 320px) {
-    .hero-overlay {
-        width: 80vw;
-        padding: 25px 15px;
-        gap: 20px;
-    }
-}
+/* -------------------------------------------------------- */
