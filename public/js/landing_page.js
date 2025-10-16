@@ -103,27 +103,21 @@ function showFeaturedSlide(index, preserveHover = isFeaturedHoverLocked) {
     }
 }
 
-/**
- * Avança para o próximo slide em sequência, reiniciando para o primeiro após o último.
- */
+// Avança para o próximo slide em sequência, reiniciando para o primeiro após o último.
 
 function nextFeaturedSlide() {
     currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredSlides.length;
     showFeaturedSlide(currentFeaturedIndex);
 }
 
-/**
- * Inicia a reprodução automática dos slides em destaque.
- */
+//Inicia a reprodução automática dos slides em destaque.
 
 function startFeaturedAutoPlay() {
     stopFeaturedAutoPlay();
     featuredAutoPlayInterval = setInterval(nextFeaturedSlide, FEATURED_AUTO_PLAY_DELAY);
 }
 
-/**
- * Para a reprodução automática dos slides em destaque.
- */
+//Para a reprodução automática dos slides em destaque.
 
 function stopFeaturedAutoPlay() {
     if (featuredAutoPlayInterval) {
@@ -395,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Trunca descrições longas no carrossel de posts recentes.
     const carouselDescriptions = document.querySelectorAll('.carousel-item-description');
-    const maxLength = 280;
+    const maxLength = 200;
     
     carouselDescriptions.forEach(description => {
         const text = description.textContent.trim();

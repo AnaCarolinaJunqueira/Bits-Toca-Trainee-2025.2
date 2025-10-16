@@ -358,6 +358,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .carousel-item:hover .carousel-item-glass,
@@ -537,35 +538,34 @@ main {
         height: auto;
         min-height: 70vh;
     }
-
+    
     .hero-overlay {
-        width: min(60px, 9vw);
+        width: 60vw;
         padding: 40px 30px;
-        gap: 30px;
+        gap: 20px;
         min-height: 250px;
     }
 
     .hero-overlay h1 {
-        font-size: clamp(1.5rem, 5vw, 50px);
+        font-size: 2.5rem;
     }
 
     .hero-overlay p {
-        font-size: clamp(0.7rem, 2vw, 0.8rem);
+        font-size: 0.95rem;
     }
 
     .cta-button {
         padding: 12px 25px;
-        font-size: clamp(10px, 2vw, 12px);
+        font-size: 0.7rem;
     }
 
     .carousel {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
     }
 
     .carousel-item {
         width: 100%;
-        max-width: 300px;
         min-height: auto;
     }
 
@@ -579,23 +579,29 @@ main {
     }
 
     .carousel-section {
-        max-width: 95%;
+        width: 88%;
     }
 
     .carousel-item img {
-        height: 150px;
+        height: auto;
     }
 
-    .carousel-item .carousel-item-title {
-        font-size: 0.75rem;
+    .carousel-item-glass {
+        text-align: center;
+    }
+
+    .carousel-item-title {
+        font-size: 1.5rem;
         height: 45px;
         padding: 0 12px;
     }
 
-    .featured-container{
-        display: flex;
-        align-items: center;
-        width: 100%;
+    .carousel-item-description {
+        font-size: 2vw;
+    }
+
+    .featured-post {
+        width: 96%;
     }
 
     .featured-post img {
@@ -611,7 +617,7 @@ main {
     }
 
     .featured-description {
-        font-size: 0.6rem;
+        font-size: 0.9rem;
         line-clamp: 3;
         -webkit-line-clamp: 3;
     }
