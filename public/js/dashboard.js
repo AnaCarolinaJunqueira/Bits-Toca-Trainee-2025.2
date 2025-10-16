@@ -1,2 +1,11 @@
-const button_user_menu = document.getElementById('dashboard-button-pp');
-const button_post_menu = document.getElementById('dashboard-button-pu');
+document.querySelector('.dashboard-button-pp').addEventListener('click', () => {
+    window.location.href = "index.html";
+});
+
+document.querySelector('.dashboard-button-pu').addEventListener('click', () => {
+    window.location.href = "index.html";
+});
+
+document.querySelector('.logout-button').addEventListener('click', () => {
+    window.location.href = "index.html";
+});
