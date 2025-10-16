@@ -532,7 +532,25 @@ main {
 /* -------------------------------------------------------- */
 
 /* -------------------- Responsividade -------------------- */
+@media (max-width: 1300px) {
+    .hero-overlay {
+        width: 50vw;
+    }
 
+    .featured-post {
+        width: 96%;
+    }
+
+    .featured-post img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/8;
+    }
+
+    .carousel-section {
+        width: 92%;
+    }
+}
 @media (max-width: 768px) {
     .hero-with-image {
         height: auto;
