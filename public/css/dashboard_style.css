@@ -58,7 +58,7 @@ body {
 .dashboard_header h1 {
     font-family: var(--font-primary);
     color: var(--color-text-primary);
-    font-size: 3.5rem;
+    font-size: 4rem;
     margin: 0;
 }
 
@@ -72,7 +72,7 @@ body {
 
 .dashboard-button-pu, .dashboard-button-pp {
     height: 40px;
-    width: 300px;
+    width: 240px;
     display: flex;
     justify-content: center;
     align-items: center;
