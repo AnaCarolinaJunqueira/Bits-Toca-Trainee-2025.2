@@ -98,3 +98,11 @@ body {
     height: 30px;
     padding-top: 5px;
 }
+
+.logout-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
