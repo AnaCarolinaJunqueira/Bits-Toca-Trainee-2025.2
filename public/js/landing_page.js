@@ -2,13 +2,31 @@
 // Seleciona os elementos HTML necessários para o carrossel de posts em destaque.
 const featuredContainer = document.querySelector('.featured-container');
 const featuredSlides = document.querySelectorAll('.featured-slide');
-const featuredDots = document.querySelectorAll('.featured-dot');
 const featuredDotsContainer = document.querySelector('.featured-dots');
 const featuredPost = document.querySelector('.featured-post');
 
+let featuredDots = []; // Array vazio
+
+if (featuredDotsContainer && featuredSlides.length > 0) {
+    featuredDotsContainer.innerHTML = ''; // Limpa labels existentes
+
+    // Cria um ponto para cada card
+    featuredSlides.forEach((slide, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('featured-dot');
+        if (index === 0) {
+            dot.classList.add('active'); // Seleciona o primeiro como ativo
+        }
+        featuredDotsContainer.appendChild(dot);
+    });
+
+    // Seleciona os labels criados
+    featuredDots = document.querySelectorAll('.featured-dot');
+}
+
 let currentFeaturedIndex = 0; // Índice do slide atualmente exibido
 let featuredAutoPlayInterval; // Intervalo para autoplay
-const FEATURED_AUTO_PLAY_DELAY = 5000; // Delay entre as transições automáticas
+const FEATURED_AUTO_PLAY_DELAY = 3000; // Delay entre as transições automáticas
 const FEATURED_HOVER_CLASS = 'is-hovered'; // Classe CSS para hover
 let isFeaturedHoverLocked = false; // Indica se o hover está travado (em dispositivos touch)
 const isTouchPrimary = window.matchMedia('(hover: none)').matches || 'ontouchstart' in window; // Detecta se o dispositivo é touch
@@ -233,19 +251,37 @@ if (featuredSlides.length > 0) {
 }
 
 // Seleciona os elementos HTML necessários para o carrossel de posts recentes.
-const dots = document.querySelectorAll('.dot');
+const carousel = document.querySelector('.carousel');
 const carouselItems = document.querySelectorAll('.carousel-item');
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
-const carousel = document.querySelector('.carousel');
 const carouselControls = document.querySelector('.carousel-controls');
 const CAROUSEL_ACTIVE_CLASS = 'is-active';
 
-let currentIndex = 0; // Índice da página sendo exibida.
-const totalItems = dots.length; // Número total de páginas no carrossel.
-let isAnimating = false; // Evitar múltiplas animações simultâneas.
-let activeCarouselItem = null; // Item atualmente ativo em dispositivos móveis.
-let isMobile = window.matchMedia("(max-width: 500px)").matches; // Verifica se o dispositivo é móvel.
+const itemsPerPage = 3; // Quantos items por página
+const itemsPerPageMobile = 2;
+const totalPages = Math.ceil(carouselItems.length / itemsPerPage);
+const totalPagesMobile = Math.ceil(carouselItems.length / itemsPerPageMobile);
+let dots = []; // Array vazio
+let isMobileView = window.matchMedia("(max-width: 480px)").matches;
+const pages = isMobileView ? totalPagesMobile : totalPages;
+
+if (carouselControls && rightArrow && pages > 0) {
+    for (let i = 0; i < pages; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === 0) {
+            dot.classList.add('active');
+        }
+        // Coloca os labels entre as setas
+        carouselControls.insertBefore(dot, rightArrow);
+    }
+    
+    dots = document.querySelectorAll('.dot');
+}
+
+let currentIndex = 0; // Índice da PÁGINA (desktop) ou ITEM (mobile)
+let activeCarouselItem = null;
 
 
 // Retira o estado ativo de todos os itens do carrossel.
@@ -253,94 +289,68 @@ function clearCarouselActiveState() {
     if (carouselItems.length === 0) {
         return;
     }
-
     carouselItems.forEach(item => item.classList.remove(CAROUSEL_ACTIVE_CLASS));
     activeCarouselItem = null;
 }
 
-/**
- * Atualiza o carrossel de posts recentes para o próximo índice.
- * @param {string} direction - A direção da transição ('left' ou 'right').
- * @returns {void}
- */
-function updateCarousel(direction = 'right') {
+// Atualiza o carrossel de posts recentes para o próximo índice.
+function updateCarousel() {
+    isMobileView = window.matchMedia("(max-width: 480px)").matches;
 
-    // Previne que a animação seja chamada novamente enquanto uma já está em andamento.
-    if (isAnimating) return;
-    isAnimating = true;
+    if (isMobileView) {
 
-    // Desabilita interações durante a animação.
-    carouselControls.style.pointerEvents = 'none'; // Desabilita interações durante a animação.
+        // Garante que o índice está dentro dos limites (0 a 8)
+        if (currentIndex < 0) currentIndex = totalPagesMobile - 1;
+        if (currentIndex >= totalPagesMobile) currentIndex = 0;
 
-    // Retira o estado ativo de todos os itens do carrossel.
-    clearCarouselActiveState();
+        dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
 
-    // Atualiza os pontos de controle para refletir o índice atual.
-    dots.forEach(d => d.classList.remove('active'));
-    dots[currentIndex].classList.add('active');
-    
-    // Animação de saída para os itens do carrossel.
-    carouselItems.forEach(item => {
-        item.style.transition = 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out';
-        if (direction === 'right') {
-            item.style.transform = 'translateX(-100%)';
-        } else {
-            item.style.transform = 'translateX(100%)';
-        }
-        item.style.opacity = '0';
-    });
+        const targetItemIndex = currentIndex * itemsPerPageMobile;
 
-    // Após a animação de saída, reposiciona os itens e anima a entrada.
-    setTimeout(() => {
-        const itemWidth = carouselItems[0].offsetWidth;
-        carousel.scrollTo({
-            left: currentIndex * itemWidth,
-            behavior: 'auto'
-        });
-
-        // Reposiciona os itens fora da tela para a direção oposta.
-        carouselItems.forEach(item => {
-            item.style.transition = 'none'; // Remove a transição para reposicionar instantaneamente.
-            if (direction === 'right') {
-                item.style.transform = 'translateX(100%)';
-            } else {
-                item.style.transform = 'translateX(-100%)';
-            }
-        });
-
-        // Força o navegador a reconhecer as mudanças de estilo antes de continuar.
-        carousel.offsetHeight;
-
-        // Garante que a animação de entrada ocorra no próximo frame.
-        requestAnimationFrame(() => {
-            carouselItems.forEach(item => {
-                item.style.transition = 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out';
-                item.style.transform = 'translateX(0)';
-                item.style.opacity = '1';
+        if (carouselItems[targetItemIndex]) {
+            carouselItems[targetItemIndex].scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'start'
             });
-        });
+        }
+    }
 
-        // Permite novas animações após a conclusão da atual.
-        setTimeout(() => {
-            isAnimating = false;
+    else {
+        // Garante que o índice está dentro dos limites (0 a 4)
+        if (currentIndex < 0) currentIndex = totalPages - 1;
+        if (currentIndex >= totalPages) currentIndex = 0;
+        
+        // Atualiza os dots
+        dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
 
-            // Reabilita interações após a animação.
-            carouselControls.style.pointerEvents = 'auto';
-        }, 500);
-    }, 500);
+        // Calcula qual item deve ser rolado para a vista
+        // (Índice da página * items por página) = índice do primeiro item da página
+        const targetItemIndex = currentIndex * itemsPerPage;
+        if (carouselItems[targetItemIndex]) {
+            carouselItems[targetItemIndex].scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'start'
+            });
+        }
+    }
+    
+    // Limpa o estado de 'hover' de toque
+    clearCarouselActiveState();
 }
 
 
 // Adiciona listeners de clique para a seta esquerda.
 leftArrow.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-    updateCarousel('left');
+    currentIndex--;
+    updateCarousel();
 });
 
 // Adiciona listeners de clique para a seta direita.
 rightArrow.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalItems;
-    updateCarousel('right');
+    currentIndex++;
+    updateCarousel();
 });
 
 // Lógica de toque para controles em dispositivos móveis
