@@ -311,7 +311,7 @@ function updateCarousel() {
             carouselItems[targetItemIndex].scrollIntoView({
                 behavior: 'smooth',
                 block: 'nearest',
-                inline: 'start'
+                inline: 'nearest'
             });
         }
     }
@@ -331,7 +331,7 @@ function updateCarousel() {
             carouselItems[targetItemIndex].scrollIntoView({
                 behavior: 'smooth',
                 block: 'nearest',
-                inline: 'start'
+                inline: 'nearest'
             });
         }
     }
