@@ -21,12 +21,17 @@ body {
     text-align: center;
     font-family: 'VT323', monospace;
     font-size: 65px;
-    background-color: linear-gradient(to right,   
-                                rgba(0, 0, 0, 1), 
-                                rgba(184, 53, 86, 1));
     width: fit-content;
     height: fit-content;
+    background-image: linear-gradient(to right,   
+                                rgba(0, 0, 0, 1) 16%, 
+                                rgba(184, 53, 86, 1)43%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    padding-top: 50px;
 }
+
 
 #filtro-pesquisa {
     display: flex;
@@ -84,13 +89,21 @@ input[type="text"] {
 
 }
 
-#barra-pesquisa img {
+#barra-pesquisa img#fliperama-icon {
     width: 87px;
-    left: -50px;
+    left: -80px;
     top: -8px;
     position:relative;
 
 } 
+
+#barra-pesquisa img#lupa-icon {
+    width: 25px;
+    height: 25px;
+    left: -399px;
+    position: relative;
+
+}
 
 #posteres {
     display: grid;
@@ -175,7 +188,7 @@ input[type="text"] {
 }
 
 button#atual{
-
+    padding-top: 20px;
     color: white;
     background-color: rgba(0, 0, 0, 1);
     border-radius: 16px;
