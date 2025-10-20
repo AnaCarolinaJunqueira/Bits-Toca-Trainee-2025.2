@@ -110,3 +110,23 @@ footer
     gap: 0.5vw;
 }
 
+.missao
+{
+    display: none;
+}
+
+.visao
+{
+    display: none;
+}
+
+.valores
+{
+    display: none;
+}   
+
+#missao, #visao, #valores
+{
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+}
