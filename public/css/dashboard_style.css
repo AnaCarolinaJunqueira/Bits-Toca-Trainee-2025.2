@@ -7,7 +7,7 @@
     --color-button: #55768C;
     --color-button-hover: #B83556;
     --color-text-primary: #FADED2;
-    --overlay-bg-color: rgba(0, 0, 0, 0.35);
+    --overlay-bg-color: rgba(0, 0, 0, 0.60);
     --overlay-border-color: rgba(255, 255, 255, 0.15);
     --overlay-box-shadow-color: rgba(0, 0, 0, 0.3);
     --overlay-boder-color:rgba(255, 255, 255, 0.7);
@@ -106,8 +106,18 @@ body {
     width: 100px;
     height: 100px;
 }
+@media (max-width: 1300px) {
+    .dashboard_overlay {
+        padding: 15px 30px 50px 30px;
+    }
+}
 
 @media (max-width: 768px) {
+
+    body {
+        background-size: contain;
+    }
+
     .dashboard_overlay {
         padding: 15px 15px 50px 15px;
     }
