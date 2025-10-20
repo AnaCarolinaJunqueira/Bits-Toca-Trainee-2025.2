@@ -1,0 +1,133 @@
+*{
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(180deg,
+    rgba(252, 222, 210,1) 22%,
+    rgba(255,170,221,0.95) 43%,
+    rgba(220,151,165,0.96) 96%,
+    rgba(85,118,147,1) 100%) no-repeat;
+    background-size: cover;
+
+}
+
+#título-pagina-post {
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 85px;
+    background-color: linear-gradient(to right,   
+                                rgba(0, 0, 0, 1), 
+                                rgba(184, 53, 86, 1));
+    width: fit-content;
+    height: fit-content;
+
+}
+
+#filtro-pesquisa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1444px;
+    height: 116px;
+}
+
+#filtro {
+    width: 280px;
+    height: 60px;
+}
+
+.botão-filtro {
+    border-radius: 20px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    border: none;
+}
+
+#filtro-pesquisa #filtro-analise {
+    background-color: rgba(184, 53, 86, 1);
+}
+
+#filtro-pesquisa #filtro-review {
+    background-color: rgba(184, 53, 86, 0.75)
+}
+
+#filtro-pesquisa #filtro-critica {
+    background-color: rgba(220, 151, 165, 1);
+}
+
+#barra-pesquisa {
+    display: flex;
+    width: 519px;
+    height: 79px;
+}
+
+input[type="text"] {
+    width: 456.71px;
+    height: 47.01px;
+    border-radius: 20px;
+    border: none;
+}
+
+#barra-pesquisa img {
+    width: 87px;
+    left: -50px;
+    top: -20px;
+    position:relative;
+} 
+
+#posteres {
+    display: flex;
+    height: fit-content;
+    gap: 30px;
+    margin: 10 auto;
+
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 350px;
+    height: 570px;
+    border-radius: 16px;
+}
+
+.texto-card {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#posteres .card #heron-section {
+    width: 350px;
+    height: 350px;
+    border-radius: 16px 16px 0px 0px;
+}
+
+#titulo-card {
+    height: fit-content;
+    font-family: 'VT323', monospace;
+    color: #FADED2;
+    font-size: 45px;
+}
+
+#texto-card {
+    font-family: 'Inter', sans-serif;
+    height: fit-content;
+    color: #FADED2;
+    padding-left: 30px;
+}
+
+
+
