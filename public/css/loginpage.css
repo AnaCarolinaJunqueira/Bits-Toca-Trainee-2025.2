@@ -5,22 +5,18 @@
  }
 
  body {
-     background-color: rgba(0, 0, 0, 0.20);
-     background-image: url(../assets/fundo.png);
+     background-image: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)), url('../assets/fundo.png');
      background-size: cover;
      background-position: center;
      display: flex;
      justify-content: space-between;
      align-items: center;
      flex-direction: row;
+     border-image-source: rgba(0, 0, 0);
+     border-image-slice: fill 0.20;
+     z-index: 2;
 
  }
-
- body::before {
-     background-image: url(../assets/fundo.png);
-     z-index: -1;
- }
-
  .tamanho-body {
      width: 100vw;
      height: 100vh;
