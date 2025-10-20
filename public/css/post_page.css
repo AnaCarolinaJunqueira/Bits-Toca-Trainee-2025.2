@@ -16,7 +16,6 @@ body {
 
 }
 
-
 #título-pagina-post {
     text-align: center;
     font-family: 'VT323', monospace;
@@ -46,7 +45,6 @@ body {
 
 #filtro {
     height: fit-content;
-
 }
 
 button.botão-filtro {
@@ -59,10 +57,11 @@ button.botão-filtro {
     padding: 10px 12px;
 }
 
-#botão-filtro:hover,
-#botão-analise:hover,
-#botão-review:hover {
+#filtro-critica:hover,
+#filtro-analise:hover,
+#filtro-review:hover {
     background-color: #55768C;
+    cursor: pointer;
 }
 
 button#filtro-analise {
