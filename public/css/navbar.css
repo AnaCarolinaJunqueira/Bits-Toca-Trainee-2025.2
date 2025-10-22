@@ -36,11 +36,34 @@ header {
 
 .links li a {
     background-color: #b83556;
-    padding: 2vh 2.5vh;
+    padding: 1.5vh 2.5vh;
     border-radius: 2vh;
     text-decoration: none;
     color: #faded2;
     font-size: 2vh;
     font-family: 'Roboto', sans-serif;
     font-weight: 550;
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 2vh;
+    width: auto;
+}
+
+.login img {
+    height: 150%;
+    width: auto;
+}
+
+.links li a:hover {
+    background-color: #faded2;
+    color: #b83556;
+    transition: 0.3s;
+}
+
+.login:hover img {
+    content: url("../assets/login-B83556.png");
 }
