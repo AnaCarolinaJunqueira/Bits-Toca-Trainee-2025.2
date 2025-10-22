@@ -115,10 +115,9 @@
      transition: all 0.5s ease;
 
  }
-  .button img:hover {
-     transform: scale(1.05);
-     cursor: pointer;
-     margin-left: 6.5%;
+
+ .button img:hover {
+     transform: scale(1.1);
  }
 
 
@@ -143,13 +142,14 @@
 
      #check,
      #check-password {
+         font-weight: 800;
          width: 60%;
          font-size: 1.4rem;
      }
 
      .botao-loginpage {
          width: 64%;
-         font-size: 1.8vw;
+         font-size: 3.0vw;
      }
 
      h2 {
@@ -165,17 +165,18 @@
 
      #check,
      #check-password {
+         font-weight: 800;
          width: 80%;
          font-size: 1.2rem;
      }
 
      .botao-loginpage {
          width: 84%;
-         font-size: 1.5vw;
+         font-size: 4.5vw;
      }
 
      h2 {
-         font-size: 3.5rem;
+         font-size: 4.5rem;
      }
  }
 
@@ -187,13 +188,14 @@
 
      #check,
      #check-password {
+         font-weight: 800;
          width: 90%;
          font-size: 1rem;
      }
 
      .botao-loginpage {
          width: 94%;
-         font-size: 2vw;
+         font-size: 8vw;
      }
 
      h2 {
