@@ -30,8 +30,9 @@
     height: auto;
 }
 
-.link a {
+.link {
     display: flex;
+    justify-content: center;
     align-items: center;
     height: 2vh;
     width: auto;
@@ -47,7 +48,7 @@
     text-align: center;
 }
 
-.link .login {
+.login {
     font-size: 0%;
 }
 
@@ -56,7 +57,7 @@
     width: auto;
 }
 
-.link a:hover {
+.link:hover {
     background-color: #faded2;
     color: #b83556;
     transition: 0.3s;
@@ -73,62 +74,66 @@
 
 .bar {
     display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px 0;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+    width: 4vh;
+    height: 0.5vh;
+    margin: 0.8vh 0;
     background-color: #b83556;
 }
 
 .hamburger:hover .bar {
     background-color: #faded2;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 780px) {
     .hamburger {
         display: block;
         padding: 1vh 0;
     }
 
-    header {
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(1.3vh) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-1.3vh) rotate(-45deg);
     }
 
     .menu-container {
         display: flex;
         align-items: end;
         flex-direction: column;
+        padding: 15px 0;
     }
 
     .menu {
+        display: none;
         background-color: #55768c;
         flex-direction: column;
         align-items: center;
-        gap: 4vh;
-        transition: 0.5s;
-        padding: 2vh 0;
-        gap: 2.5vh;
+        padding: 1vh 0;
+        gap: 2vh;
     }
 
-    .link {
+    .menu li {
         width: 100%;
     }
 
-    .link a {
+    .link {
         border-radius: 5vh;
+        font-size: 3vw;
+        height: 4vw;
+        padding: 1.5vw 3.5vw;
     }
-
-    .link .login{
-        font-size: 2vh;
-    }
-
+    
     .login img {
         height: 0%;
         width: auto;
+    }
+
+    .menu.active {
+        display: flex;
     }
 }
