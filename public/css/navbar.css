@@ -1,23 +1,19 @@
-header {
-    width: 100%;
-    position: fixed;
+* {
+    margin: 0;
     padding: 0;
-    top: 0;
-    left: 0;
-}
+} 
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #55768c;
-    height: 12vh;
-    padding: 0 5vh;
-    margin: 0;
+    height: auto;
+    padding: 1.4vh 5vh;
 }
 
 .logo{
-    height: 80%;
+    height: 9.6vh;
     width: auto;
 }
 
@@ -26,7 +22,7 @@ header {
     width: auto;
 }
 
-.links {
+.menu {
     display: flex;
     align-items: center;
     list-style: none;
@@ -34,23 +30,25 @@ header {
     height: auto;
 }
 
-.links li a {
+.link a {
+    display: flex;
+    align-items: center;
+    height: 2vh;
+    width: auto;
     background-color: #b83556;
     padding: 1.5vh 2.5vh;
     border-radius: 2vh;
+
     text-decoration: none;
     color: #faded2;
     font-size: 2vh;
     font-family: 'Roboto', sans-serif;
     font-weight: 550;
+    text-align: center;
 }
 
-.login {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    height: 2vh;
-    width: auto;
+.link .login {
+    font-size: 0%;
 }
 
 .login img {
@@ -58,7 +56,7 @@ header {
     width: auto;
 }
 
-.links li a:hover {
+.link a:hover {
     background-color: #faded2;
     color: #b83556;
     transition: 0.3s;
@@ -66,4 +64,71 @@ header {
 
 .login:hover img {
     content: url("../assets/login-B83556.png");
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #b83556;
+}
+
+.hamburger:hover .bar {
+    background-color: #faded2;
+    transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        padding: 1vh 0;
+    }
+
+    header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .menu-container {
+        display: flex;
+        align-items: end;
+        flex-direction: column;
+    }
+
+    .menu {
+        background-color: #55768c;
+        flex-direction: column;
+        align-items: center;
+        gap: 4vh;
+        transition: 0.5s;
+        padding: 2vh 0;
+        gap: 2.5vh;
+    }
+
+    .link {
+        width: 100%;
+    }
+
+    .link a {
+        border-radius: 5vh;
+    }
+
+    .link .login{
+        font-size: 2vh;
+    }
+
+    .login img {
+        height: 0%;
+        width: auto;
+    }
 }
