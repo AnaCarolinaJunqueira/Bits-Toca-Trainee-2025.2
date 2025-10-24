@@ -156,18 +156,26 @@ body {
         padding: 25px 15px 40px 15px;
     }
 
+    .dashboard_header .dashboard_logo {
+        width: 25%;
+    }
+
     .dashboard_content {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
     }
 
     .dashboard_header h1 {
         font-size: 3rem;
     }
 
+    .dashboard-button-pu {
+        justify-content: space-between;
+    }
+
     .dashboard-button-pu, .dashboard-button-pp {
-        padding: 20px 10px 20px 10px;
-        font-size: 3vw;
+        padding: 30px 20px 30px 20px;
+        font-size: 5vw;
     }
 
     .logout-button {
