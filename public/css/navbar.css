@@ -38,41 +38,40 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 2vh;
-    width: auto;
     background-color: #b83556;
-    padding: 1.5vh 2.5vh;
+    height: 2.5vh;
+    width: auto;
     border-radius: 2vh;
+    padding: 1.5vh 2vh;
+    gap: 1vh;
 
     text-decoration: none;
     color: #faded2;
     font-size: 2vh;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 550;
+    font-family: 'Nunito';
+    font-weight: 800;
     text-align: center;
+
+    transition: 0.3s;
 }
 
-.login, .home {
-    font-size: 0%;
-    padding: 1.5vh 2vh;
-}
-
-.login i, .home i {
+.nav-link i {
+    align-items: center;
+    justify-content: center;
     font-size: 3vh;
     color: #faded2;
+    transition: 0.3s;
 }
 
 .nav-link:hover {
     background-color: #faded2;
     color: #b83556;
+    transition: 0.3s;
 }
 
-.login:hover i {
+.nav-link:hover i {
     color: #b83556;
-}
-
-.home:hover i {
-    color: #b83556;
+    transition: 0.3s;
 }
 
 .menu-hamburger {
@@ -84,12 +83,14 @@ header{
 }
 
 .menu-hamburger i {
-    font-size: 5vh;
+    font-size: 6.5vw;
     color: #b83556;
+    transition: 0.3s;
 }
 
 .menu-hamburger i:hover {
     color: #faded2;
+    transition: 0.3s;
 }
 
 @media (max-width: 1300px) {
@@ -99,6 +100,19 @@ header{
 
     .navbar {
         padding: 1.4vh 3.5vw;
+    }
+
+    .nav-link {
+        padding: 1.5vw 1.5vw;
+        height: 3vw;
+        max-height: 2.5vh;
+        font-size: 2vw;
+        gap: 1vw;
+        border-radius: 2vw;
+    }
+
+    .nav-link i {
+        font-size: 3vw;
     }
 }
 
@@ -111,17 +125,16 @@ header{
         display: flex;
         align-items: end;
         flex-direction: column;
-        padding: 1vh 0;
-        width: 50%;
+        padding: 1vh 2vw;
+        /* width: 50%; */
     }
     
     .menu-itens {
         display: none;
-        background-color: #55768c;
         flex-direction: column;
         align-items: center;
-        padding: 1vh 0;
-        gap: 2vh;
+        gap: 2.5vw;
+        height: fit-content;
         width: 100%;
     }
 
@@ -130,18 +143,21 @@ header{
     }
     
     .nav-link {
+        justify-content: space-between;
         border-radius: 5vh;
-        font-size: 3vw;
-        height: 4vw;
-        padding: 1.5vw 3.5vw;
-    }
-    
-    .login, .home {
-        font-size: 3vw;
+        font-size: 3.5vw;
+        height: 4.5vw;
+        padding: 1.5vw 3vw;
+        gap: 2vw;
     }
 
-    .login i, .home i {
-        font-size: 0%;
+    .nav-link div {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .nav-link i {
+        font-size: 5vw;
     }
 
     .menu-itens.active {
