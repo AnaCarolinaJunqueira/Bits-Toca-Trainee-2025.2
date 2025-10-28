@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(#faded2, #dc97a5, #55768c);
+    padding: 5vh 8vw;
+}
+
+.content {
+    background-color: #ffffff44;
+    border-radius: 15px;
+    padding: 8vh 8vw;
+    box-shadow:4px 6px 1vh rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.button-back {
+    background: none;
+    border: none;
+    font-size: 3vw;
+    cursor: pointer;
+    color: #55768c;
+
+    position: absolute;
+    top: 8vh;
+    left: 10vw;
+}
+
+.content h1 {
+    font-family: 'vt323', cursive;
+    text-align: center;
+    font-size: 5vw;
+}
+
+.post-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'vt323', cursive;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    background-color: #55768c;
+    border-radius: 2vh;
+    height: 7vh;
+    padding: 1vh;
+    gap: 1vw;
+}
+
+.user img {
+    height: 100%;
+    border-radius: 50%;
+}
+
+.user p {
+    color: white;
+    font-size: 3.5vh;
+}
+
+.date {
+    font-size: 4vh;
+    color: #827b79;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    font-family: 'vt323', cursive;
+    font-size: 1.5vh;
+    line-height: 2.5vh;
+}
+
+.post-image {
+    height: auto;
+    width: 100%;
+}
+
+.post-image img {
+    width: 100%;
+    border-radius: 2vh;
+}
+
+.post-description {
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;
+    font-size: 2.7vh;
+    font-weight: 600;
+}
+
+.post-rating {
+    display: flex;
+    flex-direction: column;
+    background-color: #00000020;
+    border-radius: 3vh;
+    padding: 3vh 2vw;
+    gap: 3vh;
+    box-shadow: 0 0.8vh 1vh rgba(0, 0, 0, 0.25);
+
+    font-family: 'vt323', cursive;
+}
+
+.post-rating h2 {
+    font-size: 5vh;
+    font-weight: 600;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1vw;
+    width: 100%;
+}
+
+.rating p {
+    font-size: 6vh;
+    color: #f5cd69;
+    font-weight: 580;
+    margin-top: -0.5vh;
+}
+
+.stars {
+    display: flex;
+    color: #f5cd69;
+    font-size: 4vh;
+    gap: 1vw;
+    align-items: center;
+    width: 100%;
+    justify-content: start;
+}
+
+.star1, .star2, .star3 {
+    color: #f5cd69;
+}
+.star4, .star5 {
+    color: #d9d9d9;
+}
+
+.rating button {
+    border: none;
+    cursor: pointer;
+    
+    background-color: #827b79;
+    padding: 1.8vh 1vw;
+    border-radius: 2vh;
+
+    font-size: 3vh;
+    color: #faded2;
+    font-family: 'vt323', cursive;
+    font-weight: 100;
+    white-space: nowrap;
+}
