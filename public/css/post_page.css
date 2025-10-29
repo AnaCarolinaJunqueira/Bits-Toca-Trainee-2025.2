@@ -36,8 +36,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 1444px;
-    height: 116px;
+    width: 100%;
+    height: fit-content;
     gap: 30px;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -79,9 +79,10 @@ button#filtro-critica {
 #barra-pesquisa {
     display: flex;
     width: 519px;
-    height: 79px;
+    height: 100px;
     justify-content: center;
     align-items: center;
+    overflow: hidden; 
 
 }
 
@@ -96,8 +97,8 @@ input[type="text"] {
 
 #barra-pesquisa img#fliperama-icon {
     width: 87px;
-    left: -80px;
-    top: -8px;
+    left: -52px;
+    margin: -40px;
     position:relative;
 
 } 
@@ -105,7 +106,7 @@ input[type="text"] {
 #barra-pesquisa img#lupa-icon {
     width: 25px;
     height: 25px;
-    left: -399px;
+    left: -450px;
     position: relative;
 
 }
@@ -113,7 +114,11 @@ input[type="text"] {
 #posteres {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: center; 
+    justify-content: center;   
     height: fit-content;
+    max-width: 50vw;
     gap: 30px;
     margin: 10 auto;
     padding-top: 20px;
@@ -193,11 +198,116 @@ input[type="text"] {
 }
 
 button#atual{
-    padding-top: 20px;
+    padding: 0px;
     color: white;
     background-color: rgba(0, 0, 0, 1);
     border-radius: 16px;
     width: 40px;
     height: 40px;
     font-size: 20px;
+}
+
+@media screen and (max-width: 814px) {
+ #filtro-pesquisa {
+    flex-direction: column;
+
+ }
+
+ #barra-pesquisa {
+    width: 100vw;
+ }
+}
+
+
+@media screen and (max-width: 1125px){
+    #posteres {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+
+}        
+}
+
+@media screen and (max-width: 757px){
+    #posteres {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 900px;
+
+}        
+}
+
+@media screen and (max-width: 494px) {
+    #barra-pesquisa {
+        width: 320px;
+    }
+
+    #título-pagina-post {
+        font-size: 40px;
+    }
+
+    #barra-pesquisa img#lupa-icon {
+        left: -280px;
+    }
+}
+
+@media screen and (max-width: 494px) {
+    #barra-pesquisa {
+        padding-left: 20px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: 470px;
+}
+
+.texto-card {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 0px 0px 16px 16px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+
+#posteres .card #heron-section{
+    width: 250px;
+    height: 250px;
+    border-radius: 16px 16px 0px 0px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+#posteres .card #heron-section img{
+    width: 250px;
+    height: 250px;
+    border-radius: 16px 16px 0px 0px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+
+
+}
+
+#titulo-card {
+    height: fit-content;
+    font-family: 'VT323', monospace;
+    color: #FADED2;
+    font-size: 35px;
+    padding: 5px;
+}
+
+#texto-card {
+    font-family: 'Inter', sans-serif;
+    height: fit-content;
+    color: #FADED2;
+    padding-left: 30px;
+    background: transparent;
+    backdrop-filter: blur(10px);
+}
 }
