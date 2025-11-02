@@ -12,7 +12,6 @@
  }
 
  .FooterPrincipal {
-
      display: flex;
      justify-content: space-between;
      align-items: center;
@@ -20,6 +19,7 @@
      padding: 20px 0;
      color: #faded2;
      padding: 0 50px;
+     height: 200px;
  }
 
  .LogoBitsToca.active-content {
@@ -108,7 +108,10 @@
  }
 
  .LogoBitsToca {
+    max-width: 400px;
+    min-width: 0.33vw;
      margin-left: 170px;
+     font-size: 1.2rem;
  }
 
  .Redes-Sociais {
@@ -163,6 +166,7 @@
  @media screen and (max-width: 824px) {
      .FooterPrincipal {
          padding: 20px 20px;
+         height: auto;
      }
 
      .LogoBitsToca {

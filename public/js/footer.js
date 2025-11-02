@@ -6,34 +6,93 @@ const logo = document.getElementById('logo-footer');
 const missaocontent = document.getElementById('missao-footer');
 const valorescontent = document.getElementById('valores-footer');
 const visaocontent = document.getElementById('visao-footer');
+const ismobile = window.innerWidth <= 768;
+let activecontent = logo;
+
 const mvvcontent = [missaocontent, valorescontent, visaocontent];
 
-function showcontent(content) {
+function showMvvContent(contentToShow) {
   logo.hidden = true;
-  mvvcontent.forEach((content) => {
-    content.hidden = true;
-    if (content) {
-      content.hidden = false;
-      container.style.minHeight = '200px';
-    }
-    else {
-      logo.hidden = false;
-      container.style.minHeight = '';
-    }
+
+  mvvcontent.forEach((item) => {
+    item.hidden = true;
   });
+
+  if (contentToShow) {
+    contentToShow.hidden = false;
+
+    container.classList.add('active-content');
+
+    if (contentToShow === valorescontent) {
+      container.classList.add('valores');
+      container.classList.remove('centralizado');
+    } else {
+      container.classList.add('centralizado');
+      container.classList.remove('valores');
+    }
+  }
+  activecontent = contentToShow;
 }
 
-botaomissao.addEventListener('mouseenter', () => {
-  showcontent(missao);
-});
-botaomissao.addEventListener('mouseleave', () => showcontent(logo));
+function showLogo() {
+  mvvcontent.forEach((item) => {
+    item.hidden = true;
+  });
 
-botaovalores.addEventListener('mouseenter', () => {
-  showcontent(valores);
-});
-botaovalores.addEventListener('mouseleave', () => showcontent(logo));
+  logo.hidden = false;
 
-botaovisao.addEventListener('mouseenter', () => {
-  showcontent(visao);
-});
-botaovisao.addEventListener('mouseleave', () => showcontent(logo));
+  container.classList.remove('active-content',
+     'valores');
+  activecontent = logo;
+}
+
+  if (!ismobile) {
+    botaomissao.addEventListener('mouseenter', () => {
+      showMvvContent(missaocontent);
+    });
+    botaomissao.addEventListener('mouseleave', () => {
+      showLogo();
+    });
+
+    botaovalores.addEventListener('mouseenter', () => {
+      showMvvContent(valorescontent);
+    });
+    botaovalores.addEventListener('mouseleave', () => {
+      showLogo();
+    });
+
+    botaovisao.addEventListener('mouseenter', () => {
+      showMvvContent(visaocontent);
+    });
+    botaovisao.addEventListener('mouseleave', () => {
+      showLogo();
+    });
+
+  } else {
+    botaomissao.addEventListener('click', () => {
+      if(missaocontent.hidden) {
+        showMvvContent(missaocontent);
+      }
+      else {
+        showLogo();
+      }
+
+    });
+    botaovalores.addEventListener('click', () => {
+     if(valorescontent.hidden) {
+        showMvvContent(valorescontent);
+      }
+      else {
+        showLogo();
+      }
+    });
+    botaovisao.addEventListener('click', () => {
+      if(visaocontent.hidden) {
+        showMvvContent(visaocontent);
+      }
+      else {
+        showLogo();
+      }
+    });
+  }
+  showLogo();
