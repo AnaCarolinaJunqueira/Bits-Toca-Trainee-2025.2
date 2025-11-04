@@ -104,20 +104,35 @@ tfoot td {
     border: none;
     width: min-content;
     text-align: center;
-
 }
 
 tbody {
     background-color: #ffff;
 }
 
-.açoes button{
+.açoes button {
     all: unset;
     font-size: 1.5rem;
     padding: 0px 30p;
-    
+
 }
 
-.açoes{
+.açoes {
     width: 100px;
+}
+
+.items {
+    padding: 30px;
+}
+
+.header {
+    padding: 20px;
+}
+
+.botao_foot1 {
+    all: unset;
+}
+
+.botao_foot {
+    all: unset;
 }
