@@ -16,13 +16,13 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 3vh;
+    gap: 1.5rem;
 }
 
 .button-back {
     background: none;
     border: none;
-    font-size: 3vw;
+    font-size: 3rem;
     cursor: pointer;
     color: #55768c;
 
@@ -37,9 +37,9 @@ body {
 .content h1 {
     font-family: 'Press Start 2P', cursive;
     text-align: center;
-    font-size: 3.5vw;
+    font-size: 3.5rem;
     font-weight: 600;
-    text-shadow: 0 0.2vw 0.5vw rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .post-info {
@@ -53,10 +53,10 @@ body {
     display: flex;
     align-items: center;
     background-color: #55768c;
-    border-radius: 2vh;
-    height: 5vh;
-    padding: 1vh;
-    gap: 1vh;
+    border-radius: 1rem;
+    height: 2.5rem;
+    padding: 0.5rem;
+    gap: 0.5rem;
 }
 
 .user img {
@@ -66,11 +66,11 @@ body {
 
 .user p {
     color: white;
-    font-size: 2vh;
+    font-size: 0.8rem;
 }
 
 .date {
-    font-size: 2.5vh;
+    font-size: 1rem;
     color: rgba(0, 0, 0, 0.6);
 }
 
@@ -78,50 +78,82 @@ body {
     width: auto;
     max-width: 100%;
     max-height: 80vh;
-    border-radius: 2vh;
+    border-radius: 1rem;
 }
 
 .post-description {
     font-family: 'Roboto', sans-serif;
     text-align: justify;
-    font-size: 2.7vh;
+    font-size: 1.2rem;
     font-weight: 600;
-    padding-bottom: 3vh;
+    padding-bottom: 1.5rem;
     border-bottom: 2px solid rgba(0, 0, 0, 0.6);
+    text-indent: 3rem;
+}
+
+.post-description p {
+    margin-top: 1rem;
+    line-height: 1.3;
+}
+
+.rating-content {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Press Start 2P', cursive;
+    color: rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
 }
 
 .likes-content {
     display: flex;
     align-items: end;
-    gap: 0.3vw;
-    font-family: 'Press Start 2P', cursive;
-    color: rgba(0, 0, 0, 0.6);
+    gap: 0.3rem;
     cursor: pointer;
     width: fit-content;
-    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
-    height: 3vh;
+    height: 1.5rem;
 }
 
 .likes-icon {
     display: flex;
-    width: 1.7vw;
+    width: 1.7rem;
     justify-content: center;
 }
 .likes-icon i {
-    font-size: 1.3vw;
+    font-size: 1.3rem;
 }
 
 .likes-text {
     display: flex;
     align-items: center;
-    font-size: 1vw;
-    gap: 0.3vw;
+    font-size: 1rem;
+    gap: 0.3rem;
 }
 
 .likes-content:hover i {
-    font-size: 1.5vw;
+    font-size: 1.5rem;
 }
 
 .likes-content.active {
     color: #b83556;
+}
+
+.stars-content {
+    display: flex;
+    align-items: end;
+    gap: 0.5rem;
+    height: 1.5rem;
+    width: fit-content;
+    font-size: 1.5rem;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+.stars-content p {
+    font-size: 1rem;
+}
+
+.star1, .star2, .star3 {
+    color: #f5cd69;
+}
+.star4, .star5 {
+    color: #d9d9d9;
 }
