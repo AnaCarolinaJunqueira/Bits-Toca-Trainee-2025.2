@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bits toca</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Roboto:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="../../../public/css/listausuarios.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Roboto:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -20,19 +19,21 @@
             <div class="logo">
                 <div id="logo"><img src="../../../public/assets/Logo Blog.png" alt="Logo Bits Toca Branca"></div>
             </div>
-
             <div class="titulo">
                 <h1>Tabela De Usúarios</h1>
             </div>
-
+            <div class="espaço"></div>
         </div>
-        <div class="botao">
-            <div id="pesquisa"><img src="../../../public/assets/Barra de Pesquisa Conteúdo.png" alt="barra de pesquisa">
+        <div class="botoes">
+            <div class="barra-pesquisa">
+                <img src="../../../public/assets/icon_pesquisa.png" alt="icone de pesquisa">
+                <input type="text" id="pesquisa" placeholder="Pesquisar...">
             </div>
-            <div class="botao-post">
-                <p> NOVO POST</p>
-                <i class="bi bi-plus-circle"></i>
-            </div>
+                <div class="botao-user">
+                    <p> NOVO USUÁRIO</p>
+                    <i class="bi bi-plus-circle"></i>
+                </div>
+
         </div>
         <div class="tabela">
             <table>
@@ -41,7 +42,9 @@
                         <th>ID</th>
                         <th>NOME</th>
                         <th>EMAIL</th>
-                        <th>AÇÕES</th>
+                        <th class="action">
+                            <p>AÇÕES</p>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,12 +53,25 @@
                         <td class="items">NOME</td>
                         <td class="items">EMAIL</td>
                         <td class="açoes">
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-visualizar')"><i
-                                    class="bi bi-eye"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                    class="bi bi-pencil"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                    class="bi bi-trash"></i></button>
+                            <div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary"
+                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+
+                                </div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
+                                            class="bi bi-pencil"></i></button>
+                                </div>
+
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
+                                            class="bi bi-trash"></i></button>
+                                </div>
+                            </div>
+
+
+
                         </td>
                     </tr>
                     <tr>
@@ -63,12 +79,22 @@
                         <td class="items">NOME</td>
                         <td class="items">EMAIL</td>
                         <td class="açoes">
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-visualizar')"><i
-                                    class="bi bi-eye"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                    class="bi bi-pencil"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                    class="bi bi-trash"></i></button>
+                            <div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary"
+                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+
+                                </div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
+                                            class="bi bi-pencil"></i></button>
+                                </div>
+
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
+                                            class="bi bi-trash"></i></button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -76,12 +102,22 @@
                         <td class="items">NOME</td>
                         <td class="items">EMAIL</td>
                         <td class="açoes">
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-visualizar')"><i
-                                    class="bi bi-eye"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                    class="bi bi-pencil"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                    class="bi bi-trash"></i></button>
+                            <div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary"
+                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+
+                                </div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
+                                            class="bi bi-pencil"></i></button>
+                                </div>
+
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
+                                            class="bi bi-trash"></i></button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -89,12 +125,22 @@
                         <td class="items">NOME</td>
                         <td class="items">EMAIL</td>
                         <td class="açoes">
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-visualizar')"><i
-                                    class="bi bi-eye"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                    class="bi bi-pencil"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                    class="bi bi-trash"></i></button>
+                            <div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary"
+                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+
+                                </div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
+                                            class="bi bi-pencil"></i></button>
+                                </div>
+
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
+                                            class="bi bi-trash"></i></button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -102,21 +148,41 @@
                         <td class="items">NOME</td>
                         <td class="items">EMAIL</td>
                         <td class="açoes">
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-visualizar')"><i
-                                    class="bi bi-eye"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                    class="bi bi-pencil"></i></button>
-                            <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                    class="bi bi-trash"></i></button>
+                            <div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary"
+                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+
+                                </div>
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
+                                            class="bi bi-pencil"></i></button>
+                                </div>
+
+                                <div class="button-container">
+                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
+                                            class="bi bi-trash"></i></button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
 
                 </tbody>
                 <tfoot>
                     <td colspan="4">
-                            <button class="botao_foot1"><i class="bi bi-caret-left-fill"></i></button>
-                            <button class="botao_foot">1</button>
-                            <button class="botao_foot1"><i class="bi bi-caret-right-fill"></i></button>
+                        <div class="foot">
+                            <div class="button-container">
+                                <button class="botao_foot1"><i class="bi bi-caret-left-fill"></i></button>
+                            </div>
+                            <div>
+                                <p class="botao_foot">1</p>
+                            </div>
+
+                            <div class="button-container">
+                                <button class="botao_foot1"><i class="bi bi-caret-right-fill"></i></button>
+                            </div>
+                        </div>
+
                     </td>
                 </tfoot>
             </table>

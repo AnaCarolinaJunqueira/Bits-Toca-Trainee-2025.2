@@ -1,5 +1,4 @@
 * {
-    /* border:1px solid red; */
     margin: 0;
     padding: 0;
 }
@@ -8,14 +7,14 @@ main {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    font-family: "inter", sans-serif;
-    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
 }
 
 body {
     background: linear-gradient(#55768C, #2B3B46);
     padding: 50px 100px;
-    height: 100vh;
+    height: 100%;
 }
 
 .cabeçalho {
@@ -28,46 +27,69 @@ body {
 
 .logo {
     display: flex;
-    align-items: right;
+    align-items: center;
+    justify-content: left;
+    width: 50%;
 }
 
 .logo img {
-    width: 150px;
+    width: 130px;
     height: auto;
 }
 
 .titulo {
-    text-align: center;
-    padding: 0px 550px 0px 0px;
+    text-align: left;
     color: #DC97A5;
     font-size: 2.0rem;
+    width: fit-content;
+    text-wrap: nowrap;
+    text-shadow: 2px 2px 5px rgb(0, 0, 0, 0.3);
 }
 
-.botao {
+.espaço {
+    width: 50%;
+}
+
+.botoes {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 4.5rem;
+}
+
+.barra-pesquisa {
+    display: flex;
+    align-items: center;
+    justify-self: start;
+    background-color: #ffff;
+    height: 1.5rem;
+    width: 50%;
+    padding: 0.5rem;
+    border-radius: 25px;
+    gap: 10px;
+}
+
+.barra-pesquisa img {
+    height: 100%;
+    width: auto;
 }
 
 #pesquisa {
-    width: 50%;
-    height: auto;
-}
-
-#pesquisa img {
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
     width: 100%;
-    height: auto;
 }
 
-.botao-post {
+.botao-user {
     display: flex;
     gap: 10px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     background-color: #DC97A5;
-    padding: 30px 30px;
-    border-radius: 25px;
+    padding: 1.3rem;
+    border-radius: 1rem;
     margin-bottom: 10px;
-
+    font-weight: 500;
 }
 
 .tabela {
@@ -91,8 +113,8 @@ body {
 th,
 td {
     border: none;
-    border-bottom: 2px solid #DC97A5;
-    padding: 25px 5px;
+    border-bottom: 3px solid #DC97A5;
+    padding: 25px 30px;
 }
 
 thead {
@@ -118,8 +140,26 @@ tbody {
 
 }
 
+.açoes :hover {
+    font-size: 2.0rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    height: 2.0rem;
+    width: 2.0rem;
+    align-items: center;
+}
+
 .açoes {
     width: 100px;
+}
+
+.açoes div {
+    display: flex;
+    align-items: row;
+    gap: 15px;
 }
 
 .items {
@@ -130,15 +170,37 @@ tbody {
     padding: 20px;
 }
 
+/* botao paginação */
 .botao_foot1 {
     all: unset;
+    font-size: 1.5rem;
 }
 
+/* setinha paginação*/
 .botao_foot {
     all: unset;
 }
 
 th {
-  padding: 16px 30px;
+    padding: 16px -20px;
+}
+
+.action {
+    text-align: center;
+}
+
+.foot{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.botao_foot1:hover
+{
+    font-size: 2.0rem;
+}
+
+.botao-user:hover{
+    font-size: 1.5rem;
 }
 
