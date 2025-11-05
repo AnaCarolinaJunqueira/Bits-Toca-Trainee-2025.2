@@ -137,3 +137,8 @@ tbody {
 .botao_foot {
     all: unset;
 }
+
+th {
+  padding: 16px 30px;
+}
+
