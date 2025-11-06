@@ -83,7 +83,7 @@ header{
 }
 
 .menu-hamburger i {
-    font-size: 6.5vw;
+    font-size: 3rem;
     color: #b83556;
     transition: 0.3s;
 }
@@ -93,29 +93,6 @@ header{
     transition: 0.3s;
 }
 
-/* @media (max-width: 1300px) {
-    .menu-itens {
-        gap: 2vw;
-    }
-
-    .navbar {
-        padding: 1.4vh 3.5vw;
-    }
-
-    .nav-link {
-        padding: 1.5vw 1.5vw;
-        height: 3vw;
-        max-height: 2.5vh;
-        font-size: 2vw;
-        gap: 1vw;
-        border-radius: 2vw;
-    }
-
-    .nav-link i {
-        font-size: 3vw;
-    }
-} */
-
 @media (max-width: 768px) {
     .menu-hamburger {
         display: flex;
@@ -123,7 +100,7 @@ header{
     
     .menu-itens {
         position: fixed;
-        top: 5.5rem;
+        top: -20rem;
         left: 0;
         background-color: #55768c;
         flex-direction: column;
@@ -132,19 +109,21 @@ header{
         height: fit-content;
         width: 40vw;
         padding: 1.2rem 30vw;
+        z-index: -1;
+        transition: top 0.3s ease-out;
     }
-
+    
     .nav-item {
         width: 100%;
     }
     
     .nav-link {
         justify-content: space-between;
-        border-radius: 5vh;
+        border-radius: 2rem;
         font-size: 1.3rem;
         padding: 1rem 1.2rem;
     }
-
+    
     .nav-link div {
         width: 100%;
         justify-content: center;
@@ -153,18 +132,16 @@ header{
     .nav-link i {
         font-size: 1.7rem;
     }
-
+    
     .menu-itens.active {
-        display: flex;
+        top: 5.5rem;
+        transition: top 0.3s ease-in;
     }
 }
 
-/* @media (max-width: 480px) {
-    .logo{
-        height: 20vw;
+@media (max-width: 480px) {
+    .menu-itens {
+        width: 60vw;
+        padding: 1.2rem 20vw;
     }
-
-    .menu-hamburger i {
-        font-size: 8vw;
-    }
-} */
+}

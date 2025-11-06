@@ -9,7 +9,7 @@ menuHamburger.addEventListener("click", () => {
 });
 
 menuItens.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
-    menuItens.classList.remove("active");
+    menuItens.classList.toggle("active");
 
     menuHamburger.classList.toggle("bi-x-square");
     menuHamburger.classList.toggle("bi-list");
