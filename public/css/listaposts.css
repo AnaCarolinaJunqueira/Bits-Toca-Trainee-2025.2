@@ -150,7 +150,7 @@ tbody {
     all: unset;
     font-size: 1.5rem;
     transition: 0.3s ease-out;
-    cursor: pointer; /* Added */
+    cursor: pointer;
 }
 
 .btn-modal:hover {
@@ -168,7 +168,7 @@ tbody {
 
 .açoes div {
     display: flex;
-    flex-direction: row; /* Fixed from 'align-items: row' */
+    flex-direction: row;
     gap: 0.7rem;
 }
 
@@ -179,7 +179,7 @@ tbody {
 .botao_foot {
     all: unset;
     transition: 0.3s ease-out;
-    cursor: pointer; /* Added */
+    cursor: pointer;
 }
 
 .botao_foot:hover {
@@ -209,6 +209,5 @@ tbody {
 }
 
 .data{
-    /* width: 6rem; */
     text-align: center;
 }
