@@ -1,204 +1,256 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bits toca</title>
-    
+
     <link rel="stylesheet" href="../../../public/css/listaposts.css">
-    <link rel="stylesheet" href="../../../public/css/modals.css"> 
-    
+    <link rel="stylesheet" href="../../../public/css/modals.css">
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Roboto:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
+
 <body>
     <main>
         <div class="container">
-        <div class="cabeçalho">
-            <div class="logo">
-                <div id="logo">
-                    <img src="../../../public/assets/Logo Blog.png" alt="Logo Bits Toca Branca">
+            <div class="cabeçalho">
+                <div class="logo">
+                    <div id="logo">
+                        <img src="../../../public/assets/Logo Blog.png" alt="Logo Bits Toca Branca">
+                    </div>
+                </div>
+                <div class="titulo">
+                    <h1>Tabela de Posts</h1>
+                </div>
+                <div class="espaço"> </div>
+            </div>
+            <div class="botoes">
+                <div class="barra-pesquisa">
+                    <img src="../../../public/assets/icon_pesquisa.png" alt="icone de pesquisa">
+                    <input type="text" id="pesquisa" placeholder="Pesquisar...">
+                </div>
+                <div class="botao-post">
+                    <p> NOVO POST</p>
+                    <i class="bi bi-plus-circle"></i>
                 </div>
             </div>
-            <div class="titulo">
-                <h1>Tabela De Posts</h1>
-            </div>
-            <div class="espaço"> </div>
-        </div>
-        <div class="botoes">
-            <div class="barra-pesquisa">
-                <img src="../../../public/assets/icon_pesquisa.png" alt="icone de pesquisa">
-                <input type="text" id="pesquisa" placeholder="Pesquisar...">
-            </div>
-            <div class="botao-post">
-                <p> NOVO POST</p>
-                <i class="bi bi-plus-circle"></i>
-            </div>
-        </div>
-        <div class="tabela">
-            <table>
-                <thead>
-                    <tr class="header">
-                        <th><p>ID</p></th>
-                        <th><p>TÍTULO</p></th>
-                        <th><p>AUTOR</p></th>
-                        <th class="date"><p>DATA DE CRIAÇÃO</p></th>
-                        <th class="action"><p>AÇÕES</p></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="items"><p>ID</p></td>
-                        <td class="items"><p>TÍTULO</p></td>
-                        <td class="items"><p>AUTOR</p></td>
-                        <td class="data"><p>dd/mm/yy</p></td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-editar')">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-delete')">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="items"><p>ID</p></td>
-                        <td class="items"><p>TÍTULO</p></td>
-                        <td class="items"><p>AUTOR</p></td>
-                        <td class="data"><p>dd/mm/yy</p></td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-editar')">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-delete')">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="items"><p>ID</p></td>
-                        <td class="items"><p>TÍTULO</p></td>
-                        <td class="items"><p>AUTOR</p></td>
-                        <td class="data"><p>dd/mm/yy</p></td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-editar')">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-delete')">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="items"><p>ID</p></td>
-                        <td class="items"><p>TÍTULO</p></td>
-                        <td class="items"><p>AUTOR</p></td>
-                        <td class="data"><p>dd/mm/yy</p></td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-editar')">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-delete')">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="items"><p>ID</p></td>
-                        <td class="items"><p>TÍTULO</p></td>
-                        <td class="items"><p>AUTOR</p></td>
-                        <td class="data"><p>dd/mm/yy</p></td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
-                                        <i class="bi bi-eye"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-editar')">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                </div>
-                                <div class="button-content">
-                                    <button class="btn-modal" onclick="abrirModal('modal-delete')">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="5">
-                            <div class="foot">
-                                <div class="button-content">
-                                    <button class="botao_foot">
-                                        <i class="bi bi-caret-left-fill"></i>
-                                    </button>
-                                </div>
+            <div class="tabela">
+                <table>
+                    <thead>
+                        <tr class="header">
+                            <th>
+                                <p>ID</p>
+                            </th>
+                            <th>
+                                <p>TÍTULO</p>
+                            </th>
+                            <th>
+                                <p>AUTOR</p>
+                            </th>
+                            <th class="date">
+                                <p>DATA DE CRIAÇÃO</p>
+                            </th>
+                            <th class="action">
+                                <p>AÇÕES</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="items">
+                                <p>ID</p>
+                            </td>
+                            <td class="items">
+                                <p>TÍTULO</p>
+                            </td>
+                            <td class="items">
+                                <p>AUTOR</p>
+                            </td>
+                            <td class="data">
+                                <p>dd/mm/yy</p>
+                            </td>
+                            <td class="açoes">
                                 <div>
-                                    <p>1</p>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-editar')">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-delete')">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="button-content">
-                                    <button class="botao_foot">
-                                        <i class="bi bi-caret-right-fill"></i>
-                                    </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="items">
+                                <p>ID</p>
+                            </td>
+                            <td class="items">
+                                <p>TÍTULO</p>
+                            </td>
+                            <td class="items">
+                                <p>AUTOR</p>
+                            </td>
+                            <td class="data">
+                                <p>dd/mm/yy</p>
+                            </td>
+                            <td class="açoes">
+                                <div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-editar')">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-delete')">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="items">
+                                <p>ID</p>
+                            </td>
+                            <td class="items">
+                                <p>TÍTULO</p>
+                            </td>
+                            <td class="items">
+                                <p>AUTOR</p>
+                            </td>
+                            <td class="data">
+                                <p>dd/mm/yy</p>
+                            </td>
+                            <td class="açoes">
+                                <div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-editar')">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-delete')">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="items">
+                                <p>ID</p>
+                            </td>
+                            <td class="items">
+                                <p>TÍTULO</p>
+                            </td>
+                            <td class="items">
+                                <p>AUTOR</p>
+                            </td>
+                            <td class="data">
+                                <p>dd/mm/yy</p>
+                            </td>
+                            <td class="açoes">
+                                <div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-editar')">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-delete')">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="items">
+                                <p>ID</p>
+                            </td>
+                            <td class="items">
+                                <p>TÍTULO</p>
+                            </td>
+                            <td class="items">
+                                <p>AUTOR</p>
+                            </td>
+                            <td class="data">
+                                <p>dd/mm/yy</p>
+                            </td>
+                            <td class="açoes">
+                                <div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-visualizar')">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-editar')">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="btn-modal" onclick="abrirModal('modal-delete')">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <div class="foot">
+                                    <div class="button-content">
+                                        <button class="botao_foot">
+                                            <i class="bi bi-caret-left-fill"></i>
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <p>1</p>
+                                    </div>
+                                    <div class="button-content">
+                                        <button class="botao_foot">
+                                            <i class="bi bi-caret-right-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </main>
 
@@ -214,7 +266,8 @@
                 </div>
                 <div class="form-group">
                     <label for="novo-descricao">Descrição</label>
-                    <textarea id="novo-descricao" name="descricao" rows="5" placeholder="Lorem ipsum dolor sit amet..."></textarea>
+                    <textarea id="novo-descricao" name="descricao" rows="5"
+                        placeholder="Lorem ipsum dolor sit amet..."></textarea>
                 </div>
                 <div class="form-group">
                     <label>Imagem</label>
@@ -225,16 +278,16 @@
                     </div>
                 </div>
                 <fieldset disabled>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="novo-autor">Autor</label>
-                        <input type="text" id="novo-autor" name="autor" placeholder="Lorem Ipsum">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="novo-autor">Autor</label>
+                            <input type="text" id="novo-autor" name="autor" placeholder="Lorem Ipsum">
+                        </div>
+                        <div class="form-group">
+                            <label for="novo-data">Data</label>
+                            <input type="date" id="novo-data" name="data">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="novo-data">Data</label>
-                        <input type="date" id="novo-data" name="data">
-                    </div>
-                </div>
                 </fieldset>
                 <div class="form-group">
                     <label>Avaliação</label>
@@ -254,13 +307,13 @@
             </form>
         </div>
     </div>
-    
+
     <div id="modal-editar" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-editar')">
         <div class="modalc modal-form">
             <button class="modal-close-btn" onclick="fecharModal('modal-editar')">&times;</button>
             <h2>EDITAR POST</h2>
             <div class="modal-divider"></div>
-    
+
             <form fecharModal('modal-editar');">
                 <input type="hidden" id="edit-post-id" name="id">
                 <div class="form-group">
@@ -269,7 +322,8 @@
                 </div>
                 <div class="form-group">
                     <label for="edit-descricao">Descrição</label>
-                    <textarea id="edit-descricao" name="descricao" rows="5" placeholder="Lorem ipsum dolor sit amet..."></textarea>
+                    <textarea id="edit-descricao" name="descricao" rows="5"
+                        placeholder="Lorem ipsum dolor sit amet..."></textarea>
                 </div>
                 <div class="form-group">
                     <label>Imagem</label>
@@ -280,16 +334,16 @@
                     </div>
                 </div>
                 <fieldset disabled>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="edit-autor">Autor</label>
-                        <input type="text" id="edit-autor" name="autor" placeholder="Lorem Ipsum">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="edit-autor">Autor</label>
+                            <input type="text" id="edit-autor" name="autor" placeholder="Lorem Ipsum">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-data">Data</label>
+                            <input type="date" id="edit-data" name="data">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="edit-data">Data</label>
-                        <input type="date" id="edit-data" name="data">
-                    </div>
-                </div>
                 </fieldset>
                 <div class="form-group">
                     <label>Avaliação</label>
@@ -309,14 +363,15 @@
             </form>
         </div>
     </div>
-    
-    <div id="modal-visualizar" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-visualizar')">
+
+    <div id="modal-visualizar" class="modal-overlay"
+        onclick="if(event.target === this) fecharModal('modal-visualizar')">
         <div class="modalc modal-form">
             <button class="modal-close-btn" onclick="fecharModal('modal-visualizar')">&times;</button>
             <h2>VISUALIZAR POST</h2>
-    
+
             <div class="modal-divider"></div>
-    
+
             <fieldset disabled>
                 <form>
                     <div class="form-group">
@@ -353,20 +408,20 @@
                             <i class="bi bi-star"></i>
                         </div>
                     </div>
-                    </fieldset>
-                    <div class="modal-buttons">
-                        <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-visualizar')">Fechar</button>
-                    </div>
-                </form>
+            </fieldset>
+            <div class="modal-buttons">
+                <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-visualizar')">Fechar</button>
+            </div>
+            </form>
         </div>
     </div>
-    
+
     <div id="modal-delete" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-delete')">
         <div class="modalc modal-delete">
             <img src="../../../public/assets/ModalDeletarIMG.png" alt="Delete warning icon"></img>
             <h2>Deletar Post?</h2>
             <p>Esta ação não pode ser desfeita. Você tem certeza que deseja deletar permanentemente este post?</p>
-    
+
             <div class="modal-buttons">
                 <button class="btn btn-cancel-delete" onclick="fecharModal('modal-delete')">Cancelar</button>
                 <form style="display: inline;" fecharModal('modal-delete');">
@@ -379,4 +434,5 @@
 
     <script src="../../../public/js/modals.js"></script>
 </body>
+
 </html>
