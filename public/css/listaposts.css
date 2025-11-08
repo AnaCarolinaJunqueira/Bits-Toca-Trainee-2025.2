@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 main {
@@ -69,7 +70,7 @@ main {
     align-items: center;
     justify-self: start;
     background-color: #ffff;
-    height: 1.5rem;
+    height: 2.2rem;
     width: 50%;
     padding: 0.5rem;
     border-radius: 25px;
@@ -90,12 +91,14 @@ main {
 
 .botao-post {
     display: flex;
-    gap: 10px;
-    font-size: 1.3rem;
     background-color: #DC97A5;
-    padding: 1.3rem;
     border-radius: 1rem;
+    padding: 1.3rem;
+    gap: 10px;
+
+    font-size: 1.3rem;
     font-weight: 500;
+    
     transition: 0.3s ease-out;
     cursor: pointer; /* Added */
 }
@@ -108,7 +111,7 @@ main {
     /* justify-items: center; */
     height: 100%;
     font-size: 1.2rem;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .tabela table {
@@ -244,5 +247,50 @@ tbody {
     
     .espaço {
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 5vh 5vw;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+    
+    .titulo {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    
+    .botoes {
+        flex-direction: column-reverse;
+        gap: 2rem;
+        height: auto;
+        /* width: 100%; */
+    }
+
+    .barra-pesquisa {
+        height: 2.5rem;
+        gap: 15px;
+        width: 100%;
+    }
+
+    #pesquisa {
+        font-size: 1.3rem;
+    }
+    
+    .botao-post {
+        justify-content: center;
+        /* width: 100%; */
+    }
+}
+
+@media (max-width: 400px) {
+    .titulo {
+        text-wrap: wrap;
+        font-size: 1.8rem;
+        max-width: 15rem;
     }
 }
