@@ -6,7 +6,7 @@
 
 main {
     background: linear-gradient(#55768C, #2B3B46);
-    padding: 10% 20%;
+    padding: 5vh 10vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -19,8 +19,6 @@ main {
     min-width: 70%;
     min-height: 70%;
     max-width: 90vw;
-    /* margin: 10% auto auto auto; */
-    /* overflow: hidden; */
 }
 
 .cabeçalho {
@@ -100,7 +98,7 @@ main {
     font-weight: 500;
     
     transition: 0.3s ease-out;
-    cursor: pointer; /* Added */
+    cursor: pointer;
 }
 
 .tabela {
@@ -108,7 +106,6 @@ main {
     width: auto;
     background-color: #DC97A5;
     border-radius: 1rem;
-    /* justify-items: center; */
     height: 100%;
     font-size: 1.2rem;
     overflow-x: auto;
@@ -122,19 +119,11 @@ main {
 
 th, td {
     border: none;
-    padding: 1.3rem 0.5rem;
+    padding: 1.3rem 1.5rem;
 }
 
 tbody tr {
     border-top: 3px solid #DC97A5;
-    /* width: 100%; */
-}
-
-tr th:first-child, tr td:first-child {
-    padding-left: 1.5rem;
-}
-tr th:last-child, tr td:last-child {
-    padding-right: 1.5rem;
 }
 
 th {
@@ -268,7 +257,6 @@ tbody {
         flex-direction: column-reverse;
         gap: 2rem;
         height: auto;
-        /* width: 100%; */
     }
 
     .barra-pesquisa {
@@ -283,7 +271,6 @@ tbody {
     
     .botao-post {
         justify-content: center;
-        /* width: 100%; */
     }
 }
 
