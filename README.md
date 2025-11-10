@@ -15,8 +15,8 @@
 
 * [Laura Maria](https://github.com/LauraMariaHub)
 * [Bruno Keil](https://github.com/bruno-keil)
-* [Larissa Tiburcio](https://github.com/larissatiburcio)
-* [Trainee 4](coloque o link do github)
+* [Angélica Coutinho](https://github.com/angelica07coutinho)
+* [Gustavo Baldutti](https://github.com/GustavoBaldutti)
 
 
 #### Scrum Master:
