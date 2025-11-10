@@ -1,5 +1,5 @@
  * {
-     /* border:1px solid red; */
+      /* border:1px solid red; */
      margin: 0;
      padding: 0;
  }
@@ -200,5 +200,20 @@
 
      h2 {
          font-size: 2.5rem;
+     }
+
+     .LogoBitsToca img {
+         height: 130px;
+         width: auto;
+
+     }
+     .LogoBitsToca
+     {
+        height: 130px;
+     }
+     .button
+     {
+        padding: 0px;
+        margin-top: 2%;
      }
  }
