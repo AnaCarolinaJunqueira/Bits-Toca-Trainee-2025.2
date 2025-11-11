@@ -22,10 +22,12 @@ function initializeModalLogic() {
     }
 
     document.querySelectorAll('.file-drop-area').forEach(dropArea => {
+        const filePost = dropArea.querySelector('.file-post');
         const fileInput = dropArea.querySelector('.file-input');
         const textElement = dropArea.querySelector('p');
+        const iconElement = dropArea.querySelector('i');
 
-        if (!fileInput || !textElement) {
+        if (!fileInput || !textElement || !iconElement) {
             return;
         }
 
@@ -43,6 +45,14 @@ function initializeModalLogic() {
             dropArea.style.borderColor = '#ccc';
             dropArea.style.backgroundColor = '#fafafa';
         });
+
+        fileInput.onchange = function() {
+            filePost.src = URL.createObjectURL(fileInput.files[0]);
+            textElement.style.display = 'none';
+            iconElement.style.display = 'none';
+            filePost.style.display = 'block';
+            dropArea.style.padding = '0.5rem';
+        }
     });
 
     document.querySelectorAll('#modal-novo .star-rating, #modal-editar .star-rating').forEach(starGroup => {
