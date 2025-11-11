@@ -197,44 +197,25 @@
             <h2>NOVO USUÁRIO</h2>
             <div class="modal-divider"></div>
             <form fecharModal('modal-novo');">
-                <div class="form-group">
-                    <label for="novo-titulo">Título</label>
-                    <input type="text" id="novo-titulo" name="titulo" placeholder="Lorem ipsum">
-                </div>
-                <div class="form-group">
-                    <label for="novo-descricao">Nome</label>
-                    <textarea id="novo-descricao" name="descricao" rows="5"
-                        placeholder="Lorem ipsum dolor sit amet..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Imagem</label>
+                <div class="form-group-image">
                     <div class="file-drop-area">
-                        <i class="bi bi-cloud-arrow-up-fill"></i>
-                        <p><strong>Escolha um arquivo</strong> ou arraste e solte aqui.</p>
+                        <p>Foto</p>
                         <input type="file" name="imagem" class="file-input">
                     </div>
                 </div>
-                <fieldset disabled>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="novo-autor">Autor</label>
-                            <input type="text" id="novo-autor" name="autor" placeholder="Lorem Ipsum">
-                        </div>
-                        <div class="form-group">
-                            <label for="novo-data">Data</label>
-                            <input type="date" id="novo-data" name="data">
-                        </div>
-                    </div>
-                </fieldset>
                 <div class="form-group">
-                    <label>Avaliação</label>
-                    <div class="star-rating">
-                        <input type="hidden" id="novo-rating" name="rating" value="0">
-                        <i class="bi bi-star" data-value="1"></i>
-                        <i class="bi bi-star" data-value="2"></i>
-                        <i class="bi bi-star" data-value="3"></i>
-                        <i class="bi bi-star" data-value="4"></i>
-                        <i class="bi bi-star" data-value="5"></i>
+                    <label for="novo-nome">Nome</label>
+                    <input type="text" id="novo-nome" name="nome" placeholder="Lorem ipsum">
+                </div>
+                <div class="form-group">
+                    <label for="novo-email">Email</label>
+                    <input type="text" id="novo-email" name="email" placeholder="Lorem ipsum">
+                </div>
+                <div class="form-group">
+                    <label for="novo-senha">Senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="novo-senha" name="senha" placeholder="Lorem ipsum">
+                        <i class="bi bi-eye-slash" onclick="togglePassword(this)"></i>
                     </div>
                 </div>
                 <div class="modal-buttons">
@@ -253,46 +234,28 @@
 
             <form fecharModal('modal-editar');">
                 <input type="hidden" id="edit-post-id" name="id">
-                <div class="form-group">
-                    <label for="edit-titulo">Título</label>
-                    <input type="text" id="edit-titulo" name="titulo" placeholder="Lorem ipsum">
-                </div>
-                <div class="form-group">
-                    <label for="edit-descricao">Descrição</label>
-                    <textarea id="edit-descricao" name="descricao" rows="5"
-                        placeholder="Lorem ipsum dolor sit amet..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Imagem</label>
+                <div class="form-group-image">
                     <div class="file-drop-area">
-                        <i class="bi bi-cloud-arrow-up-fill"></i>
-                        <p><strong>Escolha um novo arquivo</strong> ou arraste e solte aqui.</p>
+                        <p>Foto</p>
                         <input type="file" name="imagem" class="file-input">
                     </div>
                 </div>
-                <fieldset disabled>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="edit-autor">Autor</label>
-                            <input type="text" id="edit-autor" name="autor" placeholder="Lorem Ipsum">
-                        </div>
-                        <div class="form-group">
-                            <label for="edit-data">Data</label>
-                            <input type="date" id="edit-data" name="data">
-                        </div>
-                    </div>
-                </fieldset>
                 <div class="form-group">
-                    <label>Avaliação</label>
-                    <div class="star-rating">
-                        <input type="hidden" id="edit-rating" name="rating" value="0">
-                        <i class="bi bi-star" data-value="1"></i>
-                        <i class="bi bi-star" data-value="2"></i>
-                        <i class="bi bi-star" data-value="3"></i>
-                        <i class="bi bi-star" data-value="4"></i>
-                        <i class="bi bi-star" data-value="5"></i>
+                    <label for="edit-nome">Nome</label>
+                    <input type="text" id="edit-nome" name="nome" placeholder="Lorem ipsum">
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">Email</label>
+                    <input type="text" id="edit-email" name="email" placeholder="Lorem ipsum">
+                </div>
+                <div class="form-group">
+                    <label for="novo-senha">Senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="novo-senha" name="senha" placeholder="Lorem ipsum">
+                        <i class="bi bi-eye-slash" onclick="togglePassword(this)"></i>
                     </div>
                 </div>
+
                 <div class="modal-buttons">
                     <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-editar')">Cancelar</button>
                     <button type="submit" class="btn btn-confirm btn-salvar">Salvar</button>
@@ -311,38 +274,25 @@
 
             <fieldset disabled>
                 <form>
-                    <div class="form-group">
-                        <label for="view-titulo">Título</label>
-                        <input type="text" id="view-titulo" placeholder="Lorem ipsum">
-                    </div>
-                    <div class="form-group">
-                        <label for="view-descricao">Descrição</label>
-                        <textarea id="view-descricao" rows="5" placeholder="Lorem ipsum dolor sit amet..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Imagem</label>
+                    <div class="form-group-image">
                         <div class="file-drop-area" style="pointer-events: none; background-color: #f9f9f9;">
-                            <i class="bi bi-image-fill" style="font-size: 3rem; color: #ccc;"></i>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="view-autor">Autor</label>
-                            <input type="text" id="view-autor" placeholder="Lorem Ipsum">
-                        </div>
-                        <div class="form-group">
-                            <label for="view-data">Data</label>
-                            <input type="date" id="view-data">
+                            <p>Foto</p>
+                            <input type="file" name="imagem" class="file-input">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Avaliação</label>
-                        <div class="star-rating" style="pointer-events: none; color: #f39c12;">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
+                        <label for="view-nome">Nome</label>
+                        <input type="text" id="view-nome" placeholder="Lorem ipsum">
+                    </div>
+                    <div class="form-group">
+                        <label for="view-email">Email</label>
+                        <input type="text" id="view-email" placeholder="Lorem ipsum dolor sit amet...">
+                    </div>
+                    <div class="form-group">
+                        <label for="view-senha">Senha</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="view-senha" placeholder="Lorem ipsum">
+                            <i class="bi bi-eye-slash"></i>
                         </div>
                     </div>
             </fieldset>
