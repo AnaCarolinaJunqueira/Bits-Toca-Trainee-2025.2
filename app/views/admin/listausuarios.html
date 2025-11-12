@@ -16,177 +16,178 @@
 
 <body>
     <main>
-        <div class="cabeçalho">
-            <div class="logo">
-                <div id="logo"><img src="../../../public/assets/Logo Blog.png" alt="Logo Bits Toca Branca"></div>
+        <div class="container">
+            <div class="cabeçalho">
+                <div class="logo">
+                    <div id="logo"><img src="../../../public/assets/Logo Blog.png" alt="Logo Bits Toca Branca"></div>
+                </div>
+                <div class="titulo">
+                    <h1>Tabela De Usúarios</h1>
+                </div>
+                <div class="espaço"></div>
             </div>
-            <div class="titulo">
-                <h1>Tabela De Usúarios</h1>
+            <div class="botoes">
+                <div class="barra-pesquisa">
+                    <img src="../../../public/assets/icon_pesquisa.png" alt="icone de pesquisa">
+                    <input type="text" id="pesquisa" placeholder="Pesquisar...">
+                </div>
+                <div class="botao-user">
+                    <p> NOVO USUÁRIO</p>
+                    <i class="bi bi-plus-circle"></i>
+                </div>
+
             </div>
-            <div class="espaço"></div>
-        </div>
-        <div class="botoes">
-            <div class="barra-pesquisa">
-                <img src="../../../public/assets/icon_pesquisa.png" alt="icone de pesquisa">
-                <input type="text" id="pesquisa" placeholder="Pesquisar...">
-            </div>
-            <div class="botao-user">
-                <p> NOVO USUÁRIO</p>
-                <i class="bi bi-plus-circle"></i>
-            </div>
+            <div class="tabela">
+                <table>
+                    <thead>
+                        <tr class="header">
+                            <th>ID</th>
+                            <th>NOME</th>
+                            <th>EMAIL</th>
+                            <th class="action">
+                                <p>AÇÕES</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="items">ID</td>
+                            <td class="items">NOME</td>
+                            <td class="items">EMAIL</td>
+                            <td class="açoes">
+                                <div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
 
-        </div>
-        <div class="tabela">
-            <table>
-                <thead>
-                    <tr class="header">
-                        <th>ID</th>
-                        <th>NOME</th>
-                        <th>EMAIL</th>
-                        <th class="action">
-                            <p>AÇÕES</p>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="items">ID</td>
-                        <td class="items">NOME</td>
-                        <td class="items">EMAIL</td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary"
-                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+                                    </div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-editar')"><i class="bi bi-pencil"></i></button>
+                                    </div>
 
-                                </div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                            class="bi bi-pencil"></i></button>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-delete')"><i class="bi bi-trash"></i></button>
+                                    </div>
                                 </div>
 
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="items">ID</td>
+                            <td class="items">NOME</td>
+                            <td class="items">EMAIL</td>
+                            <td class="açoes">
+                                <div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+
+                                    </div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-editar')"><i class="bi bi-pencil"></i></button>
+                                    </div>
+
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-delete')"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="items">ID</td>
+                            <td class="items">NOME</td>
+                            <td class="items">EMAIL</td>
+                            <td class="açoes">
+                                <div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+
+                                    </div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-editar')"><i class="bi bi-pencil"></i></button>
+                                    </div>
+
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-delete')"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="items">ID</td>
+                            <td class="items">NOME</td>
+                            <td class="items">EMAIL</td>
+                            <td class="açoes">
+                                <div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+
+                                    </div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-editar')"><i class="bi bi-pencil"></i></button>
+                                    </div>
+
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-delete')"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="items">ID</td>
+                            <td class="items">NOME</td>
+                            <td class="items">EMAIL</td>
+                            <td class="açoes">
+                                <div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
+
+                                    </div>
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-editar')"><i class="bi bi-pencil"></i></button>
+                                    </div>
+
+                                    <div class="button-container">
+                                        <button type="button" class="btn-primary"
+                                            onclick="abrirModal('modal-delete')"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <tfoot>
+                        <td colspan="4">
+                            <div class="foot">
                                 <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                            class="bi bi-trash"></i></button>
+                                    <button class="botao_foot1"><i class="bi bi-caret-left-fill"></i></button>
+                                </div>
+                                <div>
+                                    <p class="botao_foot">1</p>
+                                </div>
+
+                                <div class="button-container">
+                                    <button class="botao_foot1"><i class="bi bi-caret-right-fill"></i></button>
                                 </div>
                             </div>
-
-
 
                         </td>
-                    </tr>
-                    <tr>
-                        <td class="items">ID</td>
-                        <td class="items">NOME</td>
-                        <td class="items">EMAIL</td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary"
-                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
-
-                                </div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                            class="bi bi-pencil"></i></button>
-                                </div>
-
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                            class="bi bi-trash"></i></button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="items">ID</td>
-                        <td class="items">NOME</td>
-                        <td class="items">EMAIL</td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary"
-                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
-
-                                </div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                            class="bi bi-pencil"></i></button>
-                                </div>
-
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                            class="bi bi-trash"></i></button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="items">ID</td>
-                        <td class="items">NOME</td>
-                        <td class="items">EMAIL</td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary"
-                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
-
-                                </div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                            class="bi bi-pencil"></i></button>
-                                </div>
-
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                            class="bi bi-trash"></i></button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="items">ID</td>
-                        <td class="items">NOME</td>
-                        <td class="items">EMAIL</td>
-                        <td class="açoes">
-                            <div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary"
-                                        onclick="abrirModal('modal-visualizar')"><i class="bi bi-eye"></i></button>
-
-                                </div>
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-editar')"><i
-                                            class="bi bi-pencil"></i></button>
-                                </div>
-
-                                <div class="button-container">
-                                    <button type="button" class="btn-primary" onclick="abrirModal('modal-delete')"><i
-                                            class="bi bi-trash"></i></button>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
-                <tfoot>
-                    <td colspan="4">
-                        <div class="foot">
-                            <div class="button-container">
-                                <button class="botao_foot1"><i class="bi bi-caret-left-fill"></i></button>
-                            </div>
-                            <div>
-                                <p class="botao_foot">1</p>
-                            </div>
-
-                            <div class="button-container">
-                                <button class="botao_foot1"><i class="bi bi-caret-right-fill"></i></button>
-                            </div>
-                        </div>
-
-                    </td>
-                </tfoot>
-            </table>
+                    </tfoot>
+                </table>
 
     </main>
 
@@ -318,8 +319,11 @@
             </div>
         </div>
     </div>
-
+    <img class="figurinha" id="cuphead" src="../../../public/assets/cuphead.png" alt="cuphead" ;>
+    <img class="figurinha" id="ninja" src="../../../public/assets/ninja.png" alt="ninja" ;>
+    </div>
     <script src="../../../public/js/listausuarios.js"></script>
+
 </body>
 
 </html>
