@@ -319,6 +319,5 @@ tbody {
     .titulo {
         text-wrap: wrap;
         font-size: 1.8rem;
-        max-width: 15rem;
     }
 }
