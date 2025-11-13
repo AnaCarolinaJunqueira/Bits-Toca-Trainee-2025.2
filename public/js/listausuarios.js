@@ -13,7 +13,7 @@ function fecharModal(modalId) {
 }
 
 function initializeModalLogic() {
-    
+
     const novoPostButton = document.querySelector('.botao-user');
     if (novoPostButton) {
         novoPostButton.addEventListener('click', () => {
@@ -24,6 +24,7 @@ function initializeModalLogic() {
     document.querySelectorAll('.file-drop-area').forEach(dropArea => {
         const fileInput = dropArea.querySelector('.file-input');
         const textElement = dropArea.querySelector('p');
+        const fileUser = dropArea.querySelector('.file-user');
 
         if (!fileInput || !textElement) {
             return;
@@ -43,10 +44,16 @@ function initializeModalLogic() {
             dropArea.style.borderColor = '#ccc';
             dropArea.style.backgroundColor = '#fafafa';
         });
+        fileInput.onchange = function () {
+            fileUser.src = URL.createObjectURL(fileInput.files[0]);
+            textElement.style.display = 'none';
+            fileUser.style.display = 'block';
+            dropArea.style.padding = '0';
+        }
     });
 
     document.querySelectorAll('#modal-novo .star-rating, #modal-editar .star-rating').forEach(starGroup => {
-        
+
         const stars = starGroup.querySelectorAll('.bi');
         const ratingInput = starGroup.querySelector('input[type="hidden"]');
         let currentRating = parseInt(ratingInput.value) || 0;
@@ -69,13 +76,13 @@ function initializeModalLogic() {
         stars.forEach(star => {
             star.addEventListener('click', () => {
                 const newRating = parseInt(star.dataset.value);
-                
+
                 if (newRating === currentRating) {
                     currentRating = 0;
                 } else {
                     currentRating = newRating;
                 }
-                
+
                 ratingInput.value = currentRating;
                 setRatingVisuals(currentRating);
             });
