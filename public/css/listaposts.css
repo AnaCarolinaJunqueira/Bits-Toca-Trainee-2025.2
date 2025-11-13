@@ -16,6 +16,7 @@ main {
 }
 
 .container {
+    position: relative;
     min-width: 70%;
     min-height: 70%;
     max-width: 90vw;
@@ -99,6 +100,11 @@ main {
     
     transition: 0.3s ease-out;
     cursor: pointer;
+}
+
+.botao-post:hover{
+    font-size: 1.5rem;
+    transition: 0.3s ease-in;
 }
 
 .tabela {
@@ -197,11 +203,6 @@ tbody {
     gap: 0.5rem;
 }
 
-.botao-post:hover{
-    font-size: 1.5rem;
-    transition: 0.3s ease-in;
-}
-
 .date{
     text-align: center;
     text-wrap: nowrap;
@@ -209,6 +210,40 @@ tbody {
 
 .data{
     text-align: center;
+}
+
+.figurinha {
+    position: absolute;
+    width: 3.5rem;
+    height: auto;
+}
+
+#fig1 {
+    bottom: 32rem;
+    right: 33%;
+}
+
+#fig2 {
+    bottom: 0;
+    left: -1.5rem;
+}
+
+#fig3 {
+    bottom: 0;
+    right: -1.5rem;
+}
+
+.figurinha:hover {
+    animation: figurinha 1s linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes figurinha {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
 }
 
 @media (max-width: 1300px) {
@@ -236,6 +271,17 @@ tbody {
     
     .espaço {
         display: none;
+    }
+
+    .figurinha {
+        width: 3rem;
+    }
+
+    #fig1 {
+        bottom: 33rem;
+    }
+    #fig2, #fig3 {
+        bottom: 1rem;
     }
 }
 
