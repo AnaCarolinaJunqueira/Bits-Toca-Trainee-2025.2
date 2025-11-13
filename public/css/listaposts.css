@@ -281,6 +281,15 @@ tbody {
     .espaço {
         display: none;
     }
+
+    .figurinha:hover {
+        animation: none;
+    }
+
+    .figurinha.active {
+        animation: figurinha 1s linear;
+        animation-iteration-count: infinite;
+    }
 }
 
 @media (max-width: 768px) {
