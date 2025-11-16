@@ -35,12 +35,12 @@ body {
 #filtro-pesquisa {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: fit-content;
-    gap: 30px;
+    gap: 135px;
     padding-top: 50px;
     padding-bottom: 50px;
+    margin-left: 20px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 #filtro {
@@ -78,7 +78,7 @@ button#filtro-critica {
 
 #barra-pesquisa {
     display: flex;
-    width: 519px;
+    width: 719px;
     height: 100px;
     justify-content: center;
     align-items: center;
@@ -87,7 +87,8 @@ button#filtro-critica {
 }
 
 input[type="text"] {
-    width: 456.71px;
+    padding-left: 40px;
+    width: 100%;
     height: 47.01px;
     border-radius: 20px;
     border: none;
@@ -106,7 +107,7 @@ input[type="text"] {
 #barra-pesquisa img#lupa-icon {
     width: 25px;
     height: 25px;
-    left: -450px;
+    left: -680px;
     position: relative;
 
 }
@@ -207,15 +208,53 @@ button#atual{
     font-size: 20px;
 }
 
-@media screen and (max-width: 814px) {
- #filtro-pesquisa {
-    flex-direction: column;
 
- }
+@media screen and (max-width: 1139px) {
+    #filtro-pesquisa {
+        gap: 80px;
+    }
+}
 
- #barra-pesquisa {
-    width: 100vw;
- }
+@media screen and (max-width: 1123px) {
+    #filtro-pesquisa {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+
+
+@media screen and (max-width: 813px) {
+    #filtro-pesquisa {
+        flex-direction: column;
+
+    }
+
+}
+
+@media screen and (max-width: 812px) {
+    #barra-pesquisa img#lupa-icon{
+        left: -710px;
+    }
+
+        #barra-pesquisa {
+        width: 750px;
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    input[type="text"] {
+        width: 90%;
+    }
+
+    #barra-pesquisa img#lupa-icon{
+        left: -670px;
+    }
+    
+    #filtro-pesquisa{
+        margin-right: 20px;
+    }
 }
 
 
@@ -232,7 +271,44 @@ button#atual{
         grid-template-columns: repeat(1, 1fr);
         max-width: 900px;
 
-}        
+    }   
+    
+    #barra-pesquisa {
+        width: 670px;
+    }
+
+    #barra-pesquisa img#lupa-icon{
+        left: -600px;
+    }
+}
+
+
+@media screen and (max-width: 668px){
+    
+    #barra-pesquisa {
+        width: 450px;
+    }
+
+    #barra-pesquisa img#lupa-icon{
+        left: -400px;
+    }
+}
+
+
+@media screen and (max-width: 337px){
+    
+    #barra-pesquisa {
+        width: 100%;
+        padding-left: 0px;
+    }
+
+    #filtro-pesquisa {
+        overflow-x: hidden;
+    }
+
+    #barra-pesquisa img#lupa-icon{
+        left: -200px;
+    }
 }
 
 @media screen and (max-width: 494px) {
