@@ -1,15 +1,15 @@
-<div id="modal-delete" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-delete')">
-    <div class="modalc modal-delete">
-        <img src="../../../public/assets/ModalDeletarIMG.png" alt="Delete warning icon"></img>
-        <h2>Deletar Post?</h2>
-        <p>Esta ação não pode ser desfeita. Você tem certeza que deseja deletar permanentemente este post?</p>
+    <div id="modal-delete" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-delete')">
+        <div class="modalc modal-delete">
+            <img src="../../../public/assets/ModalDeletarIMG.png" alt="Delete warning icon"></img>
+            <h2>Deletar Post?</h2>
+            <p>Esta ação não pode ser desfeita. Você tem certeza que deseja deletar permanentemente este post?</p>
 
-        <div class="modal-buttons">
-            <button class="btn btn-cancel-delete" onclick="fecharModal('modal-delete')">Cancelar</button>
-            <form style="display: inline;" fecharModal('modal-delete');">
-                <input type="hidden" id="delete-post-id" name="id">
-                <button type="submit" class="btn btn-confirm btn-delete">Deletar</button>
-            </form>
+            <div class="modal-buttons">
+                <button class="btn btn-cancel-delete" onclick="fecharModal('modal-delete')">Cancelar</button>
+                <form style="display: inline;" action="/admin/listaposts/delete" method="POST">
+                    <input type="hidden" id="delete-post-id" name="id">
+                    <button type="submit" class="btn btn-confirm btn-delete-post">Deletar</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>

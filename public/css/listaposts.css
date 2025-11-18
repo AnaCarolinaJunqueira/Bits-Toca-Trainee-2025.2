@@ -156,6 +156,17 @@ tfoot td {
     text-align: center;
 }
 
+.foot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    padding: 1rem 0.5rem;
+    background-color: #DC97A5;
+    border-radius: 0 0 1rem 1rem;
+}
+
 tbody {
     background-color: #ffff;
 }
@@ -253,6 +264,90 @@ tbody {
     50% { transform: rotate(0deg); }
     75% { transform: rotate(-15deg); }
     100% { transform: rotate(0deg); }
+}
+
+.pagination-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem; 
+    margin: 0 0.5rem;
+}
+
+.page-slot {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.page-slot.left {
+    justify-content: flex-end;
+}
+
+.page-slot.center {
+    justify-content: center;
+}
+
+.page-slot.right {
+    justify-content: flex-start;
+}
+
+.page-number {
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.page-number.current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #2B3B46;
+    font-size: 1.4rem;
+    font-weight: 700;
+    transform: scale(1.1);
+}
+
+.page-number.adjacent {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+    opacity: 0.6;
+    padding: 0 0.3rem; 
+}
+
+.page-number.adjacent:hover {
+    opacity: 1; 
+}
+
+
+.botao_foot {
+    all: unset;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.botao_foot i,
+.button-content > i {
+    font-size: 1.8rem;
+    transition: 0.3s ease-in;
+    line-height: 1;
+}
+
+.botao_foot:hover i {
+    font-size: 2.0rem;
+    color: #DC97A5;
+}
+
+.pagination-summary p {
+    color: #ffffff;
+    font-size: 1.1rem;
+    opacity: 0.8;
 }
 
 @media (max-width: 1300px) {

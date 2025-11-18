@@ -161,7 +161,6 @@
     transition: border-color 0.2s ease, background-color 0.2s ease;
     background-color: #fafafa;
     position: relative;
-    justify-items: center;
 }
 
 .file-drop-area:hover {
@@ -187,12 +186,6 @@
     height: 100%;
     opacity: 0;
     cursor: pointer;
-}
-
-.file-post {
-    display: none;
-    height: auto;
-    width: 100%;
 }
 
 .star-rating {
@@ -280,11 +273,11 @@
     border-color: #27ae60;
 }
 
-.btn-delete {
+.btn-delete-post {
     background-color: #000;
     color: #fff;
 }
-.btn-delete:hover {
+.btn-delete-post:hover {
     background-color: #c0392b;
 }
 
@@ -292,4 +285,82 @@ fieldset {
     border: none;
     padding: 0;
     margin: 0;
+}
+
+.custom-select {
+    position: relative;
+    font-family: "Roboto", sans-serif;
+}
+
+.custom-select select {
+    display: none;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+}
+
+.form-group .select-styled {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    background-color: #fdfdfd;
+    color: #444;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    font-family: "Roboto", sans-serif;
+}
+
+.select-styled::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: #888;
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+.select-styled.active::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.select-options {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1001;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.select-options.active {
+    display: block;
+}
+
+.select-options div {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    color: #444;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.select-options div:hover {
+    background-color: #f4f4f4;
+}
+
+.select-options div.is-selected {
+    background-color: #f0f0f0;
+    font-weight: 500;
 }

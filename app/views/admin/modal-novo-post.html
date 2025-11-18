@@ -3,13 +3,14 @@
         <button class="modal-close-btn" onclick="fecharModal('modal-novo')">&times;</button>
         <h2>NOVO POST</h2>
         <div class="modal-divider"></div>
-        <form fecharModal('modal-novo');">
+
+        <form action="/admin/listaposts/store" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="novo-titulo">Título</label>
-                <input type="text" id="novo-titulo" name="titulo" placeholder="Lorem ipsum">
+                <input type="text" id="novo-titulo" name="titulo" placeholder="Lorem ipsum" required>
             </div>
             <div class="form-group">
-                <label for="novo-descricao">Descrição</label>
+                <label for="novo-descricao">Conteúdo</label>
                 <textarea id="novo-descricao" name="descricao" rows="5"
                     placeholder="Lorem ipsum dolor sit amet..."></textarea>
             </div>
@@ -18,8 +19,22 @@
                 <div class="file-drop-area">
                     <i class="bi bi-cloud-arrow-up-fill"></i>
                     <p><strong>Escolha um arquivo</strong> ou arraste e solte aqui.</p>
-                    <img src="" class="file-post">
-                    <input type="file" accept="image/jpeg, image/png, image/jpg" name="imagem" class="file-input">
+                    <input type="file" name="imagem" class="file-input">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Categorias</label>
+                <div class="select-wrapper custom-select">
+                    <select name="categoria" id="novo-categoria" required>
+                        <option value="" disabled selected>Selecione uma categoria</option>
+                        <option value="Analises">Análises</option>
+                        <option value="Previas">Prévias</option>
+                        <option value="Noticias">Notícias</option>
+                        <option value="Entrevistas">Entrevistas</option>
+                        <option value="Devlogs">Devlogs</option>
+                        <option value="Opiniao">Opinião</option>
+                        <option value="Eventos">Eventos</option>
+                    </select>
                 </div>
             </div>
             <fieldset disabled>

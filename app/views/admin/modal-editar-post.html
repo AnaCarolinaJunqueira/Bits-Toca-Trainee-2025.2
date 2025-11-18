@@ -4,14 +4,14 @@
         <h2>EDITAR POST</h2>
         <div class="modal-divider"></div>
 
-        <form fecharModal('modal-editar');">
+        <form action="/admin/listaposts/update" method="POST" enctype="multipart/form-data">
             <input type="hidden" id="edit-post-id" name="id">
             <div class="form-group">
                 <label for="edit-titulo">Título</label>
                 <input type="text" id="edit-titulo" name="titulo" placeholder="Lorem ipsum">
             </div>
             <div class="form-group">
-                <label for="edit-descricao">Descrição</label>
+                <label for="edit-descricao">Conteúdo</label>
                 <textarea id="edit-descricao" name="descricao" rows="5"
                     placeholder="Lorem ipsum dolor sit amet..."></textarea>
             </div>
@@ -19,9 +19,8 @@
                 <label>Imagem</label>
                 <div class="file-drop-area">
                     <i class="bi bi-cloud-arrow-up-fill"></i>
-                    <p><strong>Escolha um arquivo</strong> ou arraste e solte aqui.</p>
-                    <img src="" class="file-post">
-                    <input type="file" accept="image/jpeg, image/png, image/jpg" name="imagem" class="file-input">
+                    <p><strong>Escolha um novo arquivo</strong> ou arraste e solte aqui.</p>
+                    <input type="file" name="imagem" class="file-input">
                 </div>
             </div>
             <fieldset disabled>
@@ -33,9 +32,25 @@
                     <div class="form-group">
                         <label for="edit-data">Data</label>
                         <input type="date" id="edit-data" name="data">
+                        <small id="edit-data-edicao" class="last-edited-text"></small>
                     </div>
                 </div>
             </fieldset>
+            <div class="form-group">
+                <label>Categorias</label>
+                <div class="select-wrapper custom-select">
+                    <select name="categoria" id="edit-categoria-select" required>
+                        <option value="" disabled>Selecione uma categoria</option>
+                        <option value="Analises">Análises</option>
+                        <option value="Previas">Prévias</option>
+                        <option value="Noticias">Notícias</option>
+                        <option value="Entrevistas">Entrevistas</option>
+                        <option value="Devlogs">Devlogs</option>
+                        <option value="Opiniao">Opinião</option>
+                        <option value="Eventos">Eventos</option>
+                    </select>
+                </div>
+            </div>
             <div class="form-group">
                 <label>Avaliação</label>
                 <div class="star-rating">
