@@ -1,0 +1,295 @@
+/* --- Modal Styles --- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    font-family: "Roboto", sans-serif;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modalc {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-divider {
+    height: 1px;
+    background-color: #000;
+    margin: 1.5rem 0;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #888;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    color: #000;
+}
+
+/* --- Delete Modal --- */
+
+.modal-delete {
+    text-align: center;
+    max-width: 450px;
+    padding: 3rem;
+}
+
+.modal-delete img {
+    width: 150px;
+}
+
+.modal-delete h2 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    color: #333;
+}
+
+.modal-delete p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+    border: 1px solid #333;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+/* --- Form Modal --- */
+
+.modal-form h2 {
+    font-family: "Roboto", sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.modal-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: #444;
+}
+
+.form-group:has(.star-rating) label {
+    font-weight: 500;
+    color: #444;
+    text-align: center;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    background-color: #fdfdfd;
+}
+
+.form-group input:disabled,
+.form-group textarea:disabled {
+    background-color: #f4f4f4;
+    cursor: not-allowed;
+}
+
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.file-drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+    background-color: #fafafa;
+    position: relative;
+    justify-items: center;
+}
+
+.file-drop-area:hover {
+    border-color: #DC97A5;
+    background-color: #fff;
+}
+
+.file-drop-area i {
+    font-size: 2.5rem;
+    color: #888;
+}
+
+.file-drop-area p {
+    margin: 0;
+    color: #555;
+}
+
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-post {
+    display: none;
+    height: auto;
+    width: 100%;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    color: #ccc;
+}
+
+.star-rating i {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.btn {
+    all: unset;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cancel {
+    background-color: #ffffff;
+    color: #000;
+    border: 1px solid #000
+}
+
+.btn-cancel:hover {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: 1px solid #e74c3c;
+}
+
+.btn-cancel-delete {
+    background-color: #ffffff;
+    color: #000;
+    border: 1px solid #000
+}
+
+.btn-cancel-delete:hover {
+    background-color: #d1d1d1;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.btn-cancel:hover {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: 1px solid #e74c3c;
+}
+
+.btn-confirm {
+    color: #fff;
+}
+
+.btn-salvar {
+    background-color: #ffffff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+.btn-salvar:hover {
+    background-color: #27ae60;
+    color: #ffffff;
+    border-color: #27ae60;
+}
+
+.btn-delete {
+    background-color: #000;
+    color: #fff;
+}
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
