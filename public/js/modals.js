@@ -138,7 +138,7 @@ function initializeModalLogic() {
             const data = viewButton.dataset;
 
             document.getElementById('view-titulo').value = data.titulo;
-            document.getElementById('view-descricao').value = data.descricao;
+            document.getElementById('view-conteudo').value = data.conteudo;
             document.getElementById('view-autor').value = data.autor_nome;
             document.getElementById('view-data').value = data.data;
 
@@ -174,7 +174,7 @@ function initializeModalLogic() {
 
             document.getElementById('edit-post-id').value = data.id;
             document.getElementById('edit-titulo').value = data.titulo;
-            document.getElementById('edit-descricao').value = data.descricao;
+            document.getElementById('edit-conteudo').value = data.conteudo;
             document.getElementById('edit-autor').value = data.autor_nome;
             document.getElementById('edit-data').value = data.data;
             document.getElementById('edit-data-edicao').textContent = data.data_edicao ? `Última edição: ${data.data_edicao}` : '';
