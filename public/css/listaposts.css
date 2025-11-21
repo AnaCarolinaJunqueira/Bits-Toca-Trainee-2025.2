@@ -213,11 +213,11 @@ tbody {
     min-width: 50px;
 }
 
-.titulo-column, .titulo-column-header {
+.title-column, .title-column-header {
     width: 35%;
 }
 
-.autor-column, .autor-column-header {
+.author-column, .author-column-header {
     width: 30%;
 }
 
@@ -274,7 +274,7 @@ tbody {
 
 #fig1 {
     top: -1.75rem;
-    right: 55%;
+    right: 35%;
 }
 
 #fig2 {
