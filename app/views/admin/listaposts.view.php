@@ -120,6 +120,9 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <img src="../../../public/assets/figurinhas/7.png" class="figurinha" id="fig1" alt="">
+                <img src="../../../public/assets/figurinhas/26.png" class="figurinha" id="fig2" alt="">
+                <img src="../../../public/assets/figurinhas/38.png" class="figurinha" id="fig3" alt="">
             </div>
             <?php require 'app/views/admin/components/paginacao.php'; ?>
         </div>
