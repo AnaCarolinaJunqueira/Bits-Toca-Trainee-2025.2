@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bits toca</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bits toca - Admin Posts</title>
 
-        <link rel="stylesheet" href="../../../public/css/listaposts.css">
-        <link rel="stylesheet" href="../../../public/css/modals.css">
+    <link rel="stylesheet" href="/public/css/listaposts.css">
+    <link rel="stylesheet" href="/public/css/modals.css">
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
-        
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    </head>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
 
-    <body>
-        <main>
-            <div class="container">
-                <div class="cabeçalho">
-                    <div class="logo">
-                        <div id="logo">
-                            <img src="../../../public/assets/Logo Blog.png" alt="Logo Bits Toca Branca">
-                        </div>
-                    </div>
-                    <div class="titulo">
-                        <h1>Tabela de Posts</h1>
-                    </div>
-                    <div class="espaço"> </div>
-                </div>
-                <div class="botoes">
-                    <div class="barra-pesquisa">
-                        <img src="../../../public/assets/icon_pesquisa.png" alt="icone de pesquisa">
-                        <input type="text" id="pesquisa" placeholder="Pesquisar...">
-                    </div>
-                    <div class="botao-post">
-                        <p> NOVO POST</p>
-                        <i class="bi bi-plus-circle"></i>
+<body>
+    <main>
+        <div class="container">
+            <div class="cabeçalho">
+                <div class="logo">
+                    <div id="logo">
+                        <img src="/public/assets/Logo Blog.png" alt="Logo Bits Toca Branca">
                     </div>
                 </div>
-                <div class="tabela">
-                    <div class="tabela-conteudo">
-                        <table>
-                            <thead>
-                                <tr class="header">
-                                    <th>
-                                        <p>ID</p>
-                                    </th>
-                                    <th>
-                                        <p>TÍTULO</p>
-                                    </th>
-                                    <th>
-                                        <p>AUTOR</p>
-                                    </th>
-                                    <th class="date">
-                                        <p>DATA DE CRIAÇÃO</p>
-                                    </th>
-                                    <th class="action">
-                                        <p>AÇÕES</p>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <?php foreach ($posts as $post) : ?>
+                <div class="titulo">
+                    <h1>Tabela de Posts</h1>
+                </div>
+                <div class="espaço"> </div>
+            </div>
+            <div class="botoes">
+                <form method="GET" action="/admin/listaposts" class="barra-pesquisa">
+                    <img src="/public/assets/icon_pesquisa.png" alt="icone de pesquisa">
+                    <input type="text" id="pesquisa" name="search" placeholder="Pesquisar..." value="<?= htmlspecialchars($search_term ?? '') ?>">
+                    <button type="submit" style="display: none;"></button>
+                </form>
+                <div class="botao-post">
+                    <p> NOVO POST</p>
+                    <i class="bi bi-plus-circle"></i>
+                </div>
+            </div>
+            <div class="tabela">
+                <table>
+                    <thead>
+                        <tr class="header">
+                            <th>
+                                <p>ID</p>
+                            </th>
+                            <th>
+                                <p>TÍTULO</p>
+                            </th>
+                            <th>
+                                <p>AUTOR</p>
+                            </th>
+                            <th class="date">
+                                <p>DATA DE CRIAÇÃO</p>
+                            </th>
+                            <th class="action">
+                                <p>AÇÕES</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php foreach ($posts as $post) : ?>
                             <tr>
                                 <td class="items">
                                     <p><?= $post->ID; ?></p>
@@ -116,23 +118,20 @@
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-                        </table>
-                    </div>
-                    <?php require 'app/views/admin/components/paginacao.php'; ?>
-                    <img src="../../../public/assets/figurinhas/7.png" class="figurinha" id="fig1" alt="">
-                    <img src="../../../public/assets/figurinhas/26.png" class="figurinha" id="fig2" alt="">
-                    <img src="../../../public/assets/figurinhas/38.png" class="figurinha" id="fig3" alt="">
-                </div>
+                    </tbody>
+                </table>
             </div>
-        </main>
+            <?php require 'app/views/admin/components/paginacao.php'; ?>
+        </div>
+    </main>
 
-        <?php require 'app/views/admin/modal-novo-post.html'; ?>
+    <?php require 'app/views/admin/modal-novo-post.html'; ?>
     <?php require 'app/views/admin/modal-editar-post.html'; ?>
     <?php require 'app/views/admin/modal-deletar-post.html'; ?>
     <?php require 'app/views/admin/modal-visualizar-post.html'; ?>
     <?php require 'app/views/admin/modal-goto-page.html'; ?>
-    
-    </body>
-    <script src="../../../public/js/modals.js"></script>
-    <script src="../../../public/js/listaposts.js"></script>
+
+    <script src="/public/js/modals.js"></script>
+</body>
+
 </html>

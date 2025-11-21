@@ -13,7 +13,12 @@ class PostController
         $database = App::get('database');
         $limit = 5;
         $page = isset($_GET['page']) && (int)$_GET['page'] > 0 ? (int)$_GET['page'] : 1;
-        $total_posts = $database->countAll('posts');
+
+        $searchTerm = trim($_GET['search']) ?? null;
+        $searchColumn = $searchTerm ? 'TITULO' : null;
+
+
+        $total_posts = $database->countAll('posts',$searchColumn, $searchTerm);
 
         $total_pages = ceil($total_posts / $limit);
 
@@ -25,13 +30,15 @@ class PostController
         }
 
         $offset = ($page - 1) * $limit;
-        $posts = $database->selectPaginated('posts', $limit, $offset);
+
+        $posts = $database->selectPaginated('posts', $limit, $offset, $searchColumn, $searchTerm);
 
 
         return view('admin/listaposts', [
             'posts' => $posts,
             'current_page' => $page,
-            'total_pages' => $total_pages
+            'total_pages' => $total_pages,
+            'search_term' => $searchTerm
         ]);
     }
 
@@ -41,10 +48,10 @@ class PostController
 
         $imagePath = 'assets/images/default.png';
 
-        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = 'public/assets/images/';
-            $tmpName = $_FILES['imagem']['tmp_name'];
-            $imageName = time() . '_' . basename($_FILES['imagem']['name']);
+            $tmpName = $_FILES['image']['tmp_name'];
+            $imageName = time() . '_' . basename($_FILES['image']['name']);
 
             $targetPath = $uploadDir . $imageName;
 
@@ -58,7 +65,7 @@ class PostController
 
         $parameters = [
             'TITULO' => $_POST['titulo'],
-            'CONTEUDO' => $_POST['descricao'],
+            'DESCRICAO' => $_POST['descricao'],
             'AVALIACAO' => $_POST['rating'],
             'IMAGEM' => $imagePath,
             'CATEGORIA' => $_POST['categoria'],
@@ -80,10 +87,10 @@ class PostController
         $post = $database->findById('Posts', $id);
         $imagePath = $post->IMAGEM;
 
-        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = 'public/assets/images/';
-            $tmpName = $_FILES['imagem']['tmp_name'];
-            $imageName = time() . '_' . basename($_FILES['imagem']['name']);
+            $tmpName = $_FILES['image']['tmp_name'];
+            $imageName = time() . '_' . basename($_FILES['image']['name']);
 
             $targetPath = $uploadDir . $imageName;
 
@@ -102,7 +109,7 @@ class PostController
 
         $parameters = [
             'TITULO' => $_POST['titulo'],
-            'CONTEUDO' => $_POST['descricao'],
+            'DESCRICAO' => $_POST['descricao'],
             'AVALIACAO' => $_POST['rating'],
             'CATEGORIA' => $_POST['categoria'],
             'DATA_EDICAO' => date('Y-m-d H:i:s'),

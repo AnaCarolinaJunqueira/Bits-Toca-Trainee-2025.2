@@ -3,7 +3,6 @@
 namespace App\Core\Database;
 
 use PDO, Exception;
-
 class QueryBuilder
 {
     protected $pdo;
@@ -34,13 +33,13 @@ class QueryBuilder
         $parameters = [];
 
         if($searchColumn && $searchTerm) {
-            $sql .= " WHERE {$searchColumn} LIKE :searchTerm";
+            $sql .= " WHERE posts.{$searchColumn} LIKE :searchTerm";
             $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
 
         try {
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
+            $stmt->execute($parameters);
 
             return $stmt->fetchColumn();
 
@@ -49,10 +48,17 @@ class QueryBuilder
         }
     }
 
-    public function selectPaginated($table, $limit, $offset)
+    public function selectPaginated($table, $limit, $offset, $searchColumn = null, $searchTerm = null)
     {
         $limit = (int) $limit;
         $offset = (int) $offset;
+        $parameters = [];
+        $whereClause = "";
+
+        if ($searchColumn && $searchTerm) {
+            $whereClause = " WHERE posts.{$searchColumn} LIKE :searchTerm";
+            $parameters['searchTerm'] = '%' . $searchTerm . '%';
+        }
 
         $sql = "";
 
@@ -60,6 +66,7 @@ class QueryBuilder
             $sql = "SELECT posts.*, usuarios.NOME as AUTOR_NOME 
                     FROM posts
                     JOIN usuarios ON posts.AUTOR_ID = usuarios.ID
+                    {$whereClause}
                     ORDER BY posts.ID ASC 
                     LIMIT {$limit} OFFSET {$offset}";
         } else {
@@ -68,7 +75,7 @@ class QueryBuilder
 
         try {
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute();
+            $stmt->execute($parameters);
 
             return $stmt->fetchAll(PDO::FETCH_CLASS);
 

@@ -4,21 +4,31 @@
     box-sizing: border-box;
 }
 
-main {
+html,body {
+    height: 100%;
+    width: 100%;
     background: linear-gradient(#55768C, #2B3B46);
-    padding: 5vh 10vw;
-    min-height: 100vh;
+}
+
+main {
+    padding: 0 5%;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
-    justify-items: center;
+    align-items: center;
 }
 
 .container {
-    min-width: 70%;
-    min-height: 70%;
-    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    gap: 0;
+    margin:0;
+    width: 100%;
+    max-width: 1600px;
 }
 
 .cabeçalho {
@@ -28,6 +38,7 @@ main {
     justify-content: space-between;
     width: 100%;
     font-family: "nunito", sans-serif;
+    font-size: 1rem;
 }
 
 .logo {
@@ -94,7 +105,7 @@ main {
     padding: 1.3rem;
     gap: 10px;
     
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 500;
     
     transition: 0.3s ease-out;
@@ -107,23 +118,13 @@ main {
 }
 
 .tabela {
-    position: relative;
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
     width: auto;
+    background-color: #DC97A5;
+    border-radius: 1rem 1rem 0 0;
     height: 100%;
     font-size: 1.2rem;
-}
-
-.tabela-conteudo {
-    border-radius: 1rem 1rem 0 0;
-    background-color: #DC97A5;
-    overflow: auto;
-}
-
-.tabela-paginacao {
-    border-radius: 0 0 1rem 1rem;
-    background-color: #DC97A5;
-    
+    overflow-x: auto;
 }
 
 .tabela table {
@@ -134,11 +135,18 @@ main {
 
 th, td {
     border: none;
-    padding: 1.3rem 1.5rem;
+    padding: 1rem 0.5rem;
 }
 
 tbody tr {
     border-top: 3px solid #DC97A5;
+}
+
+tr th:first-child, tr td:first-child {
+    padding-left: 1.5rem;
+}
+tr th:last-child, tr td:last-child {
+    padding-right: 1.5rem;
 }
 
 th {
@@ -154,17 +162,6 @@ tfoot td {
     border: none;
     width: min-content;
     text-align: center;
-}
-
-.foot{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: #ffffff;
-    padding: 1rem 0.5rem;
-    background-color: #DC97A5;
-    border-radius: 0 0 1rem 1rem;
 }
 
 tbody {
@@ -221,6 +218,10 @@ tbody {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    color: #ffffff;
+    padding: 1rem 0.5rem;
+    background-color: #DC97A5;
+    border-radius: 0 0 1rem 1rem;
 }
 
 .date{
@@ -350,13 +351,17 @@ tbody {
     opacity: 0.8;
 }
 
+.pagination-summary {
+    margin-bottom: 1rem;
+}
+
 @media (max-width: 1300px) {
     main {
         padding: 5vh 10vw;
     }
 
     .cabeçalho, .botoes, .tabela {
-        margin: 2rem 0;
+        margin: 2rem 0 0 0;
     }
 
     .cabeçalho {
