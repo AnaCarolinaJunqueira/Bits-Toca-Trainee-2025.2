@@ -65,7 +65,7 @@ class PostController
 
         $parameters = [
             'TITULO' => $_POST['titulo'],
-            'DESCRICAO' => $_POST['descricao'],
+            'CONTEUDO' => $_POST['conteudo'],
             'AVALIACAO' => $_POST['rating'],
             'IMAGEM' => $imagePath,
             'CATEGORIA' => $_POST['categoria'],
@@ -87,10 +87,10 @@ class PostController
         $post = $database->findById('Posts', $id);
         $imagePath = $post->IMAGEM;
 
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
             $uploadDir = 'public/assets/images/';
-            $tmpName = $_FILES['image']['tmp_name'];
-            $imageName = time() . '_' . basename($_FILES['image']['name']);
+            $tmpName = $_FILES['imagem']['tmp_name'];
+            $imageName = time() . '_' . basename($_FILES['imagem']['name']);
 
             $targetPath = $uploadDir . $imageName;
 
@@ -109,7 +109,7 @@ class PostController
 
         $parameters = [
             'TITULO' => $_POST['titulo'],
-            'DESCRICAO' => $_POST['descricao'],
+            'CONTEUDO' => $_POST['conteudo'],
             'AVALIACAO' => $_POST['rating'],
             'CATEGORIA' => $_POST['categoria'],
             'DATA_EDICAO' => date('Y-m-d H:i:s'),

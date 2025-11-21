@@ -41,6 +41,7 @@
                     <i class="bi bi-plus-circle"></i>
                 </div>
             </div>
+            <div class= "container-tabela">
             <div class="tabela">
                 <table>
                     <thead>
@@ -84,7 +85,7 @@
                                             <button class="btn-modal btn-view"
                                                 data-id="<?= $post->ID; ?>"
                                                 data-titulo="<?= htmlspecialchars($post->TITULO); ?>"
-                                                data-descricao="<?= htmlspecialchars($post->CONTEUDO); ?>"
+                                                data-conteudo="<?= htmlspecialchars($post->CONTEUDO); ?>"
                                                 data-imagem="<?= $post->IMAGEM; ?>"
                                                 data-autor_nome="<?= htmlspecialchars($post->AUTOR_NOME); ?>"
                                                 data-data="<?= date('Y-m-d', strtotime($post->DATA_POSTAGEM)); ?>"
@@ -98,7 +99,7 @@
                                             <button class="btn-modal btn-edit"
                                                 data-id="<?= $post->ID; ?>"
                                                 data-titulo="<?= htmlspecialchars($post->TITULO); ?>"
-                                                data-descricao="<?= htmlspecialchars($post->CONTEUDO); ?>"
+                                                data-conteudo="<?= htmlspecialchars($post->CONTEUDO); ?>"
                                                 data-imagem="<?= $post->IMAGEM; ?>"
                                                 data-autor_nome="<?= htmlspecialchars($post->AUTOR_NOME); ?>"
                                                 data-data="<?= date('Y-m-d', strtotime($post->DATA_POSTAGEM)); ?>"
@@ -120,11 +121,12 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <img src="../../../public/assets/figurinhas/7.png" class="figurinha" id="fig1" alt="">
+            </div>
+            <img src="../../../public/assets/figurinhas/7.png" class="figurinha" id="fig1" alt="">
                 <img src="../../../public/assets/figurinhas/26.png" class="figurinha" id="fig2" alt="">
                 <img src="../../../public/assets/figurinhas/38.png" class="figurinha" id="fig3" alt="">
-            </div>
-            <?php require 'app/views/admin/components/paginacao.php'; ?>
+                <?php require 'app/views/admin/components/paginacao.php'; ?>
+        </div>
         </div>
     </main>
 

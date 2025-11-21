@@ -29,7 +29,19 @@ main {
     margin:0;
     width: 100%;
     max-width: 1600px;
-    position: relative;
+}
+
+.container-tabela {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    gap: 0;
+    margin:0;
+    padding: 0;
+    width: 100%;
+    max-width: 1600px;
+    position:relative
 }
 
 .cabeçalho {
@@ -119,13 +131,13 @@ main {
 }
 
 .tabela {
-    margin: 1rem 0 0 0;
     width: auto;
     background-color: #DC97A5;
     border-radius: 1rem 1rem 0 0;
     height: 100%;
     font-size: 1.2rem;
     overflow-x: auto;
+    position: relative;
 }
 
 .tabela table {
@@ -262,7 +274,7 @@ tbody {
 
 #fig1 {
     top: -1.75rem;
-    right: 33%;
+    right: 55%;
 }
 
 #fig2 {
