@@ -45,13 +45,13 @@
                 <table>
                     <thead>
                         <tr class="header">
-                            <th>
+                            <th class="id-column-header">
                                 <p>ID</p>
                             </th>
-                            <th>
+                            <th class="title-column-header">
                                 <p>TÍTULO</p>
                             </th>
-                            <th>
+                            <th class="author-column-header">
                                 <p>AUTOR</p>
                             </th>
                             <th class="date">
@@ -66,13 +66,13 @@
 
                         <?php foreach ($posts as $post) : ?>
                             <tr>
-                                <td class="items">
+                                <td class="id-column">
                                     <p><?= $post->ID; ?></p>
                                 </td>
-                                <td class="items">
+                                <td class="title-column">
                                     <p><?= htmlspecialchars($post->TITULO); ?></p>
                                 </td>
-                                <td class="items">
+                                <td class="author-column">
                                     <p><?= htmlspecialchars($post->AUTOR_NOME); ?></p>
                                 </td>
                                 <td class="data">

@@ -192,10 +192,30 @@ tbody {
     display: flex;
     flex-direction: row;
     gap: 0.7rem;
+    justify-content: right;
 }
 
-.items {
-    width: 33.33%;
+.id-column, .id-column-header {
+    width: 5%;
+    min-width: 50px;
+}
+
+.titulo-column, .titulo-column-header {
+    width: 35%;
+}
+
+.autor-column, .autor-column-header {
+    width: 30%;
+}
+
+.date, .data {
+    width: 10%;
+    min-width: 120px;
+}
+
+.action, .açoes {
+    width: 10%;
+    min-width: 150px;
 }
 
 .botao_foot {
