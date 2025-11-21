@@ -41,92 +41,98 @@
                     <i class="bi bi-plus-circle"></i>
                 </div>
             </div>
-            <div class= "container-tabela">
-            <div class="tabela">
-                <table>
-                    <thead>
-                        <tr class="header">
-                            <th class="id-column-header">
-                                <p>ID</p>
-                            </th>
-                            <th class="title-column-header">
-                                <p>TÍTULO</p>
-                            </th>
-                            <th class="author-column-header">
-                                <p>AUTOR</p>
-                            </th>
-                            <th class="date">
-                                <p>DATA DE CRIAÇÃO</p>
-                            </th>
-                            <th class="action">
-                                <p>AÇÕES</p>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php foreach ($posts as $post) : ?>
-                            <tr>
-                                <td class="id-column">
-                                    <p><?= $post->ID; ?></p>
-                                </td>
-                                <td class="title-column">
-                                    <p><?= htmlspecialchars($post->TITULO); ?></p>
-                                </td>
-                                <td class="author-column">
-                                    <p><?= htmlspecialchars($post->AUTOR_NOME); ?></p>
-                                </td>
-                                <td class="data">
-                                    <p><?= date('d/m/Y', strtotime($post->DATA_POSTAGEM)); ?></p>
-                                </td>
-                                <td class="açoes">
-                                    <div>
-                                        <div class="button-content">
-                                            <button class="btn-modal btn-view"
-                                                data-id="<?= $post->ID; ?>"
-                                                data-titulo="<?= htmlspecialchars($post->TITULO); ?>"
-                                                data-conteudo="<?= htmlspecialchars($post->CONTEUDO); ?>"
-                                                data-imagem="<?= $post->IMAGEM; ?>"
-                                                data-autor_nome="<?= htmlspecialchars($post->AUTOR_NOME); ?>"
-                                                data-data="<?= date('Y-m-d', strtotime($post->DATA_POSTAGEM)); ?>"
-                                                data-categoria="<?= htmlspecialchars($post->CATEGORIA ?? ''); ?>"
-                                                data-rating="<?= $post->AVALIACAO; ?>"
-                                                data-data_edicao="<?= $post->DATA_EDICAO ? date('d/m/Y, H:i:s', strtotime($post->DATA_EDICAO)) : ''; ?>">
-                                                <i class="bi bi-eye"></i>
-                                            </button>
-                                        </div>
-                                        <div class="button-content">
-                                            <button class="btn-modal btn-edit"
-                                                data-id="<?= $post->ID; ?>"
-                                                data-titulo="<?= htmlspecialchars($post->TITULO); ?>"
-                                                data-conteudo="<?= htmlspecialchars($post->CONTEUDO); ?>"
-                                                data-imagem="<?= $post->IMAGEM; ?>"
-                                                data-autor_nome="<?= htmlspecialchars($post->AUTOR_NOME); ?>"
-                                                data-data="<?= date('Y-m-d', strtotime($post->DATA_POSTAGEM)); ?>"
-                                                data-categoria="<?= htmlspecialchars($post->CATEGORIA ?? ''); ?>"
-                                                data-rating="<?= $post->AVALIACAO; ?>"
-                                                data-data_edicao="<?= $post->DATA_EDICAO ? date('d/m/Y, H:i:s', strtotime($post->DATA_EDICAO)) : ''; ?>">
-                                                <i class="bi bi-pencil"></i>
-                                            </button>
-                                        </div>
-                                        <div class="button-content">
-                                            <button class="btn-modal btn-delete"
-                                                data-id="<?= $post->ID; ?>">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
+            <div class="container-tabela">
+                <div class="tabela">
+                    <table>
+                        <thead>
+                            <tr class="header">
+                                <th class="id-column-header">
+                                    <p>ID</p>
+                                </th>
+                                <th class="title-column-header">
+                                    <p>TÍTULO</p>
+                                </th>
+                                <th class="author-column-header">
+                                    <p>AUTOR</p>
+                                </th>
+                                <th class="date">
+                                    <p>DATA DE CRIAÇÃO</p>
+                                </th>
+                                <th class="action">
+                                    <p>AÇÕES</p>
+                                </th>
                             </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-            <img src="../../../public/assets/figurinhas/7.png" class="figurinha" id="fig1" alt="">
-                <img src="../../../public/assets/figurinhas/26.png" class="figurinha" id="fig2" alt="">
-                <img src="../../../public/assets/figurinhas/38.png" class="figurinha" id="fig3" alt="">
+                        </thead>
+                        <tbody>
+
+                            <?php foreach ($posts as $post) : ?>
+                                <tr>
+                                    <td class="id-column">
+                                        <p><?= $post->ID; ?></p>
+                                    </td>
+                                    <td class="title-column">
+                                        <p><?= htmlspecialchars($post->TITULO); ?></p>
+                                    </td>
+                                    <td class="author-column">
+                                        <p><?= htmlspecialchars($post->AUTOR_NOME); ?></p>
+                                    </td>
+                                    <td class="data">
+                                        <p><?= date('d/m/Y', strtotime($post->DATA_POSTAGEM)); ?></p>
+                                    </td>
+                                    <td class="açoes">
+                                        <div>
+                                            <div class="button-content">
+                                                <button class="btn-modal btn-view"
+                                                    data-id="<?= $post->ID; ?>"
+                                                    data-titulo="<?= htmlspecialchars($post->TITULO); ?>"
+                                                    data-conteudo="<?= htmlspecialchars($post->CONTEUDO); ?>"
+                                                    data-imagem="<?= $post->IMAGEM; ?>"
+                                                    data-autor_nome="<?= htmlspecialchars($post->AUTOR_NOME); ?>"
+                                                    data-data="<?= date('Y-m-d', strtotime($post->DATA_POSTAGEM)); ?>"
+                                                    data-categoria="<?= htmlspecialchars($post->CATEGORIA ?? ''); ?>"
+                                                    data-rating="<?= $post->AVALIACAO; ?>"
+                                                    data-data_edicao="<?= $post->DATA_EDICAO ? date('d/m/Y, H:i:s', strtotime($post->DATA_EDICAO)) : ''; ?>">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                            </div>
+                                            <div class="button-content">
+                                                <button class="btn-modal btn-edit"
+                                                    data-id="<?= $post->ID; ?>"
+                                                    data-titulo="<?= htmlspecialchars($post->TITULO); ?>"
+                                                    data-conteudo="<?= htmlspecialchars($post->CONTEUDO); ?>"
+                                                    data-imagem="<?= $post->IMAGEM; ?>"
+                                                    data-autor_nome="<?= htmlspecialchars($post->AUTOR_NOME); ?>"
+                                                    data-data="<?= date('Y-m-d', strtotime($post->DATA_POSTAGEM)); ?>"
+                                                    data-categoria="<?= htmlspecialchars($post->CATEGORIA ?? ''); ?>"
+                                                    data-rating="<?= $post->AVALIACAO; ?>"
+                                                    data-data_edicao="<?= $post->DATA_EDICAO ? date('d/m/Y, H:i:s', strtotime($post->DATA_EDICAO)) : ''; ?>">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                            </div>
+                                            <div class="button-content">
+                                                <button class="btn-modal btn-delete"
+                                                    data-id="<?= $post->ID; ?>">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- FIGURINHAS ALEATORIAS -->
+                <?php
+                $figs = range(1, 50);
+                $random_keys = array_rand($figs, 3);
+                ?>
+                <img src="/public/assets/figurinhas/<?= $figs[$random_keys[0]] ?>.png" class="figurinha" id="fig1" alt="figurinha 1">
+                <img src="/public/assets/figurinhas/<?= $figs[$random_keys[1]] ?>.png" class="figurinha" id="fig2" alt="figurinha 2">
+                <img src="/public/assets/figurinhas/<?= $figs[$random_keys[2]] ?>.png" class="figurinha" id="fig3" alt="figurinha 3">
+
                 <?php require 'app/views/admin/components/paginacao.php'; ?>
-        </div>
+            </div>
         </div>
     </main>
 
@@ -136,6 +142,7 @@
     <?php require 'app/views/admin/modal-visualizar-post.html'; ?>
     <?php require 'app/views/admin/modal-goto-page.html'; ?>
 
+    <script src="/public/js/listaposts.js"></script>
     <script src="/public/js/modals.js"></script>
 </body>
 

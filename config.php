@@ -2,7 +2,7 @@
 
 return [
     'database' => [
-        'name' => 'teste_db',
+        'name' => 'bits_toca_db',
         'username' => 'root',
         'password' => '',
         'connection' => 'mysql:host=127.0.0.1',

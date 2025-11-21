@@ -14,7 +14,7 @@ class PostController
         $limit = 5;
         $page = isset($_GET['page']) && (int)$_GET['page'] > 0 ? (int)$_GET['page'] : 1;
 
-        $searchTerm = trim($_GET['search']) ?? null;
+        $searchTerm = trim(isset($_GET['search']) ? $_GET['search'] : '') ?? null;
         $searchColumn = $searchTerm ? 'TITULO' : null;
 
 
@@ -46,21 +46,17 @@ class PostController
     {
         $database = App::get('database');
 
-        $imagePath = 'assets/images/default.png';
+        $uploadDir = 'public/assets/images/';
+        $tmpName = $_FILES['imagem']['tmp_name'];
+        $imageName = time() . '_' . basename($_FILES['imagem']['name']);
 
-        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = 'public/assets/images/';
-            $tmpName = $_FILES['image']['tmp_name'];
-            $imageName = time() . '_' . basename($_FILES['image']['name']);
+        $targetPath = $uploadDir . $imageName;
 
-            $targetPath = $uploadDir . $imageName;
-
-            if(move_uploaded_file($tmpName, $targetPath)) {
-                $imagePath = 'assets/images/' . $imageName;
-            }
-            else {
-                throw new Exception('Erro ao fazer upload da imagem.');
-            }
+        if(move_uploaded_file($tmpName, $targetPath)) {
+            $imagePath = 'assets/images/' . $imageName;
+        }
+        else {
+            throw new Exception('Erro ao fazer upload da imagem.');
         }
 
         $parameters = [

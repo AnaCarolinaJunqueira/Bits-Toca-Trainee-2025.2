@@ -4,48 +4,25 @@
     box-sizing: border-box;
 }
 
-html,body {
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(#55768C, #2B3B46);
-}
-
 main {
-    padding: 0 5%;
-    min-height: 100%;
+    background: linear-gradient(#55768C, #2B3B46);
+    padding: 5vh 10vw;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
-    align-items: center;
+    justify-items: center;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-    gap: 0;
-    margin:0;
-    width: 100%;
-    max-width: 1600px;
-}
-
-.container-tabela {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-    gap: 0;
-    margin:0;
-    padding: 0;
-    width: 100%;
-    max-width: 1600px;
-    position:relative
+    min-width: 70%;
+    min-height: 70%;
+    max-width: 90vw;
 }
 
 .cabeçalho {
-    margin: 1rem 0;
+    margin: -1rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -118,7 +95,7 @@ main {
     padding: 1.3rem;
     gap: 10px;
     
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 500;
     
     transition: 0.3s ease-out;
@@ -130,14 +107,18 @@ main {
     transition: 0.3s ease-in;
 }
 
-.tabela {
+.container-tabela {
+    position: relative;
+    margin: 1rem 0;
     width: auto;
-    background-color: #DC97A5;
-    border-radius: 1rem 1rem 0 0;
     height: 100%;
     font-size: 1.2rem;
+}
+
+.tabela {
+    background-color: #DC97A5;
+    border-radius: 1rem 1rem 0 0;
     overflow-x: auto;
-    position: relative;
 }
 
 .tabela table {
@@ -148,18 +129,11 @@ main {
 
 th, td {
     border: none;
-    padding: 1rem 0.5rem;
+    padding: 1.3rem 1.5rem;
 }
 
 tbody tr {
     border-top: 3px solid #DC97A5;
-}
-
-tr th:first-child, tr td:first-child {
-    padding-left: 1.5rem;
-}
-tr th:last-child, tr td:last-child {
-    padding-right: 1.5rem;
 }
 
 th {
@@ -205,25 +179,24 @@ tbody {
     display: flex;
     flex-direction: row;
     gap: 0.7rem;
-    justify-content: right;
 }
 
-.id-column, .id-column-header {
+.id-column {
     width: 5%;
     min-width: 50px;
 }
 
-.title-column, .title-column-header {
-    width: 35%;
+.title-column {
+    width: 50%;
 }
 
-.author-column, .author-column-header {
-    width: 30%;
+.author-column {
+    width: 20%;
 }
 
 .date, .data {
     width: 10%;
-    min-width: 120px;
+    min-width: 120px; 
 }
 
 .action, .açoes {
