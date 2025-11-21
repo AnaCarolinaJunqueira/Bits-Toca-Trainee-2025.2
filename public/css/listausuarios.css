@@ -7,13 +7,12 @@
 main {
     background: linear-gradient(#55768C, #2B3B46);
     padding: 5vh 10vw;
-    height: auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
+    justify-items: center;
 }
 
 .container {
@@ -23,12 +22,12 @@ main {
 }
 
 .cabeçalho {
+    margin: 1rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     font-family: "nunito", sans-serif;
-    margin: 1rem 0;
 }
 
 .logo {
@@ -39,7 +38,7 @@ main {
 }
 
 .logo img {
-    width: 130px;
+    width: 100px;
     height: auto;
 }
 
@@ -57,11 +56,11 @@ main {
 }
 
 .botoes {
+    margin: 1rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 4.5rem;
-    margin: 1rem 0;
 }
 
 .barra-pesquisa {
@@ -88,25 +87,43 @@ main {
     width: 100%;
 }
 
-.botao-user {
+.botao-post {
     display: flex;
-    gap: 10px;
-    font-size: 1.3rem;
     background-color: #DC97A5;
-    padding: 1.3rem;
     border-radius: 1rem;
+    padding: 1.3rem;
+    gap: 10px;
+    
+    font-size: 1.3rem;
     font-weight: 500;
+    
     transition: 0.3s ease-out;
+    cursor: pointer;
+}
+
+.botao-post:hover{
+    font-size: 1.5rem;
+    transition: 0.3s ease-in;
 }
 
 .tabela {
+    position: relative;
+    margin: 1rem 0;
     width: auto;
-    background-color: #DC97A5;
-    border-radius: 1rem;
     height: 100%;
     font-size: 1.2rem;
-    margin: 1rem 0;
-    overflow-x: auto;
+}
+
+.tabela-conteudo {
+    border-radius: 1rem 1rem 0 0;
+    background-color: #DC97A5;
+    overflow: auto;
+}
+
+.tabela-paginacao {
+    border-radius: 0 0 1rem 1rem;
+    background-color: #DC97A5;
+    
 }
 
 .tabela table {
@@ -115,8 +132,7 @@ main {
     border-collapse: collapse;
 }
 
-th,
-td {
+th, td {
     border: none;
     padding: 1.3rem 1.5rem;
 }
@@ -132,7 +148,6 @@ th {
 thead {
     width: 100%;
     text-align: left;
-
 }
 
 tfoot td {
@@ -142,21 +157,22 @@ tfoot td {
 }
 
 tbody {
-    background-color: #ffffff;
+    background-color: #ffff;
 }
 
-.btn-primary {
+.btn-modal {
     all: unset;
     font-size: 1.5rem;
     transition: 0.3s ease-out;
+    cursor: pointer;
 }
 
-.btn-primary:hover {
+.btn-modal:hover {
     font-size: 2.0rem;
     transition: 0.3s ease-in;
 }
 
-.button-container {
+.button-content {
     display: flex;
     justify-content: center;
     height: 2.0rem;
@@ -166,7 +182,7 @@ tbody {
 
 .açoes div {
     display: flex;
-    align-items: row;
+    flex-direction: row;
     gap: 0.7rem;
 }
 
@@ -174,42 +190,56 @@ tbody {
     width: 33.33%;
 }
 
-/* botao paginação */
-.botao_foot1 {
-    all: unset;
-    transition: 0.3s ease-out;
-}
-
-.botao_foot1:hover {
-    font-size: 2.0rem;
-    transition: 0.3s ease-in;
-}
-
-/* setinha paginação*/
 .botao_foot {
     all: unset;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+
+.botao_foot:hover {
+    font-size: 2.0rem;
+    transition: 0.3s ease-in;
 }
 
 .action {
     text-align: center;
 }
 
-.foot {
+.foot{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
 }
 
-.botao-user:hover {
-    font-size: 1.5rem;
-    transition: 0.3s ease-in;
+.date{
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+.data{
+    text-align: center;
 }
 
 .figurinha {
     position: absolute;
-    width: 4.5rem;
+    width: 3.5rem;
     height: auto;
+}
+
+#fig1 {
+    top: -1.75rem;
+    right: 20%;
+}
+
+#fig2 {
+    bottom: -1.75rem;
+    left: -1.5rem;
+}
+
+#fig3 {
+    bottom: -1.75rem;
+    right: -1.5rem;
 }
 
 .figurinha:hover {
@@ -218,36 +248,11 @@ tbody {
 }
 
 @keyframes figurinha {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(15deg);
-    }
-
-    50% {
-        transform: rotate(0deg);
-    }
-
-    75% {
-        transform: rotate(-15deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-#cuphead {
-    top: 48.5rem;
-    left: 10rem;
-}
-
-#ninja {
-    width: 5.3rem;
-    top: 17.5rem;
-    right: 10rem;
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
 }
 
 @media (max-width: 1300px) {
@@ -255,9 +260,7 @@ tbody {
         padding: 5vh 10vw;
     }
 
-    .cabeçalho,
-    .botoes,
-    .tabela {
+    .cabeçalho, .botoes, .tabela {
         margin: 2rem 0;
     }
 
@@ -274,9 +277,18 @@ tbody {
     .logo img {
         width: 160px;
     }
-
+    
     .espaço {
         display: none;
+    }
+
+    .figurinha:hover {
+        animation: none;
+    }
+
+    .figurinha.active {
+        animation: figurinha 1s linear;
+        animation-iteration-count: infinite;
     }
 }
 
@@ -288,30 +300,41 @@ tbody {
     .logo img {
         width: 120px;
     }
-
+    
     .titulo {
         text-align: center;
         font-size: 1.5rem;
     }
-
+    
     .botoes {
         flex-direction: column-reverse;
         gap: 2rem;
         height: auto;
     }
-
+    
     .barra-pesquisa {
         height: 2.5rem;
         gap: 15px;
         width: 100%;
     }
-
+    
     #pesquisa {
         font-size: 1.3rem;
     }
-
-    .botao-user {
+    
+    .botao-post {
         justify-content: center;
+    }
+
+    .figurinha {
+        width: 3rem;
+    }
+    
+    #fig1 {
+        top: -1.5rem;
+    }
+    #fig2, #fig3 {
+        bottom: -1.5rem;
     }
 }
 
@@ -319,5 +342,6 @@ tbody {
     .titulo {
         text-wrap: wrap;
         font-size: 1.8rem;
+        max-width: 15rem;
     }
 }
