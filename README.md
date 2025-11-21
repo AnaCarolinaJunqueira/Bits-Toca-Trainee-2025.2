@@ -15,7 +15,7 @@
 
 * [Laura Maria](https://github.com/LauraMariaHub)
 * [Bruno Keil](https://github.com/bruno-keil)
-* [Larissa Tiburcio](https://github.com/larissatiburcio)
+* [Angélica Coutinho](https://github.com/angelica07coutinho)
 * [Gustavo Baldutti](https://github.com/GustavoBaldutti)
 
 
