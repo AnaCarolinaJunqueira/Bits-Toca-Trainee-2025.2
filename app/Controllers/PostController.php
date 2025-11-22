@@ -46,17 +46,21 @@ class PostController
     {
         $database = App::get('database');
 
+        $imagePath = '';
+
         $uploadDir = 'public/assets/images/';
         $tmpName = $_FILES['imagem']['tmp_name'];
         $imageName = time() . '_' . basename($_FILES['imagem']['name']);
 
         $targetPath = $uploadDir . $imageName;
 
-        if(move_uploaded_file($tmpName, $targetPath)) {
-            $imagePath = 'assets/images/' . $imageName;
-        }
-        else {
-            throw new Exception('Erro ao fazer upload da imagem.');
+        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
+            if(move_uploaded_file($tmpName, $targetPath)) {
+                $imagePath = 'assets/images/' . $imageName;
+            }
+            else {
+                throw new Exception('Erro ao fazer upload da imagem.');
+            }
         }
 
         $parameters = [
