@@ -33,7 +33,7 @@ class QueryBuilder
         $parameters = [];
 
         if($searchColumn && $searchTerm) {
-            $sql .= " WHERE posts.{$searchColumn} LIKE :searchTerm";
+            $sql .= " WHERE posts.{$searchColumn[0]} LIKE :searchTerm or posts.{$searchColumn[1]} LIKE :searchTerm";
             $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
 
@@ -56,7 +56,7 @@ class QueryBuilder
         $whereClause = "";
 
         if ($searchColumn && $searchTerm) {
-            $whereClause = " WHERE posts.{$searchColumn} LIKE :searchTerm";
+            $whereClause = " WHERE posts.{$searchColumn[0]} LIKE :searchTerm or posts.{$searchColumn[1]} LIKE :searchTerm";
             $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
 

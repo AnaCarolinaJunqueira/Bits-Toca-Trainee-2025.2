@@ -15,7 +15,7 @@ class PostController
         $page = isset($_GET['page']) && (int)$_GET['page'] > 0 ? (int)$_GET['page'] : 1;
 
         $searchTerm = trim(isset($_GET['search']) ? $_GET['search'] : '') ?? null;
-        $searchColumn = $searchTerm ? 'TITULO' : null;
+        $searchColumn = $searchTerm ? ['TITULO', 'CONTEUDO'] : null;
 
 
         $total_posts = $database->countAll('posts',$searchColumn, $searchTerm);
