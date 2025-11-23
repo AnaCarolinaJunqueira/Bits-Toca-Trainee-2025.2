@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bits toca - Admin Usuarios</title>
+
+    <link rel="stylesheet" href="/public/css/listausuarios.css">
+    <link rel="stylesheet" href="/public/css/modals.css">
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="cabeçalho">
+                <div class="logo">
+                    <div id="logo">
+                        <img src="/public/assets/Logo Blog.png" alt="Logo Bits Toca Branca">
+                    </div>
+                </div>
+                <div class="titulo">
+                    <h1>Tabela de Usuarios</h1>
+                </div>
+                <div class="espaço"> </div>
+            </div>
+            <div class="botoes">
+                <form method="GET" action="/admin/listausuarios" class="barra-pesquisa">
+                    <img src="/public/assets/icon_pesquisa.png" alt="icone de pesquisa">
+                    <input type="text" id="pesquisa" name="search" placeholder="Pesquisar..." value="<?= htmlspecialchars($search_term ?? '') ?>">
+                    <button type="submit" style="display: none;"></button>
+                </form>
+                <div class="botao-usuario">
+                    <p> NOVO USUARIO</p>
+                    <i class="bi bi-plus-circle"></i>
+                </div>
+            </div>
+            <div class= "container-tabela">
+            <div class="tabela">
+                <table>
+                    <thead>
+                        <tr class="header">
+                            <th class="id-column-header">
+                                <p>ID</p>
+                            </th>
+                            <th class="title-column-header">
+                                <p>NOME</p>
+                            </th>
+                            <th class="action">
+                                <p>EMAIL</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php foreach ($usuarios as $usuario) : ?>
+                            <tr>
+                                <td class="id-column">
+                                    <p><?= $usuario->ID; ?></p>
+                                </td>
+                                <td class="title-column">
+                                    <p><?= htmlspecialchars($usuario->EMAIL); ?></p>
+                                </td>
+                                <td class="author-column">
+                                    <p><?= htmlspecialchars($usuario->NOME); ?></p>
+                                </td>
+                                <td class="açoes">
+                                    <div>
+                                        <div class="button-content">
+                                            <button class="btn-modal btn-view"
+                                                data-id="<?= $usuario->ID; ?>"
+                                                data-NOME="<?= htmlspecialchars($usuario->NOME); ?>"
+                                                data-email="<?= htmlspecialchars($usuario->EMAIL); ?>"
+                                                data-avatar="<?= $usuario->AVATAR; ?>"
+                                                     
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+                                        </div>
+                                        <div class="button-content">
+                                            <button class="btn-modal btn-edit"
+                                                   data-id="<?= $usuario->ID; ?>"
+                                                data-NOME="<?= htmlspecialchars($usuario->NOME); ?>"
+                                                data-email="<?= htmlspecialchars($usuario->EMAIL); ?>"
+                                                data-avatar="<?= $usuario->AVATAR; ?>"
+                                                     
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                        </div>
+                                        <div class="button-content">
+                                            <button class="btn-modal btn-delete"
+                                                data-id="<?= $usuario->ID; ?>">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <img src="../../../public/assets/7.png" class="figurinha" id="fig1" alt="">
+                <img src="../../../public/assets/26.png" class="figurinha" id="fig2" alt="">
+                <img src="../../../public/assets/38.png" class="figurinha" id="fig3" alt="">
+                <?php require 'app/views/admin/components/paginacao.php'; ?>
+        </div>
+        </div>
+    </main>
+
+    <?php require 'app/views/admin/modalnovousuario.html'; ?>
+    <?php require 'app/views/admin/modaleditarusuario.html'; ?>
+    <?php require 'app/views/admin/modaldeleteusuario.html'; ?>
+    <?php require 'app/views/admin/modalvisualizarusuario.html'; ?>
+    <?php require 'app/views/admin/modal-goto-page.html'; ?>
+
+    <script src="/public/js/modals.js"></script>
+</body>
+
+</html>
