@@ -1,0 +1,347 @@
+:root {
+    --bg-gradient: linear-gradient(180deg, #FADED2 0%, #ffc4dd 40%, #dc97a5 80%, #55768C 100%);
+    --primary-pink: #B83556;
+    --text-dark: #000;
+    --text-light: #fff;
+    --font-pixel: 'VT323', monospace;
+    --font-body: 'Roboto', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    font-family: var(--font-body);
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding: 2rem 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar, .navbar * {
+    box-sizing: content-box;
+}
+
+/* Header */
+.forum-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.forum-header h1 {
+    font-family: var(--font-pixel);
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-family: var(--font-pixel);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.search-container button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-pink);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Action Bar */
+.action-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    font-family: var(--font-pixel);
+    font-size: 1.2rem;
+}
+
+.btn-new-thread {
+    background-color: var(--primary-pink);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Grid Layout */
+.forum-grid {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Thread List */
+.thread-list-container {
+    flex: 2;
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+    display: flex;
+    flex-direction: column;
+    min-height: 65%;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr 1fr;
+    padding: 10px;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.thread-row {
+    display: grid;
+    grid-template-columns: 2fr 4fr 2fr 1fr;
+    padding: 15px 10px;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: background 0.2s;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.thread-row:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+
+.col-title { font-weight: bold; }
+.col-replies { text-align: center; }
+
+/* Sidebar */
+.sidebar-categories {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 20px;
+    height: fit-content;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.sidebar-categories h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.cat-divider {
+    height: 2px;
+    background: rgba(0,0,0,0.1);
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.sidebar-categories ul {
+    list-style: none;
+}
+
+.sidebar-categories li a {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    text-decoration: none;
+    color: #000;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.sidebar-categories li a:hover {
+    color: var(--primary-pink);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.pagination .arrow {
+    color: black;
+    font-size: 1.2rem;
+}
+
+.pagination .page-num {
+    font-weight: bold;
+}
+
+/* ... (Keep existing styles) ... */
+
+/* --- New Pagination Styles (Adapted from listaposts.css) --- */
+.foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #000; /* Black text for visibility on light card */
+    padding: 1rem 0.5rem;
+    margin-top: auto; /* Pushes pagination to bottom */
+    width: 100%;
+}
+
+.pagination-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem; 
+    margin: 0 0.5rem;
+}
+
+.page-slot {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.page-slot.center {
+    justify-content: center;
+}
+
+.page-number {
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.page-number.current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #B83556; /* Primary Pink */
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    transform: scale(1.1);
+}
+
+.page-number.adjacent {
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0.6;
+    padding: 0 0.3rem; 
+}
+
+.page-number.adjacent:hover {
+    opacity: 1; 
+    color: #B83556;
+}
+
+.botao_foot {
+    all: unset;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+    color: #000;
+    display: inline-block;
+}
+
+.botao_foot i,
+.button-content > i {
+    font-size: 1.5rem;
+    transition: 0.3s ease-in;
+    line-height: 1;
+}
+
+.botao_foot:hover i {
+    font-size: 2rem;
+    color: #B83556;
+}
+
+.button-content {
+    display: flex;
+    justify-content: center;
+    height: 2.0rem;
+    width: 2.0rem;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .foot {
+        padding: 0.5rem;
+    }
+    .pagination-numbers {
+        width: auto;
+        gap: 5px;
+    }
+
+    .forum-grid {
+        flex-direction: column;
+    }
+    .table-header { display: none; } /* Hide header on mobile */
+    .thread-row {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        border-bottom: 2px solid rgba(255,255,255,0.5);
+    }
+    .col-title { font-size: 1.1rem; color: var(--primary-pink); }
+    .col-cat { font-size: 0.8rem; opacity: 0.7; }
+    .col-author::before { content: "Por: "; }
+    .col-replies::before { content: "Respostas: "; }
+}
