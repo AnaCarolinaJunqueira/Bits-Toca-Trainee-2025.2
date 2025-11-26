@@ -18,7 +18,7 @@ class PostController
         $searchColumn = $searchTerm ? ['TITULO', 'CONTEUDO'] : null;
 
 
-        $total_posts = $database->countAll('posts',$searchColumn, $searchTerm);
+        $total_posts = $database->countAll('posts',$searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
 
         $total_pages = ceil($total_posts / $limit);
 
@@ -31,7 +31,7 @@ class PostController
 
         $offset = ($page - 1) * $limit;
 
-        $posts = $database->selectPaginated('posts', $limit, $offset, $searchColumn, $searchTerm);
+        $posts = $database->selectPaginated('posts', $limit, $offset, $searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
 
 
         return view('admin/listaposts', [
@@ -42,34 +42,38 @@ class PostController
         ]);
     }
 
+    private function uploadImage($fileInputName) {
+        if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = 'public/assets/images/';
+            $tmpName = $_FILES[$fileInputName]['tmp_name'];
+            $imageName = time() . '_' . uniqid() . '_' . basename($_FILES[$fileInputName]['name']);
+            $targetPath = $uploadDir . $imageName;
+
+            if(move_uploaded_file($tmpName, $targetPath)) {
+                return 'assets/images/' . $imageName;
+            }
+        }
+        return null;
+    }
+
     public function store()
     {
         $database = App::get('database');
 
-        $imagePath = '';
+        $imageFeaturedPath = $this->uploadImage('imagem_featured');
+        $imageRecentPath = $this->uploadImage('imagem_recent');
 
-        $uploadDir = 'public/assets/images/';
-        $tmpName = $_FILES['imagem']['tmp_name'];
-        $imageName = time() . '_' . basename($_FILES['imagem']['name']);
-
-        $targetPath = $uploadDir . $imageName;
-
-        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-            if(move_uploaded_file($tmpName, $targetPath)) {
-                $imagePath = 'assets/images/' . $imageName;
-            }
-            else {
-                throw new Exception('Erro ao fazer upload da imagem.');
-            }
-        }
+        if(!$imageFeaturedPath) $imageFeaturedPath = 'assets/images/default.png';
+        if(!$imageRecentPath) $imageRecentPath = 'assets/images/default_recents.png';
 
         $parameters = [
             'TITULO' => $_POST['titulo'],
             'CONTEUDO' => $_POST['conteudo'],
             'AVALIACAO' => $_POST['rating'],
-            'IMAGEM' => $imagePath,
+            'IMAGEM' => $imageFeaturedPath,
+            'IMAGEM_RECENT' => $imageRecentPath,
             'CATEGORIA' => $_POST['categoria'],
-            'AUTOR_ID' => 1,
+            'AUTOR_ID' => $_SESSION['id'],
             'DATA_POSTAGEM' => date('Y-m-d H:i:s')
         ];
 
@@ -85,26 +89,24 @@ class PostController
         $id = $_POST['id'];
 
         $post = $database->findById('Posts', $id);
-        $imagePath = $post->IMAGEM;
+        $imageFeaturedPath = $post->IMAGEM;
+        $newFeaturedPath = $this->uploadImage('imagem_featured');
 
-        if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = 'public/assets/images/';
-            $tmpName = $_FILES['imagem']['tmp_name'];
-            $imageName = time() . '_' . basename($_FILES['imagem']['name']);
-
-            $targetPath = $uploadDir . $imageName;
-
-            if(move_uploaded_file($tmpName, $targetPath)) {
-                $newimagePath = 'assets/images/' . $imageName;
-
-                if($imagePath !== 'assets/images/default.png' && file_exists('public/' . $imagePath)) {
-                    @unlink('public/' . $imagePath);
-                }
-                $imagePath = $newimagePath;
+        if($newFeaturedPath) {
+            if($imageFeaturedPath !== 'assets/images/default.png' && file_exists('public/' . $imageFeaturedPath)) {
+                @unlink('public/' . $imageFeaturedPath);
             }
-            else {
-                throw new Exception('Erro ao fazer upload da imagem.');
+            $imageFeaturedPath = $newFeaturedPath;
+        }
+
+        $imageRecentPath = $post->IMAGEM_RECENT ?? 'assets/images/default_recents.png';
+        $newRecentPath = $this->uploadImage('imagem_recent');
+
+        if($newRecentPath) {
+            if($imageRecentPath !== 'assets/images/default_recents.png' && file_exists('public/' . $imageRecentPath)) {
+                @unlink('public/' . $imageRecentPath);
             }
+            $imageRecentPath = $newRecentPath;
         }
 
         $parameters = [
@@ -113,7 +115,8 @@ class PostController
             'AVALIACAO' => $_POST['rating'],
             'CATEGORIA' => $_POST['categoria'],
             'DATA_EDICAO' => date('Y-m-d H:i:s'),
-            'IMAGEM' => $imagePath
+            'IMAGEM' => $imageFeaturedPath,
+            'IMAGEM_RECENT' => $imageRecentPath
         ];
 
         $database->update('Posts', $id, $parameters);
@@ -128,8 +131,13 @@ class PostController
         $id = $_POST['id'];
 
         $post = $database->findById('Posts', $id);
+        
         if($post && $post->IMAGEM && $post->IMAGEM !== 'assets/images/default.png' && file_exists('public/' . $post->IMAGEM)) {
             @unlink('public/' . $post->IMAGEM);
+        }
+
+        if($post && $post->IMAGEM_RECENT && $post->IMAGEM_RECENT !== 'assets/images/default_recents.png' && file_exists('public/' . $post->IMAGEM_RECENT)) {
+            @unlink('public/' . $post->IMAGEM_RECENT);
         }
 
         $database->deleteById('Posts', $id);

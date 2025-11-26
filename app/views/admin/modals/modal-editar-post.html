@@ -4,25 +4,38 @@
         <h2>EDITAR POST</h2>
         <div class="modal-divider"></div>
 
-        <form action="/admin/listaposts/update" method="POST" enctype="multipart/form-data">
+        <form id="form-editar-post" action="/admin/listaposts/update" method="POST" enctype="multipart/form-data" novalidate>
             <input type="hidden" id="edit-post-id" name="id">
             <div class="form-group">
                 <label for="edit-titulo">Título</label>
-                <input type="text" id="edit-titulo" name="titulo" placeholder="Lorem ipsum">
+                <input type="text" id="edit-titulo" name="titulo" placeholder="Lorem ipsum" required>
+                <span class="error-message">O título é obrigatório.</span>
             </div>
             <div class="form-group">
                 <label for="edit-conteudo">Conteúdo</label>
-                <textarea id="edit-conteudo" name="conteudo" rows="5"
-                    placeholder="Lorem ipsum dolor sit amet..."></textarea>
+                <textarea id="edit-conteudo" name="conteudo" rows="5" placeholder="Lorem ipsum dolor sit amet..." required></textarea>
+                <span class="error-message">O conteúdo é obrigatório.</span>
             </div>
-            <div class="form-group">
-                <label>Imagem</label>
-                <div class="file-drop-area">
-                    <i class="bi bi-cloud-arrow-up-fill"></i>
-                    <p><strong>Escolha um novo arquivo</strong> ou arraste e solte aqui.</p>
-                    <input type="file" name="imagem" class="file-input">
+            
+            <div class="image-upload-row">
+                <div class="image-upload-container">
+                    <label>Destaque <span class="image-req-text">(16:9)</span></label>
+                    <div class="file-drop-area" id="drop-edit-featured">
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                        <p>Alterar img</p>
+                        <input type="file" name="imagem_featured" class="file-input" accept="image/*">
+                    </div>
+                </div>
+                <div class="image-upload-container">
+                    <label>Recentes <span class="image-req-text">(2:3)</span></label>
+                    <div class="file-drop-area" id="drop-edit-recent">
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                        <p>Alterar img</p>
+                        <input type="file" name="imagem_recent" class="file-input" accept="image/*">
+                    </div>
                 </div>
             </div>
+
             <fieldset disabled>
                 <div class="form-row">
                     <div class="form-group">
@@ -50,6 +63,7 @@
                         <option value="Eventos">Eventos</option>
                     </select>
                 </div>
+                <span class="error-message">Selecione uma categoria.</span>
             </div>
             <div class="form-group">
                 <label>Avaliação</label>

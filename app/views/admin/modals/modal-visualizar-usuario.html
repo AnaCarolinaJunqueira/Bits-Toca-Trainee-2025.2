@@ -1,0 +1,35 @@
+<div id="modal-visualizar-usuario" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-visualizar-usuario')">
+    <div class="modalc modal-form" style="max-width: 450px;">
+        <button class="modal-close-btn" onclick="fecharModal('modal-visualizar-usuario')">&times;</button>
+        <h2>VISUALIZAR USUÁRIO</h2>
+        <div class="modal-divider"></div>
+
+        <fieldset disabled style="display: flex; flex-direction: column; gap: 1.2rem; border: none; padding: 0; margin: 0;">
+            <div class="form-group" style="align-items: center; margin-bottom: 1rem;">
+                <div class="image-upload-circle" id="view-avatar-area" style="background-color: #f9f9f9; border-style: solid;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="view-nome">Nome</label>
+                <input type="text" id="view-nome">
+            </div>
+
+            <div class="form-group">
+                <label for="view-email">Email</label>
+                <input type="text" id="view-email">
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="view-is-admin">
+                    <span>Administrador?</span>
+                </label>
+            </div>
+        </fieldset>
+
+        <div class="modal-buttons">
+            <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-visualizar-usuario')">Fechar</button>
+        </div>
+    </div>
+</div>

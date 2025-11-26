@@ -4,24 +4,37 @@
         <h2>NOVO POST</h2>
         <div class="modal-divider"></div>
 
-        <form action="/admin/listaposts/store" method="POST" enctype="multipart/form-data">
+        <form id="form-novo-post" action="/admin/listaposts/store" method="POST" enctype="multipart/form-data" novalidate>
             <div class="form-group">
                 <label for="novo-titulo">Título</label>
                 <input type="text" id="novo-titulo" name="titulo" placeholder="Lorem ipsum" required>
+                <span class="error-message">O título é obrigatório.</span>
             </div>
             <div class="form-group">
                 <label for="novo-conteudo">Conteúdo</label>
-                <textarea id="novo-conteudo" name="conteudo" rows="5"
-                    placeholder="Lorem ipsum dolor sit amet..."></textarea>
+                <textarea id="novo-conteudo" name="conteudo" rows="5" placeholder="Lorem ipsum dolor sit amet..." required></textarea>
+                <span class="error-message">O conteúdo é obrigatório.</span>
             </div>
-            <div class="form-group">
-                <label>Imagem</label>
-                <div class="file-drop-area">
-                    <i class="bi bi-cloud-arrow-up-fill"></i>
-                    <p><strong>Escolha um arquivo</strong> ou arraste e solte aqui.</p>
-                    <input type="file" name="imagem" class="file-input">
+            
+            <div class="image-upload-row">
+                <div class="image-upload-container">
+                    <label>Destaque <span class="image-req-text">(16:9)</span></label>
+                    <div class="file-drop-area" id="drop-novo-featured">
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                        <p>Arraste ou clique</p>
+                        <input type="file" name="imagem_featured" class="file-input" accept="image/*">
+                    </div>
+                </div>
+                <div class="image-upload-container">
+                    <label>Recentes <span class="image-req-text">(2:3)</span></label>
+                    <div class="file-drop-area" id="drop-novo-recent">
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                        <p>Arraste ou clique</p>
+                        <input type="file" name="imagem_recent" class="file-input" accept="image/*">
+                    </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <label>Categorias</label>
                 <div class="select-wrapper custom-select">
@@ -36,6 +49,7 @@
                         <option value="Eventos">Eventos</option>
                     </select>
                 </div>
+                <span class="error-message">Selecione uma categoria.</span>
             </div>
             <fieldset disabled>
                 <div class="form-row">
