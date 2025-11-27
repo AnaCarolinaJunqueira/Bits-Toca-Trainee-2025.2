@@ -1,6 +1,6 @@
 const togglePassword = document.querySelector('#togglePassword')
-const password = document.querySelector('#check-password')
-const botaologin = document.querySelector('.botao-loginpage')
+const password = document.querySelector('.senha')
+const botaologin = document.querySelector('.login-button')
 
 togglePassword.addEventListener('click', () => {
     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
