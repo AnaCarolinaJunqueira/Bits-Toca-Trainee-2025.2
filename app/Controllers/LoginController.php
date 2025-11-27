@@ -24,13 +24,13 @@ class LoginController
             session_start();
             $_SESSION['id'] = $usuario->ID;
             
-            if($usuario->IS_ADMIN == 1){
-                header('Location: /admin/dashboard');
-            } else {
-                header('Location: /landingpage');
-            }
+            // if($usuario->IS_ADMIN == 1){
+            //     header('Location: /admin/dashboard');
+            // } else {
+            //     header('Location: /landingpage');
+            // }
 
-            // header('Location: /admin/dashboard');
+            header('Location: /admin/dashboard');
         }
         else{
             session_start();

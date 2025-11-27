@@ -13,6 +13,12 @@
     --overlay-boder-color:rgba(255, 255, 255, 0.7);
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/fundo.png');
     background-size: contain;
@@ -27,14 +33,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 3.5rem;
     background-color: var(--overlay-bg-color);
     backdrop-filter: blur(15px);
     width: 90%;
     height: auto;
-    padding: 2rem 3rem 3rem 3rem;
+    padding: 3.5rem;
     border-radius: 1rem;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 .dashboard-header {
@@ -42,18 +48,18 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: auto;
+}
+
+.dashboard-header form, .dashboard-logo {
+    width: 50%;
+    cursor: pointer;
 }
 
 .dashboard-header h1 {
     font-family: var(--font-primary);
     color: var(--color-text-primary);
     font-size: 4rem;
-    margin: 0;
-}
-
-.dashboard-header form, .dashboard-logo {
-    width: 50%;
-    cursor: pointer;
 }
 
 .logout-button {
@@ -82,21 +88,20 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
-    gap: 20px;
+    gap: 1.5rem;
 }
 
 .dashboard-button-pu, .dashboard-button-pp {
-    height: 40px;
-    width: 240px;
+    background-color: var(--color-button);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    gap: 1rem;
+    width: 10em;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 35px 20px 35px 20px;
-    gap: 20px;
-    border-radius: 10px;
-    background-color: var(--color-button);
-    border: none;
+    
     font-family: var(--font-primary);
     font-size: 1.5rem;
     color: var(--color-text-primary);
@@ -109,10 +114,8 @@ body {
     transform: translateY(-2);
 }
 
-.dashboard-button-pp img, .dashboard-button-pu img {
-    width: 30px;
-    height: 30px;
-    padding-top: 5px;
+.dashboard-button-pp i, .dashboard-button-pu i {
+    font-size: 2rem;
 }
 
 @media (max-width: 1300px) {
