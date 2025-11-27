@@ -1,0 +1,37 @@
+<div id="modal-visualizar" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-visualizar')">
+    <div class="modalc modal-form">
+        <button class="modal-close-btn" onclick="fecharModal('modal-visualizar')">&times;</button>
+        <h2>VISUALIZAR USUÁRIO</h2>
+
+        <div class="modal-divider"></div>
+
+        <fieldset disabled>
+            <form>
+                <div class="form-group-image">
+                    <div class="file-drop-area" style="pointer-events: none; background-color: #f9f9f9;">
+                        <p>Foto</p>
+                        <input type="file" name="imagem" class="file-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="view-nome">Nome</label>
+                    <input type="text" id="view-nome" placeholder="Lorem ipsum">
+                </div>
+                <div class="form-group">
+                    <label for="view-email">Email</label>
+                    <input type="text" id="view-email" placeholder="Lorem ipsum dolor sit amet...">
+                </div>
+                <div class="form-group">
+                    <label for="view-senha">Senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="view-senha" placeholder="Lorem ipsum">
+                        <i class="bi bi-eye-slash"></i>
+                    </div>
+                </div>
+        </fieldset>
+        <div class="modal-buttons">
+            <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-visualizar')">Fechar</button>
+        </div>
+        </form>
+    </div>
+</div>

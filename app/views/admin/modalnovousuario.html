@@ -1,0 +1,36 @@
+<div id="modal-novo" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-novo')">
+    <div class="modalc modal-form">
+        <button class="modal-close-btn" onclick="fecharModal('modal-novo')">&times;</button>
+        <h2>NOVO USUÁRIO</h2>
+        <div class="modal-divider"></div>
+        <form fecharModal('modal-novo');">
+            <div class="form-group-image">
+                <div class="file-drop-area">
+                    <p>Foto</p>
+                    <img src="" class="file-user">
+                    <input type="file" accept="image/jpeg, image/png, image/jpg" name="imagem" class="file-input">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="novo-nome">Nome</label>
+                <input type="text" id="novo-nome" name="nome" placeholder="Lorem ipsum">
+            </div>
+            <div class="form-group">
+                <label for="novo-email">Email</label>
+                <input type="text" id="novo-email" name="email" placeholder="Lorem ipsum">
+            </div>
+            <div class="form-group">
+                <label for="novo-senha">Senha</label>
+                <div class="password-wrapper">
+                    <input type="password" id="novo-senha" name="senha" placeholder="Lorem ipsum">
+                    <i class="bi bi-eye-slash" onclick="togglePassword(this)"></i>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-novo')">Cancelar</button>
+                <button type="submit" class="btn btn-confirm btn-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

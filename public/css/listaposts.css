@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    background: linear-gradient(#55768C, #2B3B46);
+    padding: 5vh 10vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    justify-items: center;
+}
+
+.container {
+    min-width: 70%;
+    min-height: 70%;
+    max-width: 90vw;
+}
+
+.cabeçalho {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-family: "nunito", sans-serif;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 50%;
+}
+
+.logo img {
+    width: 100px;
+    height: auto;
+}
+
+.titulo {
+    text-align: left;
+    color: #DC97A5;
+    font-size: 2.0rem;
+    width: fit-content;
+    text-wrap: nowrap;
+    text-shadow: 2px 2px 5px rgb(0, 0, 0, 0.3);
+}
+
+.espaço {
+    width: 50%;
+}
+
+.botoes {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.5rem;
+}
+
+.barra-pesquisa {
+    display: flex;
+    align-items: center;
+    justify-self: start;
+    background-color: #ffff;
+    height: 2.2rem;
+    width: 50%;
+    padding: 0.5rem;
+    border-radius: 25px;
+    gap: 10px;
+}
+
+.barra-pesquisa img {
+    height: 100%;
+    width: auto;
+}
+
+#pesquisa {
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.botao-post {
+    display: flex;
+    background-color: #DC97A5;
+    border-radius: 1rem;
+    padding: 1.3rem;
+    gap: 10px;
+    
+    font-size: 1.3rem;
+    font-weight: 500;
+    
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+
+.botao-post:hover{
+    font-size: 1.5rem;
+    transition: 0.3s ease-in;
+}
+
+.tabela {
+    position: relative;
+    margin: 1rem 0;
+    width: auto;
+    height: 100%;
+    font-size: 1.2rem;
+}
+
+.tabela-conteudo {
+    border-radius: 1rem 1rem 0 0;
+    background-color: #DC97A5;
+    overflow: auto;
+}
+
+.tabela-paginacao {
+    border-radius: 0 0 1rem 1rem;
+    background-color: #DC97A5;
+    
+}
+
+.tabela table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: none;
+    padding: 1.3rem 1.5rem;
+}
+
+tbody tr {
+    border-top: 3px solid #DC97A5;
+}
+
+th {
+    font-weight: 500;
+}
+
+thead {
+    width: 100%;
+    text-align: left;
+}
+
+tfoot td {
+    border: none;
+    width: min-content;
+    text-align: center;
+}
+
+tbody {
+    background-color: #ffff;
+}
+
+.btn-modal {
+    all: unset;
+    font-size: 1.5rem;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+
+.btn-modal:hover {
+    font-size: 2.0rem;
+    transition: 0.3s ease-in;
+}
+
+.button-content {
+    display: flex;
+    justify-content: center;
+    height: 2.0rem;
+    width: 2.0rem;
+    align-items: center;
+}
+
+.açoes div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+}
+
+.items {
+    width: 33.33%;
+}
+
+.botao_foot {
+    all: unset;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+}
+
+.botao_foot:hover {
+    font-size: 2.0rem;
+    transition: 0.3s ease-in;
+}
+
+.action {
+    text-align: center;
+}
+
+.foot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.date{
+    text-align: center;
+    text-wrap: nowrap;
+}
+
+.data{
+    text-align: center;
+}
+
+.figurinha {
+    position: absolute;
+    width: 3.5rem;
+    height: auto;
+}
+
+#fig1 {
+    top: -1.75rem;
+    right: 33%;
+}
+
+#fig2 {
+    bottom: -1.75rem;
+    left: -1.5rem;
+}
+
+#fig3 {
+    bottom: -1.75rem;
+    right: -1.5rem;
+}
+
+.figurinha:hover {
+    animation: figurinha 1s linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes figurinha {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(15deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-15deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@media (max-width: 1300px) {
+    main {
+        padding: 5vh 10vw;
+    }
+
+    .cabeçalho, .botoes, .tabela {
+        margin: 2rem 0;
+    }
+
+    .cabeçalho {
+        flex-direction: column;
+        align-items: center;
+        gap: 5vh;
+    }
+
+    .logo {
+        width: fit-content;
+    }
+
+    .logo img {
+        width: 160px;
+    }
+    
+    .espaço {
+        display: none;
+    }
+
+    .figurinha:hover {
+        animation: none;
+    }
+
+    .figurinha.active {
+        animation: figurinha 1s linear;
+        animation-iteration-count: infinite;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 5vh 5vw;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+    
+    .titulo {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    
+    .botoes {
+        flex-direction: column-reverse;
+        gap: 2rem;
+        height: auto;
+    }
+    
+    .barra-pesquisa {
+        height: 2.5rem;
+        gap: 15px;
+        width: 100%;
+    }
+    
+    #pesquisa {
+        font-size: 1.3rem;
+    }
+    
+    .botao-post {
+        justify-content: center;
+    }
+
+    .figurinha {
+        width: 3rem;
+    }
+    
+    #fig1 {
+        top: -1.5rem;
+    }
+    #fig2, #fig3 {
+        bottom: -1.5rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .titulo {
+        text-wrap: wrap;
+        font-size: 1.8rem;
+        max-width: 15rem;
+    }
+}
