@@ -43,6 +43,7 @@ main {
     gap: 8px;
     margin-bottom: 24px;
     text-align: center;
+
 }
 
 
@@ -195,6 +196,10 @@ main {
     .open-sidebar #open_btn_icon {
     transform: rotate(180deg);
     }
+
+    #sidebar.open-sidebar {
+    width: 90%;
+}
 
     
 }
