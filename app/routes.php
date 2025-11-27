@@ -12,7 +12,7 @@ $router->get('admin/listaposts/update', 'PostController@update');
 
 $router->get('admin/listaposts/delete', 'PostController@delete');
 
-//$router->get('', 'SiteController@index');
+$router->get('', 'SiteController@index');
 
 $router->post('admin/listaposts/store', 'PostController@store');
 
@@ -34,24 +34,24 @@ $router->post('forum/reply/delete', 'ForumController@deleteReply');
 
 $router->post('forum/reply/store', 'ForumController@storeReply');
 
-//$router->get('admin/listausuarios', 'UserController@index');
+$router->get('admin/listausuarios', 'UserController@index');
 
-//$router->get('admin/listausuarios/store', 'UserController@store');
+$router->get('admin/listausuarios/store', 'UserController@store');
 
-//$router->get('admin/listausuarios/update', 'UserController@update');
+$router->get('admin/listausuarios/update', 'UserController@update');
 
-//$router->get('admin/listausuarios/delete', 'UserController@delete');
+$router->get('admin/listausuarios/delete', 'UserController@delete');
 
-//$router->post('admin/listausuarios/store', 'UserController@store');
+$router->post('admin/listausuarios/store', 'UserController@store');
 
-//$router->post('admin/listausuarios/update', 'UserController@update');
+$router->post('admin/listausuarios/update', 'UserController@update');
 
-//$router->post('admin/listausuarios/delete', 'UserController@delete');
+$router->post('admin/listausuarios/delete', 'UserController@delete');
 
-//$router->get('login', 'LoginController@index');
+$router->get('login', 'LoginController@index');
 
-//$router->post('login', 'LoginController@login');
+$router->post('login', 'LoginController@login');
 
-//$router->get('logout', 'LoginController@logout');
+$router->get('logout', 'LoginController@logout');
 
-//$router->get('admin/dashboard', 'LoginController@dashboard');
+$router->get('admin/dashboard', 'LoginController@dashboard');
