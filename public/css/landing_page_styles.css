@@ -32,7 +32,7 @@ body {
     padding: 0;
     background: var(--gradient-background);
     line-height: 1.6;
-    gap: 10px;
+    gap: 0px;
     position: relative;
 }
 
@@ -41,6 +41,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 /*-----------------------------------------------*/
@@ -48,13 +49,18 @@ main {
 /* ---------------- COMPONENTES ---------------- */
 
 /* ---------------- Hero Section ---------------- */
+.hero-section {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
 .hero-with-image {
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/hero.png') no-repeat center center/cover;
     height: 633px;
-    width: 100vw;
+    width: 100%;
     position: relative;
     overflow: hidden;
 }
@@ -135,7 +141,7 @@ main {
 }
 
 .featured h2 {
-    width: 100vw;
+    width: 100%;
     color: var(--color-text-primary);
     font-size: 3rem;
     margin-bottom: 30px;
@@ -306,7 +312,7 @@ main {
 }
 
 .carousel-section h2 {
-    width: 100vw;
+    width: 100%;
     font-family: var(--font-primary);
     text-align: center;
     font-size: 3rem;
@@ -351,7 +357,7 @@ main {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 50px;
+    height: 80px;
     background: var(--overlay-bg-color);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
