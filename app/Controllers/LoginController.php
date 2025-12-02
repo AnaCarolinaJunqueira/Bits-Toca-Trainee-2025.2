@@ -30,7 +30,7 @@ class LoginController
             //     header('Location: /landingpage');
             // }
 
-            header('Location: /admin/dashboard');
+            header('Location: /dashboard');
         }
         else{
             session_start();
