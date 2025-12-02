@@ -18,17 +18,15 @@ class LoginController
         $email = $_POST['email'];
         $senha = $_POST['senha'];
 
-        $usuario = App::get('database')->verificaLogin($email, $senha);
+        $senhaHash = App::get('database')->findByEmail('usuarios', $email)->SENHA;
+
+        if (password_verify($senha, $senhaHash)) {            
+            $usuario = App::get('database')->verificaLogin($email, $senhaHash);
+        }
 
         if($usuario != false){
             session_start();
             $_SESSION['id'] = $usuario->ID;
-            
-            // if($usuario->IS_ADMIN == 1){
-            //     header('Location: /admin/dashboard');
-            // } else {
-            //     header('Location: /landingpage');
-            // }
 
             header('Location: /dashboard');
         }

@@ -29,6 +29,21 @@ class QueryBuilder
         }
     }
 
+    public function findByEmail($table, $email)
+    {
+        $sql = "select * from {$table} where EMAIL = :email";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['email' => $email]);
+
+            return $stmt->fetch(PDO::FETCH_OBJ);
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function verificaLogin($email, $senha)
     {
         $sql = sprintf("SELECT * FROM usuarios WHERE EMAIL = :email AND SENHA = :senha");
