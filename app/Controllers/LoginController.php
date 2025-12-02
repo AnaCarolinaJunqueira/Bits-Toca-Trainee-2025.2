@@ -28,7 +28,7 @@ class LoginController
             session_start();
             $_SESSION['id'] = $usuario->ID;
 
-            header('Location: /dashboard');
+            header('Location: /admin/dashboard');
         }
         else{
             session_start();
