@@ -37,11 +37,13 @@ if (!isset($_SESSION['id'])) {
                     <i class="bi bi-menu-button-wide button-icon-pp"></i>
                 </button>
             </a>
-            <a href="/admin/listausuarios" class="dashboard-buttons">
-                <button class="dashboard-button-pu"><p>PÁGINA DE USUÁRIOS</p>
-                    <i class="bi bi-person-badge button-icon-pu"></i>
-                </button>
-            </a>
+            <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] === true): ?>
+                <a href="/admin/listausuarios" class="dashboard-buttons">
+                    <button class="dashboard-button-pu"><p>PÁGINA DE USUÁRIOS</p>
+                        <i class="bi bi-person-badge button-icon-pu"></i>
+                    </button>
+                </a>
+            <?php endif; ?>
         </div>
     </div>
     <!-- <script src="../../../public/js/dashboard.js"></script> -->

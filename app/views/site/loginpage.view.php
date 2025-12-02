@@ -18,7 +18,7 @@ session_start();
     <div class="login-overlay">
         <div class="login-header">
             <div class="button-back">
-                <i class="bi bi-arrow-left-square"></i>
+                <a href="/"><i class="bi bi-arrow-left-square"></i></a>
             </div>
             <div class="LogoBitsToca">
                 <img src="../../../public/assets/logo-site.png" alt="Logo Bits Toca">

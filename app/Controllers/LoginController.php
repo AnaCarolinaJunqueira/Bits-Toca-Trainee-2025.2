@@ -28,7 +28,15 @@ class LoginController
             session_start();
             $_SESSION['id'] = $usuario->ID;
 
+            if($usuario->IS_ADMIN == 1){
+                $_SESSION['admin'] = true;
+            }
+            else {
+                $_SESSION['admin'] = false;
+            }
+
             header('Location: /admin/dashboard');
+
         }
         else{
             session_start();
