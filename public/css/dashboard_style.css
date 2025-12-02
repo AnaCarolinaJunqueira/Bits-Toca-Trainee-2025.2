@@ -51,26 +51,15 @@ body {
     height: auto;
 }
 
-.dashboard-header form, .dashboard-logo {
-    width: 50%;
-    cursor: pointer;
-}
-
 .dashboard-header h1 {
     font-family: var(--font-primary);
     color: var(--color-text-primary);
     font-size: 4rem;
 }
 
-.logout-button {
-    all: unset;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.logout-button i {
-    font-size: 3rem;
-    color: #C75F77;
+.dashboard-header form, .dashboard-logo {
+    width: 50%;
+    cursor: pointer;
 }
 
 .dashboard-logo {
@@ -82,6 +71,17 @@ body {
     justify-self: end;
     height: 5rem;
     width: auto;
+}
+
+.logout-button {
+    all: unset;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logout-button i {
+    font-size: 3rem;
+    color: #C75F77;
 }
 
 .dashboard-content {
@@ -116,81 +116,73 @@ body {
 
 .dashboard-button-pp i, .dashboard-button-pu i {
     font-size: 2rem;
-}
-
-@media (max-width: 1300px) {
-    .dashboard-overlay {
-        padding: 15px 30px 50px 30px;
-    }
+    justify-self: flex-end;
 }
 
 @media (max-width: 768px) {
-
-    body {
-        background-size: contain;
-    }
-
     .dashboard-overlay {
-        padding: 15px 15px 50px 15px;
-    }
-
-    .dashboard-header {
-        text-align: center;
-    }
-    .dashboard-header h1 {
-        font-size: 4rem;
-    }
-
-    .dashboard-content {
-        flex-direction: row;
-    }
-
-    .dashboard-button-pu, .dashboard-button-pp {
-        width: 100%;
-        padding: 25px 15px 25px 15px;
-        font-size: 1.2rem;
-    }
-
-    .dashboard-header .logout-button img{
-        width: 40px;
-        height: 40px;
-    }
-}
-
-@media (max-width: 480px) {
-    .dashboard-overlay {
-        gap:0;
-        padding: 25px 15px 40px 15px;
-    }
-
-    .dashboard-header .dashboard-logo {
-        width: 25%;
-    }
-
-    .dashboard-content {
-        display: flex;
-        flex-direction: column;
+        padding: 2.5rem;
+        gap: 2rem;
     }
 
     .dashboard-header h1 {
         font-size: 3rem;
     }
 
-    .dashboard-header .dashboard-logo{
-        width: 18%;
-        height: auto;
-    }
-
-    .dashboard-button-pu {
-        justify-content: space-between;
+    .dashboard-logo img{
+        height: 4rem;
     }
 
     .dashboard-button-pu, .dashboard-button-pp {
-        padding: 30px 20px 30px 20px;
-        font-size: 5vw;
+        width: 100%;
+        padding: 1rem 1.4rem;
+        font-size: 1.2rem;
+        gap: 0.8rem;
+        max-width: 13rem;
     }
-    .dashboard-header .logout-button img{
-        width: 30px;
-        height: 30px;
+
+    .dashboard-button-pu{
+        padding: 1rem 1rem 1rem 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-overlay {
+        gap: 1rem;
+        padding: 1.3rem;
+    }
+
+    .dashboard-header h1 {
+        font-size: 2.3rem;
+    }
+
+    .dashboard-logo img{
+        height: 3.3rem;
+    }
+
+    .logout-button i{
+        font-size: 2.5rem;
+    }
+    
+    .dashboard-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .dashboard-buttons {
+        width: 100%;
+    }
+
+    .dashboard-button-pu, .dashboard-button-pp {
+        padding: 0.8rem 1em;
+        max-width: none;
+        text-align: center;
+        text-justify: center;
+        justify-content: space-between;
+    }
+    
+    .dashboard-button-pu p, .dashboard-button-pp p {
+        width: 100%;
     }
 }

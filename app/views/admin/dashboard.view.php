@@ -33,12 +33,12 @@ if (!isset($_SESSION['id'])) {
         </div>
         <div class="dashboard-content">
             <form action="" class="dashboard-buttons">
-                <button class="dashboard-button-pp">PÁGINA DE PUBLICAÇÕES
+                <button class="dashboard-button-pp"><p>PÁGINA DE PUBLICAÇÕES</p>
                     <i class="bi bi-menu-button-wide button-icon-pp"></i>
                 </button>
             </form>
             <form action="" class="dashboard-buttons">
-                <button class="dashboard-button-pu">PÁGINA DE USUÁRIOS
+                <button class="dashboard-button-pu"><p>PÁGINA DE USUÁRIOS</p>
                     <i class="bi bi-person-badge button-icon-pu"></i>
                 </button>
             </form>
