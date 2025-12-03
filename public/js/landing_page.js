@@ -290,9 +290,9 @@ if (isTouchPrimary && carouselItems.length > 0) {
     });
 }
 
-document.querySelector('.cta-button').addEventListener('click', () => {
-    window.location.href = "index.html";
-});
+// document.querySelector('.cta-button').addEventListener('click', () => {
+//     window.location.href = "index.html";
+// });
 
 window.addEventListener('resize', () => {
     showFeaturedSlide(currentFeaturedIndex, isFeaturedHoverLocked);

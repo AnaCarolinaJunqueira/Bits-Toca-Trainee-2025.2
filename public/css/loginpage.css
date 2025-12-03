@@ -1,219 +1,180 @@
- * {
-      /* border:1px solid red; */
-     margin: 0;
-     padding: 0;
- }
+* {
+    margin: 0;
+    padding: 0;
+}
 
- body {
-     background-image: linear-gradient(rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)), url('../assets/fundo.png');
-     background-size: cover;
-     background-position: center;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     flex-direction: row;
-     border-image-source: rgba(0, 0, 0);
-     border-image-slice: fill 0.20;
-     z-index: 2;
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/fundo.png');
+    background-size: contain;
+    font-family: 'VT323', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
- }
+.login-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.60);
+    backdrop-filter: blur(15px);
+    width: 80%;
+    height: auto;
+    padding: 2rem 2rem 2.8rem 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
+}
 
- .tamanho-body {
-     width: 100vw;
-     height: 100vh;
-     display: flex;
-     align-items: center;
-     justify-content: center;
- }
+.login-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
 
- .login-overlay {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     gap: 20px;
-     background-color: rgba(255, 255, 255, 0.3);
-     backdrop-filter: blur(18px);
-     padding: -5px 40px -5px 40px;
-     width: 35%;
-     padding: 20px 0px 120px 0px;
-     border-radius: 16px;
- }
+.button-back,
+.space {
+    width: 50%;
+}
 
- #check {
-     background-color: #A9B0C2;
-     border: none;
-     padding: 16px 12px;
-     border-radius: 16px;
-     width: 60%;
-     font-family: 'VT323', monospace;
-     font-size: 1.5rem;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     height: auto;
-     outline: none;
+.button-back i {
+    color: #C75F77;
+    font-size: 2.8rem;
+    margin: 0.1rem;
+    cursor: pointer;
+}
 
- }
+.button-back i:hover {
+    margin: 0;
+    font-size: 3rem;
+}
 
- #check-password {
-     background-color: #A9B0C2;
-     border: none;
-     border-radius: 16px;
-     width: 60%;
-     font-family: 'VT323', monospace;
-     font-size: 1.5rem;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     height: auto;
-     outline: none;
+.LogoBitsToca img {
+    margin-top: 0.8rem;
+    width: 10em;
+    height: auto;
+}
 
- }
+h2 {
+    font-family: 'VT323', monospace;
+    font-size: 5.0rem;
+    color: #FADED2  ;
+}
 
- #check-password::placeholder {
-     color: #55768C;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+}
 
- }
+.input-content, .button-content {
+    background-color: #A9B0C2;
+    border: none;
+    padding: 1em;
+    border-radius: 16px;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    outline: none;
+    font-weight: 800;
+}
 
- #check::placeholder {
-     color: #55768C;
+.button-content {
+    background-color: #B83556;
+}
 
- }
+.senha,
+.email,
+.login-button {
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    outline: none;
+}
 
- #check i {
-     color: #55768C;
-     font-size: 16px;
-     cursor: pointer;
- }
+form input::placeholder {
+    color: #55768C;
+}
 
+#togglePassword {
+    color: #55768C;
+    font-size: 16px;
+    cursor: pointer;
+}
 
- .botao-loginpage {
+.login-button {
+    margin: -0.5rem;
+    font-size: 2.5rem;
+    color: #FADED2;
+    cursor: pointer;
+}
 
-     background-color: #B83556;
-     width: 64%;
-     padding: 5px 12px;
-     font-size: 2.5rem;
-     color: white;
-     border-radius: 16px;
-     height: 55px;
-     border: none;
-     font-family: 'VT323', monospace;
-     transition: all 0.5s ease;
- }
+.login-button:hover {
+    transform: scale(1.05);
+}
 
- .botao-loginpage:hover {
-     transform: scale(1.05);
-     cursor: pointer;
- }
+.mensagem {
+    font-family: 'VT323', monospace;
+    color: #B83556;
+    font-size: 2rem;
+}
 
- .button {
-     width: 100%;
-     padding: 10px 10px;
-     cursor: pointer;
-     margin-left: 6.5%;
-     transition: all 0.5s ease;
+@media (max-width: 1300px) {
+    .input-content,
+    .button-content {
+        width: 65%;
+    }
 
- }
+    .email,
+    .senha {
+        font-size: 1.3rem;
+    }
 
- .button img:hover {
-     transform: scale(1.1);
- }
+    .login-button {
+        font-size: 2.2rem;
+    }
 
+}
 
- .LogoBitsToca img {
-     width: 200px;
-     height: auto;
- }
+@media (max-width: 768px) {
+    .input-content,
+    .button-content {
+        width: 80%;
+    }
+    
+    h2 {
+        font-size: 4.5rem;
+    }
 
- h2 {
-     font-family: 'VT323', monospace;
-     font-size: 5.0rem;
-     color: #000000;
+    .mensagem {
+        font-size: 1.5rem;
+    }
+}
 
- }
+@media (max-width: 480px) {
+    .login-overlay {
+        padding: 1rem 1rem 1.5rem 1rem;
+    }
 
+    .input-content,
+    .button-content {
+        width: 90%;
+    }
 
- @media (max-width: 1300px) {
-     .login-overlay {
-         width: 60%;
-         padding: 20px 0px 100px 0px;
-     }
+    h2 {
+        font-size: 3rem;
+    }
 
-     #check,
-     #check-password {
-         font-weight: 800;
-         width: 60%;
-         font-size: 1.4rem;
-     }
-
-     .botao-loginpage {
-         width: 64%;
-         font-size: 3.0vw;
-     }
-
-     h2 {
-         font-size: 4.5rem;
-     }
- }
-
- @media (max-width: 768px) {
-     .login-overlay {
-         width: 80%;
-         padding: 20px 0px 80px 0px;
-     }
-
-     #check,
-     #check-password {
-         font-weight: 800;
-         width: 80%;
-         font-size: 1.2rem;
-     }
-
-     .botao-loginpage {
-         width: 84%;
-         font-size: 4.5vw;
-     }
-
-     h2 {
-         font-size: 4.5rem;
-     }
- }
-
- @media (max-width: 480px) {
-     .login-overlay {
-         width: 90%;
-         padding: 20px 0px 60px 0px;
-     }
-
-     #check,
-     #check-password {
-         font-weight: 800;
-         width: 90%;
-         font-size: 1rem;
-     }
-
-     .botao-loginpage {
-         width: 94%;
-         font-size: 8vw;
-     }
-
-     h2 {
-         font-size: 2.5rem;
-     }
-
-     .LogoBitsToca img {
-         height: 130px;
-         width: auto;
-
-     }
-     .LogoBitsToca
-     {
-        height: 130px;
-     }
-     .button
-     {
-        padding: 0px;
-        margin-top: 2%;
-     }
- }
+    .LogoBitsToca img {
+        margin-top: 0.5rem;
+        width: 8em;
+    }
+}

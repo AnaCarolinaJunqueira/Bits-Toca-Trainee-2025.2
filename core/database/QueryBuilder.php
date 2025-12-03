@@ -52,6 +52,20 @@ class QueryBuilder
         }
     }
 
+    public function countLikesPost($post_id)
+    {
+        $sql = "select COUNT(*) from curtidas WHERE POST_ID = :post_id";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['post_id' => $post_id]);
+            return $stmt->fetchColumn();
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function selectPaginated($table, $limit, $offset, $searchColumn = null, $searchTerm = null, $autor_id = null, $is_admin = null)
     {
         $limit = (int) $limit;
@@ -277,23 +291,6 @@ class QueryBuilder
         }
     }
 
-    public function getPostsComments($postId)
-    {
-        $sql = "SELECT r.*, u.NOME as AUTOR_NOME, u.AVATAR 
-                FROM comentarios r
-                JOIN Usuarios u ON r.USER_ID = u.ID
-                WHERE r.POST_ID = :id
-                ORDER BY r.DATA_CRIACAO ASC";
-
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['id' => $postId]);
-            return $stmt->fetchAll(\PDO::FETCH_CLASS);
-        } catch (\Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
     public function getDiscussionById($id)
     {
         $sql = "SELECT d.*, u.NOME as AUTOR_NOME, u.AVATAR 
@@ -329,6 +326,26 @@ class QueryBuilder
             $stmt->execute(['email' => $email]);
 
             return $stmt->fetch(PDO::FETCH_OBJ);
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function verificaLogin($email, $senha)
+    {
+        $sql = sprintf("SELECT * FROM usuarios WHERE EMAIL = :email AND SENHA = :senha");
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                'email' => $email,
+                'senha' => $senha
+            ]);
+
+            $usuario = $stmt->fetch(PDO::FETCH_OBJ);
+
+            return $usuario;
 
         } catch (Exception $e) {
             die($e->getMessage());
