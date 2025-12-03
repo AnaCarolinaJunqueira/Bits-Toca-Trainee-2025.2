@@ -23,8 +23,8 @@ if (!isset($_SESSION['user'])) {
 <body>
     <div class="dashboard-overlay">
         <div class="dashboard-header">
-            <a href="/">
-                <button type="submit" class="logout-button"><i class="bi bi-arrow-left-square"></i></button>
+            <a href="/" class="dashboard-back">
+                <button class="back-button"><i class="bi bi-arrow-left-square"></i></button>
             </a>
             <h1>DASHBOARD</h1>
             <a href="/" class="dashboard-logo">
