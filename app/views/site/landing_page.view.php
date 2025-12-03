@@ -35,7 +35,7 @@
                 <div class="featured-container">
                     <?php if (!empty($featuredPosts)): ?>
                         <?php foreach ($featuredPosts as $post): ?>
-                            <div class="featured-slide">
+                            <a href="/individual_post?id=<?= $post->ID ?>" class="featured-slide">
                                 <img src="/public/<?= htmlspecialchars($post->IMAGEM) ?>" alt="<?= htmlspecialchars($post->TITULO) ?>" class="featured-image">
                                 <div class="featured-text">
                                     <p class="featured-slide-title"><?= htmlspecialchars($post->TITULO) ?></p>
@@ -45,7 +45,7 @@
                                         <?= htmlspecialchars(mb_strimwidth($post->CONTEUDO, 0, 200, "...")) ?>
                                     </p>
                                 </div>
-                            </div>
+                            </a>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="featured-slide">
@@ -66,7 +66,7 @@
             <div class="carousel">
                 <?php if (!empty($recentPosts)): ?>
                     <?php foreach ($recentPosts as $post): ?>
-                        <div class="carousel-item">
+                        <a href="/individual_post?id=<?= $post->ID ?>" class="carousel-item">
                             <img src="/public/<?= htmlspecialchars($post->IMAGEM_RECENT) ?>" alt="<?= htmlspecialchars($post->TITULO) ?>">
                             <div class="carousel-item-glass">
                                 <p class="carousel-item-title"><?= htmlspecialchars($post->TITULO) ?></p>
@@ -76,7 +76,7 @@
                                     <?= htmlspecialchars(mb_strimwidth($post->CONTEUDO, 0, 150, "...")) ?>
                                 </p>
                             </div>
-                        </div>
+                        </a>
                     <?php endforeach; ?>
                 <?php else: ?>
                      <p style="text-align: center; color: white;">Nenhum post recente encontrado.</p>

@@ -3,12 +3,13 @@
     padding: 0;
 }
 
-body {
+main {
     background: linear-gradient(#faded2, #dc97a5, #55768c);
     padding: 5vh 8vw;
 }
 
 .content {
+    position: relative;
     background-color: #ffffff44;
     border-radius: 1rem;
     padding: 8vh 8vw;
@@ -27,8 +28,8 @@ body {
     color: #55768c;
 
     position: absolute;
-    top: 8vh;
-    left: 10vw;
+    top: 1rem;
+    left: 1rem;
 }
 .button-back:hover {
     color: #b83556;
@@ -37,7 +38,7 @@ body {
 .content h1 {
     font-family: 'Press Start 2P', cursive;
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     font-weight: 600;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

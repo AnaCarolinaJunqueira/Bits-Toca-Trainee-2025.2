@@ -20,6 +20,8 @@ $router->post('admin/listaposts/update', 'PostController@update');
 
 $router->post('admin/listaposts/delete', 'PostController@delete');
 
+$router->get('individual_post', 'PostController@show');
+
 $router->get('forum', 'ForumController@index');
 
 $router->get('forum/discussion', 'ForumController@show');

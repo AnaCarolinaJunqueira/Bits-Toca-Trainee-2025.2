@@ -42,6 +42,29 @@ class PostController
         ]);
     }
 
+    public function show()
+    {
+        $database = App::get('database');
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            redirect('');
+        }
+
+        $postIndividual = $database->findById('posts', $id);
+        
+        // if (!$postIndividual) {
+        //     redirect('');
+        // }
+
+        $comentarios = $database->getPostsComments($id);
+
+        return view('site/individual_post', [
+            'individual_post' => $postIndividual,
+            'comentarios' => $comentarios
+        ]);
+    }
+
     private function uploadImage($fileInputName) {
         if (isset($_FILES[$fileInputName]) && $_FILES[$fileInputName]['error'] === UPLOAD_ERR_OK) {
             $uploadDir = 'public/assets/images/';

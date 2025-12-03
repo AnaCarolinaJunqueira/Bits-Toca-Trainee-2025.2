@@ -277,6 +277,23 @@ class QueryBuilder
         }
     }
 
+    public function getPostsComments($postId)
+    {
+        $sql = "SELECT r.*, u.NOME as AUTOR_NOME, u.AVATAR 
+                FROM comentarios r
+                JOIN Usuarios u ON r.USER_ID = u.ID
+                WHERE r.POST_ID = :id
+                ORDER BY r.DATA_CRIACAO ASC";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['id' => $postId]);
+            return $stmt->fetchAll(\PDO::FETCH_CLASS);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function getDiscussionById($id)
     {
         $sql = "SELECT d.*, u.NOME as AUTOR_NOME, u.AVATAR 
