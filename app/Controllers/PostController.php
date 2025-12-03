@@ -57,12 +57,14 @@ class PostController
         //     redirect('');
         // }
 
+        $author = $database->findById('usuarios', $postIndividual->AUTOR_ID);
         $totalLikes = $database->countLikesPost($id);
 
         // $comentarios = $database->getPostsComments($id);
 
         return view('site/individual_post', [
             'individual_post' => $postIndividual,
+            'author_post' => $author,
             'total_likes' => $totalLikes,
             // 'comentarios' => $comentarios
         ]);

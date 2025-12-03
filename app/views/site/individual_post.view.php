@@ -22,9 +22,15 @@
             <div class="post-info">
                 <div class="user">
                     <img src="/public/assets/Imagem-user.jpg" alt="icone do usuario">
-                    <p>@<?= htmlspecialchars($individual_post->AUTOR_ID); ?></p>
+                    <p>@<?= htmlspecialchars($author_post->NOME); ?></p>
                 </div>
-                <div class="date"><?= htmlspecialchars($individual_post->DATA_POSTAGEM); ?></div>
+                <div class="date"><?php
+                $dataHora  = explode(" ", htmlspecialchars($individual_post->DATA_POSTAGEM));
+                $data = explode("-", $dataHora[0]);                 
+                ?>
+                <p><?= $data[2] . '/' . $data[1] . '/' . $data[0]; ?></p>
+                <p><?= $dataHora[1]; ?></p>
+                </div>
             </div>
             <img class="post-image" src="/public/<?= htmlspecialchars($individual_post->IMAGEM) ?>" alt="imagem do post">
             <div class="post-description">
