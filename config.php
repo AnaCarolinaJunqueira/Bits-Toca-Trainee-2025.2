@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('America/Sao_Paulo');
+
 return [
     'database' => [
         'name' => 'bits_toca_db',

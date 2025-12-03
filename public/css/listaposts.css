@@ -22,12 +22,13 @@ main {
 }
 
 .cabeçalho {
-    margin: 1rem 0;
+    margin: -1rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     font-family: "nunito", sans-serif;
+    font-size: 1rem;
 }
 
 .logo {
@@ -106,7 +107,7 @@ main {
     transition: 0.3s ease-in;
 }
 
-.tabela {
+.container-tabela {
     position: relative;
     margin: 1rem 0;
     width: auto;
@@ -114,16 +115,10 @@ main {
     font-size: 1.2rem;
 }
 
-.tabela-conteudo {
+.tabela {
+    background-color: #DC97A5;
     border-radius: 1rem 1rem 0 0;
-    background-color: #DC97A5;
-    overflow: auto;
-}
-
-.tabela-paginacao {
-    border-radius: 0 0 1rem 1rem;
-    background-color: #DC97A5;
-    
+    overflow-x: auto;
 }
 
 .tabela table {
@@ -186,8 +181,27 @@ tbody {
     gap: 0.7rem;
 }
 
-.items {
-    width: 33.33%;
+.id-column {
+    width: 5%;
+    min-width: 50px;
+}
+
+.title-column {
+    width: 50%;
+}
+
+.author-column {
+    width: 20%;
+}
+
+.date, .data {
+    width: 10%;
+    min-width: 120px; 
+}
+
+.action, .açoes {
+    width: 10%;
+    min-width: 150px;
 }
 
 .botao_foot {
@@ -210,6 +224,10 @@ tbody {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    color: #ffffff;
+    padding: 1rem 0.5rem;
+    background-color: #DC97A5;
+    border-radius: 0 0 1rem 1rem;
 }
 
 .date{
@@ -229,7 +247,7 @@ tbody {
 
 #fig1 {
     top: -1.75rem;
-    right: 33%;
+    right: 35%;
 }
 
 #fig2 {
@@ -255,13 +273,100 @@ tbody {
     100% { transform: rotate(0deg); }
 }
 
+.pagination-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10rem; 
+    margin: 0 0.5rem;
+}
+
+.page-slot {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.page-slot.left {
+    justify-content: flex-end;
+}
+
+.page-slot.center {
+    justify-content: center;
+}
+
+.page-slot.right {
+    justify-content: flex-start;
+}
+
+.page-number {
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.page-number.current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #fff;
+    color: #2B3B46;
+    font-size: 1.4rem;
+    font-weight: 700;
+    transform: scale(1.1);
+}
+
+.page-number.adjacent {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fff;
+    opacity: 0.6;
+    padding: 0 0.3rem; 
+}
+
+.page-number.adjacent:hover {
+    opacity: 1; 
+}
+
+
+.botao_foot {
+    all: unset;
+    transition: 0.3s ease-out;
+    cursor: pointer;
+    color: #ffffff;
+    display: inline-block;
+}
+
+.botao_foot i,
+.button-content > i {
+    font-size: 1.8rem;
+    transition: 0.3s ease-in;
+    line-height: 1;
+}
+
+.botao_foot:hover i {
+    font-size: 2.5rem;
+}
+
+.pagination-summary p {
+    color: #ffffff;
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.pagination-summary {
+    margin-bottom: 1rem;
+}
+
 @media (max-width: 1300px) {
     main {
         padding: 5vh 10vw;
     }
 
     .cabeçalho, .botoes, .tabela {
-        margin: 2rem 0;
+        margin: 2rem 0 0 0;
     }
 
     .cabeçalho {

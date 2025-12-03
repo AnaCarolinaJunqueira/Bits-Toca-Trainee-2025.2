@@ -119,6 +119,8 @@
 }
 
 .form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
 .form-group input[type="date"],
 .form-group textarea {
     width: 100%;
@@ -161,7 +163,6 @@
     transition: border-color 0.2s ease, background-color 0.2s ease;
     background-color: #fafafa;
     position: relative;
-    justify-items: center;
 }
 
 .file-drop-area:hover {
@@ -187,12 +188,6 @@
     height: 100%;
     opacity: 0;
     cursor: pointer;
-}
-
-.file-post {
-    display: none;
-    height: auto;
-    width: 100%;
 }
 
 .star-rating {
@@ -280,11 +275,11 @@
     border-color: #27ae60;
 }
 
-.btn-delete {
+.btn-delete-post {
     background-color: #000;
     color: #fff;
 }
-.btn-delete:hover {
+.btn-delete-post:hover {
     background-color: #c0392b;
 }
 
@@ -292,4 +287,212 @@ fieldset {
     border: none;
     padding: 0;
     margin: 0;
+}
+
+.custom-select {
+    position: relative;
+    font-family: "Roboto", sans-serif;
+}
+
+.custom-select select {
+    display: none;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+}
+
+.form-group .select-styled {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    background-color: #fdfdfd;
+    color: #444;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    font-family: "Roboto", sans-serif;
+}
+
+.select-styled::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: #888;
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+.select-styled.active::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.select-options {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    z-index: 1001;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.select-options.active {
+    display: block;
+}
+
+.select-options div {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    color: #444;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.select-options div:hover {
+    background-color: #f4f4f4;
+}
+
+.select-options div.is-selected {
+    background-color: #f0f0f0;
+    font-weight: 500;
+}
+
+.input-error {
+    border: 2px solid #e74c3c !important;
+    background-color: #fadbd8 !important;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.2rem;
+    display: none; /* Hidden by default */
+    text-align: left;
+}
+
+.error-message.active {
+    display: block;
+}
+
+.image-upload-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.image-upload-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-upload-container label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.image-req-text {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: normal;
+}
+
+/* --- Circular Image Upload --- */
+.image-upload-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px dashed #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #fafafa;
+    transition: border-color 0.3s;
+}
+
+.image-upload-circle:hover {
+    border-color: #B83556;
+}
+
+.image-upload-circle img.preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.circle-placeholder {
+    color: #888;
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
+/* --- Password Visibility Toggle --- */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px; /* Space for the eye icon */
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.toggle-password:hover {
+    color: #333;
+}
+
+/* --- Checkbox Style --- */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #444;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #B83556;
+}
+
+@media (max-width: 600px) {
+    .image-upload-row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-row {
+        flex-direction: column;
+    }
 }

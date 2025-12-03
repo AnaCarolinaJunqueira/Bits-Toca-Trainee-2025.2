@@ -12,14 +12,26 @@
                     <input type="text" id="view-titulo" placeholder="Lorem ipsum">
                 </div>
                 <div class="form-group">
-                    <label for="view-descricao">Descrição</label>
-                    <textarea id="view-descricao" rows="5" placeholder="Lorem ipsum dolor sit amet..."></textarea>
+                    <label for="view-conteudo">Conteúdo</label>
+                    <textarea id="view-conteudo" rows="5" placeholder="Lorem ipsum dolor sit amet..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Imagem</label>
-                    <div class="file-drop-area" style="pointer-events: none; background-color: #f9f9f9;">
-                        <i class="bi bi-image-fill" style="font-size: 3rem; color: #ccc;"></i>
-                        <img src="" class="file-post">
+                    <label>Imagens</label>
+                    <div class="image-upload-row">
+                        <div class="image-upload-container">
+                            <label>Destaque</label>
+                            <div class="file-drop-area" id="view-img-featured-area"
+                                style="pointer-events: none; background-color: #f9f9f9;">
+                                <i class="bi bi-image-fill" style="font-size: 2rem; color: #ccc;"></i>
+                            </div>
+                        </div>
+                        <div class="image-upload-container">
+                            <label>Recentes</label>
+                            <div class="file-drop-area" id="view-img-recent-area"
+                                style="pointer-events: none; background-color: #f9f9f9;">
+                                <i class="bi bi-image-fill" style="font-size: 2rem; color: #ccc;"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-row">
@@ -30,7 +42,12 @@
                     <div class="form-group">
                         <label for="view-data">Data</label>
                         <input type="date" id="view-data">
+                        <small id="view-data-edicao" class="last-edited-text"></small>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="view-categoria">Categoria</label>
+                    <input type="text" id="view-categoria" placeholder="Categoria">
                 </div>
                 <div class="form-group">
                     <label>Avaliação</label>

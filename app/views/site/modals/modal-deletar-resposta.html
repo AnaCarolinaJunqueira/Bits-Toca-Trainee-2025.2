@@ -1,0 +1,16 @@
+<div id="modal-delete-reply" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-delete-reply')">
+    <div class="modalc modal-delete">
+        <img src="/public/assets/ModalDeletarIMG.png" alt="Delete warning icon">
+        <h2>Deletar Resposta?</h2>
+        <p>Esta ação não pode ser desfeita. Você tem certeza que deseja deletar esta resposta?</p>
+
+        <div class="modal-buttons">
+            <button class="btn btn-cancel-delete" onclick="fecharModal('modal-delete-reply')">Cancelar</button>
+            <form style="display: inline;" action="/forum/reply/delete" method="POST">
+                <input type="hidden" id="delete-reply-id" name="id">
+                <input type="hidden" name="discussion_id" value="<?= $discussion->ID ?>">
+                <button type="submit" class="btn btn-confirm btn-delete-post">Deletar</button>
+            </form>
+        </div>
+    </div>
+</div>

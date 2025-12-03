@@ -1,0 +1,52 @@
+<div id="modal-editar-usuario" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-editar-usuario')">
+    <div class="modalc modal-form" style="max-width: 450px;">
+        <button class="modal-close-btn" onclick="fecharModal('modal-editar-usuario')">&times;</button>
+        <h2>EDITAR USUÁRIO</h2>
+        <div class="modal-divider"></div>
+
+        <form id="form-editar-usuario" action="/admin/listausuarios/update" method="POST" enctype="multipart/form-data" novalidate>
+            <input type="hidden" id="edit-usuario-id" name="id">
+
+            <div class="form-group" style="align-items: center; margin-bottom: 1rem;">
+                <div class="image-upload-circle file-drop-area" id="drop-edit-user-photo">
+                    <div class="circle-placeholder">
+                        <p>Foto</p>
+                    </div>
+                    <input type="file" name="avatar" class="file-input" accept="image/*">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-nome">Nome</label>
+                <input type="text" id="edit-nome" name="nome" placeholder="Lorem Ipsum" required>
+                <span class="error-message">O nome é obrigatório.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-email">Email</label>
+                <input type="email" id="edit-email" name="email" placeholder="Lorem Ipsum" required>
+                <span class="error-message">O email é obrigatório.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="edit-senha">Senha (Opcional)</label>
+                <div class="password-wrapper">
+                    <input type="password" id="edit-senha" name="senha" placeholder="Nova senha...">
+                    <i class="bi bi-eye-slash toggle-password" onclick="togglePasswordVisibility('edit-senha', this)"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="edit-is-admin" name="is_admin" value="1">
+                    <span>Administrador?</span>
+                </label>
+            </div>
+
+            <div class="modal-buttons">
+                <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-editar-usuario')">Cancelar</button>
+                <button type="submit" class="btn btn-confirm btn-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

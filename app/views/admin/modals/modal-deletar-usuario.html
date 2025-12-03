@@ -1,0 +1,15 @@
+<div id="modal-deletar-usuario" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-deletar-usuario')">
+    <div class="modalc modal-delete">
+        <img src="/public/assets/ModalDeletarIMG.png" alt="Delete warning icon">
+        <h2>Deletar Usuário?</h2>
+        <p>Esta ação não pode ser desfeita. Você tem certeza que deseja deletar este usuário?</p>
+
+        <div class="modal-buttons">
+            <button class="btn btn-cancel-delete" onclick="fecharModal('modal-deletar-usuario')">Cancelar</button>
+            <form style="display: inline;" action="/admin/listausuarios/delete" method="POST">
+                <input type="hidden" name="id" value="">
+                <button type="submit" class="btn btn-confirm btn-delete-post">Deletar</button>
+            </form>
+        </div>
+    </div>
+</div>

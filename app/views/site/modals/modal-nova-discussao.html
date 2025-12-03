@@ -1,0 +1,53 @@
+<div id="modal-nova-discussao" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-nova-discussao')">
+    <div class="modalc modal-form">
+        <button class="modal-close-btn" onclick="fecharModal('modal-nova-discussao')">&times;</button>
+        <h2>NOVA DISCUSSÃO</h2>
+        <div class="modal-divider"></div>
+
+        <form id="form-nova-discussao" action="/forum/discussion/store" method="POST" enctype="multipart/form-data" novalidate>
+            <div class="form-group">
+                <label for="nova-discussao-titulo">Título</label>
+                <input type="text" id="nova-discussao-titulo" name="titulo" placeholder="Título da sua discussão" required>
+                <span class="error-message">O título é obrigatório.</span>
+            </div>
+            <div class="form-group">
+                <label for="nova-discussao-conteudo">Conteúdo</label>
+                <textarea id="nova-discussao-conteudo" name="conteudo" rows="5" placeholder="O corpo da sua discussão..." required></textarea>
+                <span class="error-message">O conteúdo é obrigatório.</span>
+            </div>
+            
+            <div class="image-upload-row">
+                <div class="image-upload-container">
+                    <label>Imagem Opcional</label>
+                    <div class="file-drop-area" id="drop-nova-discussao-imagem">
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                        <p>Arraste ou clique</p>
+                        <input type="file" name="discussao_imagem" class="file-input" accept="image/*">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Categorias</label>
+                <div class="select-wrapper custom-select">
+                    <select name="categoria" id="nova-discussao-categoria" required>
+                        <option value="" disabled selected>Selecione uma categoria</option>
+                        <option value="Analises">Análises</option>
+                        <option value="Previas">Prévias</option>
+                        <option value="Noticias">Notícias</option>
+                        <option value="Entrevistas">Entrevistas</option>
+                        <option value="Devlogs">Devlogs</option>
+                        <option value="Opiniao">Opinião</option>
+                        <option value="Eventos">Eventos</option>
+                    </select>
+                </div>
+                <span class="error-message">Selecione uma categoria.</span>
+            </div>
+            
+            <div class="modal-buttons">
+                <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-nova-discussao')">Cancelar</button>
+                <button type="submit" class="btn btn-confirm btn-salvar">Criar Discussão</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div id="modal-novo" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-novo')">
+    <div class="modalc modal-form">
+        <button class="modal-close-btn" onclick="fecharModal('modal-novo')">&times;</button>
+        <h2>NOVO POST</h2>
+        <div class="modal-divider"></div>
+
+        <form id="form-novo-post" action="/admin/listaposts/store" method="POST" enctype="multipart/form-data" novalidate>
+            <div class="form-group">
+                <label for="novo-titulo">Título</label>
+                <input type="text" id="novo-titulo" name="titulo" placeholder="Lorem ipsum" required>
+                <span class="error-message">O título é obrigatório.</span>
+            </div>
+            <div class="form-group">
+                <label for="novo-conteudo">Conteúdo</label>
+                <textarea id="novo-conteudo" name="conteudo" rows="5" placeholder="Lorem ipsum dolor sit amet..." required></textarea>
+                <span class="error-message">O conteúdo é obrigatório.</span>
+            </div>
+            
+            <div class="image-upload-row">
+                <div class="image-upload-container">
+                    <label>Destaque <span class="image-req-text">(16:9)</span></label>
+                    <div class="file-drop-area" id="drop-novo-featured">
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                        <p>Arraste ou clique</p>
+                        <input type="file" name="imagem_featured" class="file-input" accept="image/*">
+                    </div>
+                </div>
+                <div class="image-upload-container">
+                    <label>Recentes <span class="image-req-text">(2:3)</span></label>
+                    <div class="file-drop-area" id="drop-novo-recent">
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                        <p>Arraste ou clique</p>
+                        <input type="file" name="imagem_recent" class="file-input" accept="image/*">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Categorias</label>
+                <div class="select-wrapper custom-select">
+                    <select name="categoria" id="novo-categoria" required>
+                        <option value="" disabled selected>Selecione uma categoria</option>
+                        <option value="Analises">Análises</option>
+                        <option value="Previas">Prévias</option>
+                        <option value="Noticias">Notícias</option>
+                        <option value="Entrevistas">Entrevistas</option>
+                        <option value="Devlogs">Devlogs</option>
+                        <option value="Opiniao">Opinião</option>
+                        <option value="Eventos">Eventos</option>
+                    </select>
+                </div>
+                <span class="error-message">Selecione uma categoria.</span>
+            </div>
+            <fieldset disabled>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="novo-autor">Autor</label>
+                        <input type="text" id="novo-autor" name="autor" placeholder="Lorem Ipsum">
+                    </div>
+                    <div class="form-group">
+                        <label for="novo-data">Data</label>
+                        <input type="date" id="novo-data" name="data">
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <label>Avaliação</label>
+                <div class="star-rating">
+                    <input type="hidden" id="novo-rating" name="rating" value="0">
+                    <i class="bi bi-star" data-value="1"></i>
+                    <i class="bi bi-star" data-value="2"></i>
+                    <i class="bi bi-star" data-value="3"></i>
+                    <i class="bi bi-star" data-value="4"></i>
+                    <i class="bi bi-star" data-value="5"></i>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-novo')">Cancelar</button>
+                <button type="submit" class="btn btn-confirm btn-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
