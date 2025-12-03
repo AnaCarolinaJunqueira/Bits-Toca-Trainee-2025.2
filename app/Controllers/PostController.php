@@ -57,11 +57,14 @@ class PostController
         //     redirect('');
         // }
 
-        $comentarios = $database->getPostsComments($id);
+        $totalLikes = $database->countLikesPost($id);
+
+        // $comentarios = $database->getPostsComments($id);
 
         return view('site/individual_post', [
             'individual_post' => $postIndividual,
-            'comentarios' => $comentarios
+            'total_likes' => $totalLikes,
+            // 'comentarios' => $comentarios
         ]);
     }
 
