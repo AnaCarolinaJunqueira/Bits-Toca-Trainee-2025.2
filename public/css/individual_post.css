@@ -114,6 +114,8 @@ main {
     cursor: pointer;
     width: fit-content;
     height: 1.5rem;
+    text-decoration: none;
+    color: inherit;
 }
 
 .likes-icon {

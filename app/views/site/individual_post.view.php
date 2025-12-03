@@ -41,15 +41,20 @@
                 <p><?= $conteudo ?></p>
             </div>
             <div class="rating-content">
-                <div class="likes-content">
+                <?php if (isset($_SESSION['user'])): ?>
+                    <a href="/like?post_id=<?= htmlspecialchars($individual_post->ID)?>&user_id=<?= htmlspecialchars($_SESSION['user']->ID) ?>"
+                    class="likes-content <?php if (htmlspecialchars($is_like)): ?>active<?php endif; ?>">
+                <?php else: ?>
+                    <a href="/like" class="likes-content">
+                <?php endif; ?>
                     <div class="likes-icon">
-                        <i class="bi bi-heart"></i>
+                        <i class="bi bi-heart<?php if (htmlspecialchars($is_like)): ?>-fill<?php endif; ?>"></i>
                     </div>
                     <div class="likes-text">
                         <p><?= htmlspecialchars($total_likes) ?></p>
                         <p>curtidas</p>
                     </div>
-                </div>
+                </a>
                 <div class="stars-content">
                     <div class="stars-text">
                         <p>Nota</p>
@@ -75,6 +80,6 @@
 
 <?php require 'app/views/site/Footer.html'; ?>
 
-<script src="../../../public/js/individual_post.js"></script>
+<!-- <script src="../../../public/js/individual_post.js"></script> -->
 
 </html>

@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <link rel="stylesheet" href="/public/css/navbar.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
 <header>

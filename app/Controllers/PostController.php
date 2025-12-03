@@ -53,12 +53,22 @@ class PostController
 
         $postIndividual = $database->findById('posts', $id);
         
-        // if (!$postIndividual) {
-        //     redirect('');
-        // }
+        if (!$postIndividual) {
+            redirect('');
+        }
 
         $author = $database->findById('usuarios', $postIndividual->AUTOR_ID);
         $totalLikes = $database->countLikesPost($id);
+
+        session_start();
+
+        $isLike = false;
+        if (isset($_SESSION['user'])) {
+            $liked = $database->findLike($postIndividual->ID, $_SESSION['user']->ID);            
+            if ($liked) {
+                $isLike = true;
+            }
+        }
 
         // $comentarios = $database->getPostsComments($id);
 
@@ -66,8 +76,39 @@ class PostController
             'individual_post' => $postIndividual,
             'author_post' => $author,
             'total_likes' => $totalLikes,
+            'is_like' => $isLike,
             // 'comentarios' => $comentarios
         ]);
+    }
+
+    public function like()
+    {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
+
+        $database = App::get('database');
+        $postId = $_GET['post_id'] ?? null;
+        $userId = $_GET['user_id'] ?? null;
+
+        if (!$postId || !$userId) {
+            redirect('');
+        }
+
+        $liked = $database->findLike($postId, $userId);
+        if ($liked) {
+            $database->deleteById('curtidas', $liked->ID);
+        } else {
+            $parameters = [
+                'POST_ID' => $postId,
+                'USER_ID' => $userId,
+                'DATA_CURTIDA' => date('Y-m-d H:i:s')
+            ];
+            $database->insert('curtidas', $parameters);
+        }
+
+        return redirect('individual_post?id=' . $postId);
     }
 
     private function uploadImage($fileInputName) {

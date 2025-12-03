@@ -66,6 +66,23 @@ class QueryBuilder
         }
     }
 
+    public function findLike($post_id, $user_id)
+    {
+        $sql = "SELECT * from curtidas WHERE POST_ID = :post_id AND USER_ID = :user_id";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                'post_id' => $post_id,
+                'user_id' => $user_id
+            ]);
+            return $stmt->fetch(PDO::FETCH_OBJ);
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function selectPaginated($table, $limit, $offset, $searchColumn = null, $searchTerm = null, $autor_id = null, $is_admin = null)
     {
         $limit = (int) $limit;

@@ -22,6 +22,8 @@ $router->post('admin/listaposts/delete', 'PostController@delete');
 
 $router->get('individual_post', 'PostController@show');
 
+$router->get('like', 'PostController@like');
+
 $router->get('forum', 'ForumController@index');
 
 $router->get('forum/discussion', 'ForumController@show');
