@@ -93,6 +93,83 @@ class QueryBuilder
         }
     }
 
+    public function selectPublicPosts($limit, $offset, $searchTerm = null, $category = null)
+    {
+        $parameters = [];
+        $whereClauses = [];
+
+        $sql = "SELECT p.*, u.NOME as AUTOR_NOME 
+                FROM Posts p
+                JOIN Usuarios u ON p.AUTOR_ID = u.ID";
+
+        if ($searchTerm) {
+            $whereClauses[] = "p.TITULO LIKE :searchTerm";
+            $parameters['searchTerm'] = '%' . $searchTerm . '%';
+        }
+
+        if ($category) {
+            $whereClauses[] = "p.CATEGORIA = :category";
+            $parameters['category'] = $category;
+        }
+
+        if (!empty($whereClauses)) {
+            $sql .= " WHERE " . implode(' AND ', $whereClauses);
+        }
+
+        $sql .= " ORDER BY p.DATA_POSTAGEM DESC LIMIT {$limit} OFFSET {$offset}";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($parameters);
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function countPublicPosts($searchTerm = null, $category = null)
+    {
+        $sql = "SELECT COUNT(*) FROM Posts";
+        $parameters = [];
+        $whereClauses = [];
+
+        if ($searchTerm) {
+            $whereClauses[] = "TITULO LIKE :searchTerm";
+            $parameters['searchTerm'] = '%' . $searchTerm . '%';
+        }
+        if ($category) {
+            $whereClauses[] = "CATEGORIA = :category";
+            $parameters['category'] = $category;
+        }
+
+        if (!empty($whereClauses)) {
+            $sql .= " WHERE " . implode(' AND ', $whereClauses);
+        }
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($parameters);
+            return $stmt->fetchColumn();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function getPostWithAuthor($id)
+    {
+        $sql = "SELECT p.*, u.NOME as AUTOR_NOME, u.AVATAR as AUTOR_AVATAR
+                FROM Posts p
+                JOIN Usuarios u ON p.AUTOR_ID = u.ID
+                WHERE p.ID = :id";
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function selectFeaturedPosts($limit = 3)
     {
         $sql = "SELECT p.*, COUNT(c.ID) as total_likes
@@ -202,7 +279,8 @@ class QueryBuilder
         $parameters = [];
         $whereClauses = [];
 
-        $sql = "SELECT d.*, u.NOME as AUTOR_NOME, COUNT(r.ID) as TOTAL_RESPOSTAS 
+        $sql = "SELECT d.*, u.NOME as AUTOR_NOME, COUNT(r.ID) as TOTAL_RESPOSTAS,
+                COALESCE(MAX(r.DATA_CRIACAO), d.DATA_POSTAGEM) as ULTIMA_ATIVIDADE 
                 FROM Discussoes d
                 JOIN Usuarios u ON d.AUTOR_ID = u.ID
                 LEFT JOIN Respostas_Discussoes r ON d.ID = r.DISCUSSAO_ID";
@@ -221,7 +299,7 @@ class QueryBuilder
             $sql .= " WHERE " . implode(' AND ', $whereClauses);
         }
 
-        $sql .= " GROUP BY d.ID ORDER BY d.DATA_POSTAGEM DESC LIMIT {$limit} OFFSET {$offset}";
+        $sql .= " GROUP BY d.ID ORDER BY ULTIMA_ATIVIDADE DESC LIMIT {$limit} OFFSET {$offset}";
 
         try {
             $stmt = $this->pdo->prepare($sql);
@@ -318,23 +396,54 @@ class QueryBuilder
         }
     }
 
-    public function verificaLogin($email, $senha)
+    public function getPostLikes($postId)
     {
-        $sql = sprintf("SELECT * FROM usuarios WHERE EMAIL = :email AND SENHA = :senha");
-
+        $sql = "SELECT COUNT(*) FROM Curtidas WHERE POST_ID = :post_id";
         try {
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([
-                'email' => $email,
-                'senha' => $senha
-            ]);
+            $stmt->execute(['post_id' => $postId]);
+            return $stmt->fetchColumn();
+        } catch (Exception $e) {
+            return 0;
+        }
+    }
 
-            $usuario = $stmt->fetch(PDO::FETCH_OBJ);
+    public function hasUserLikedPost($userId, $postId)
+    {
+        $sql = "SELECT COUNT(*) FROM Curtidas WHERE USER_ID = :user_id AND POST_ID = :post_id";
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['user_id' => $userId, 'post_id' => $postId]);
+            return $stmt->fetchColumn() > 0;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
 
-            return $usuario;
-
+    public function removeLike($userId, $postId)
+    {
+        $sql = "DELETE FROM Curtidas WHERE USER_ID = :user_id AND POST_ID = :post_id";
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['user_id' => $userId, 'post_id' => $postId]);
         } catch (Exception $e) {
             die($e->getMessage());
+        }
+    }
+
+    public function getPostComments($postId)
+    {
+        $sql = "SELECT c.*, u.NOME as AUTOR_NOME, u.AVATAR 
+                FROM Comentarios c
+                JOIN Usuarios u ON c.USER_ID = u.ID
+                WHERE c.POST_ID = :post_id
+                ORDER BY c.DATA_CRIACAO DESC";
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['post_id' => $postId]);
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (Exception $e) {
+            return [];
         }
     }
 }

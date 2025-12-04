@@ -31,7 +31,6 @@
             </div>
 
             <?php
-            // Calculate window around current page
             $window = 1;
             $start = max(2, $curr - $window);
             $end = min($total - 1, $curr + $window);

@@ -3,45 +3,63 @@
 namespace App\Controllers;
 
 use App\Core\App;
-use Exception;
 
 class LoginController
 {
-
     public function index()
     {
-        return view('site/loginpage');
+        if (isset($_SESSION['user'])) {
+            return redirect('admin/dashboard');
+        }
+
+        if (!isset($_SESSION['redirect_url']) && isset($_SERVER['HTTP_REFERER'])) {
+            $path = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_PATH);
+            
+            $cleanPath = ltrim($path, '/');
+
+            if ($cleanPath && $cleanPath !== 'login' && strpos($cleanPath, 'admin') === false) {
+                $_SESSION['redirect_url'] = $cleanPath;
+            }
+        }
+
+        return view('site/login');
     }
 
     public function login()
     {
         $email = $_POST['email'];
-        $senha = $_POST['senha'];
+        $password = $_POST['password'];
 
-        $senhaHash = App::get('database')->findByEmail('usuarios', $email)->SENHA;
+        $database = App::get('database');
+        $user = $database->findByEmail('Usuarios', $email);
 
-        if (password_verify($senha, $senhaHash)) {            
-            $usuario = App::get('database')->verificaLogin($email, $senhaHash);
-        }
-
-        if($usuario != false){
-            session_start();
-            $_SESSION['id'] = $usuario->ID;
-
-            if($usuario->IS_ADMIN == 1){
-                $_SESSION['admin'] = true;
-            }
-            else {
-                $_SESSION['admin'] = false;
+        if ($user && password_verify($password, $user->SENHA)) {
+            $_SESSION['user'] = $user;
+            $_SESSION['id'] = $user->ID;
+            
+            if (isset($_SESSION['redirect_url'])) {
+                $redirect = $_SESSION['redirect_url'];
+                unset($_SESSION['redirect_url']);
+                return redirect($redirect);
             }
 
-            header('Location: /admin/dashboard');
+            return redirect('admin/dashboard');
+        }
 
+        return view('site/login', ['error' => 'Email ou senha incorretos.']);
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        return redirect('');
+    }
+    
+    public function dashboard()
+    {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
         }
-        else{
-            session_start();
-            $_SESSION['mensagem'] = "Email ou senha incorretos.";
-            header('Location: /login');
-        }
+        return view('admin/dashboard');
     }
 }

@@ -136,7 +136,7 @@ function setupImagePreviews() {
                 img.style.top = '0';
                 img.style.left = '0';
                 
-                dropArea.appendChild(img);
+                dropArea.prepend(img);
             };
             reader.readAsDataURL(file);
         });
@@ -211,7 +211,8 @@ function initializeModalLogic() {
                 img.style.position = 'absolute';
                 img.style.top = '0';
                 img.style.left = '0';
-                dropArea.appendChild(img);
+                
+                dropArea.prepend(img);
             } else {
                 if (placeholder) placeholder.style.display = 'flex';
             }

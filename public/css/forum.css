@@ -29,7 +29,7 @@ main {
     box-sizing: content-box;
 }
 
-/* Header */
+
 .forum-header {
     text-align: center;
     margin-bottom: 2rem;
@@ -84,7 +84,7 @@ main {
     justify-content: center;
 }
 
-/* Action Bar */
+
 .action-bar {
     display: flex;
     align-items: center;
@@ -107,7 +107,7 @@ main {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Grid Layout */
+
 .forum-grid {
     display: flex;
     gap: 2rem;
@@ -117,7 +117,7 @@ main {
     justify-content: center;
 }
 
-/* Thread List */
+
 .thread-list-container {
     flex: 2;
     min-width: 300px;
@@ -162,7 +162,7 @@ main {
 .col-title { font-weight: bold; }
 .col-replies { text-align: center; }
 
-/* Sidebar */
+
 .sidebar-categories {
     flex: 1;
     min-width: 250px;
@@ -208,7 +208,6 @@ main {
     color: var(--primary-pink);
 }
 
-/* Pagination */
 .pagination {
     display: flex;
     justify-content: center;
@@ -227,17 +226,14 @@ main {
     font-weight: bold;
 }
 
-/* ... (Keep existing styles) ... */
-
-/* --- New Pagination Styles (Adapted from listaposts.css) --- */
 .foot {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    color: #000; /* Black text for visibility on light card */
+    color: #000;
     padding: 1rem 0.5rem;
-    margin-top: auto; /* Pushes pagination to bottom */
+    margin-top: auto;
     width: 100%;
 }
 
@@ -274,7 +270,7 @@ main {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background-color: #B83556; /* Primary Pink */
+    background-color: #B83556; 
     color: #fff;
     font-size: 1.2rem;
     font-weight: 700;
@@ -333,7 +329,7 @@ main {
     .forum-grid {
         flex-direction: column;
     }
-    .table-header { display: none; } /* Hide header on mobile */
+    .table-header { display: none; }
     .thread-row {
         display: flex;
         flex-direction: column;

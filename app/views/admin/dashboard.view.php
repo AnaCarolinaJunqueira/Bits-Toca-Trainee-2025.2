@@ -1,52 +1,41 @@
-<?php
-session_start();
-if (!isset($_SESSION['id'])) {
-    header('Location: /login');
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Roboto:wght@300;400;500;700&display=swap">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../../../public/css/dashboard_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/dashboard_style.css">
 
     <title>Dashboard</title>
 </head>
-
 <body>
-    <div class="dashboard-overlay">
-        <div class="dashboard-header">
-            <form action="/logout" method="POST">
-                <button type="submit" class="logout-button"><i class="bi bi-arrow-left-square"></i></button>
-            </form>
-            <h1>DASHBOARD</h1>
-            <div class="dashboard-logo">
-                <img src="../../../public/assets/logo-site.png" alt="Logo Bits Toca">
+    <main>
+        <div class="dashboard_overlay">
+            <div class="dashboard_header">
+                <a href="/" class="logout-button"><img src="/public/assets/home_button.png"></a>
+                <h1>DASHBOARD</h1>
+                <img src="/public/assets/logo.png" alt="Logo" class="dashboard_logo">
             </div>
-        </div>
-        <div class="dashboard-content">
-            <a href="/admin/listaposts" class="dashboard-buttons">
-                <button class="dashboard-button-pp"><p>PÁGINA DE PUBLICAÇÕES</p>
-                    <i class="bi bi-menu-button-wide button-icon-pp"></i>
-                </button>
-            </a>
-            <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] === true): ?>
-                <a href="/admin/listausuarios" class="dashboard-buttons">
-                    <button class="dashboard-button-pu"><p>PÁGINA DE USUÁRIOS</p>
-                        <i class="bi bi-person-badge button-icon-pu"></i>
+            <div class="dashboard_content">
+                <a href="/admin/listaposts">
+                    <button class="dashboard-button-pp">PÁGINA DE PUBLICAÇÕES
+                        <span class="button-icon-pp"><img src="/public/assets/PPL.png"></span>
                     </button>
                 </a>
-            <?php endif; ?>
-        </div>
-    </div>
-    <!-- <script src="../../../public/js/dashboard.js"></script> -->
-</body>
+                <a href="/admin/listausuarios">
+                    <?php if(isset($_SESSION['user']) && ($_SESSION['user']->IS_ADMIN)): ?>
+                    <button class="dashboard-button-pu">PÁGINA DE USUÁRIOS
+                        <span class="button-icon-pu"><img src="/public/assets/PUL.png"></span>
+                    </button>
+                    <?php else: ?>
+                    <?php endif; ?>
+                </a>
+            </div>
 
+        </div>
+    </main>
+    </body>
 </html>

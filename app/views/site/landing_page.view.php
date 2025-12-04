@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    
+
     <?php require 'app/views/site/navbar.html'; ?>
 
     <main>
@@ -28,14 +28,14 @@
                 </div>
             </div>
         </section>
-        
+
         <section class="featured">
             <h2>PUBLICAÇÕES EM DESTAQUE</h2>
             <div class="featured-post">
                 <div class="featured-container">
                     <?php if (!empty($featuredPosts)): ?>
                         <?php foreach ($featuredPosts as $post): ?>
-                            <div class="featured-slide">
+                            <div class="featured-slide" onclick="window.location.href='/post?id=<?= $post->ID ?>'" style="cursor: pointer;">
                                 <img src="/public/<?= htmlspecialchars($post->IMAGEM) ?>" alt="<?= htmlspecialchars($post->TITULO) ?>" class="featured-image">
                                 <div class="featured-text">
                                     <p class="featured-slide-title"><?= htmlspecialchars($post->TITULO) ?></p>
@@ -57,7 +57,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="featured-dots">
-                    </div>
+                </div>
             </div>
         </section>
 
@@ -66,7 +66,7 @@
             <div class="carousel">
                 <?php if (!empty($recentPosts)): ?>
                     <?php foreach ($recentPosts as $post): ?>
-                        <div class="carousel-item">
+                        <div class="carousel-item" onclick="window.location.href='/post?id=<?= $post->ID ?>'">
                             <img src="/public/<?= htmlspecialchars($post->IMAGEM_RECENT) ?>" alt="<?= htmlspecialchars($post->TITULO) ?>">
                             <div class="carousel-item-glass">
                                 <p class="carousel-item-title"><?= htmlspecialchars($post->TITULO) ?></p>
@@ -79,7 +79,7 @@
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                     <p style="text-align: center; color: white;">Nenhum post recente encontrado.</p>
+                    <p style="text-align: center; color: white;">Nenhum post recente encontrado.</p>
                 <?php endif; ?>
             </div>
             <div class="carousel-controls">
@@ -107,6 +107,7 @@
     <?php require 'app/views/site/Footer.html'; ?>
 
     <script src="/public/js/landing_page.js"></script>
+    <script src="/public/js/konami.js"></script>
 </body>
 
 </html>

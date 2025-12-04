@@ -67,7 +67,14 @@
                 </div>
 
             <div class="sidebar-categories">
-                <h2>Categorias do fórum</h2>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                    <h2 style="margin: 0;">Categorias do fórum</h2>
+                    <?php if (!empty($currentCategory)): ?>
+                        <a href="/forum" style="color: #B83556; font-size: 1.2rem; text-decoration: none;" title="Limpar filtro">
+                            <i class="bi bi-x-circle-fill"></i>
+                        </a>
+                    <?php endif; ?>
+                </div>
                 <div class="cat-divider"></div>
 
                 <ul>
@@ -80,7 +87,7 @@
                         }
                     ?>
                         <li>
-                            <a href="/forum?category=<?= $cat ?>">
+                            <a href="/forum?category=<?= $cat ?>" style="<?= ($currentCategory ?? '') == $cat ? 'color: #B83556; font-weight: bold;' : '' ?>">
                                 <span><?= strtoupper($cat) ?></span>
                                 <span><?= str_pad($count, 2, '0', STR_PAD_LEFT) ?></span>
                             </a>
@@ -99,4 +106,4 @@
     <script src="/public/js/modals-discussao.js"></script>
 </body>
 
-</html>
+</html> 

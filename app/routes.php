@@ -14,6 +14,10 @@ $router->get('admin/listaposts/delete', 'PostController@delete');
 
 $router->get('', 'SiteController@index');
 
+$router->get('posts', 'SiteController@posts');
+
+$router->get('post', 'SiteController@showPost');
+
 $router->post('admin/listaposts/store', 'PostController@store');
 
 $router->post('admin/listaposts/update', 'PostController@update');
@@ -54,8 +58,12 @@ $router->post('login', 'LoginController@login');
 
 $router->get('logout', 'LoginController@logout');
 
-$router->post('logout', 'DashboardController@logout');
+$router->get('admin/dashboard', 'LoginController@dashboard');
 
-$router->get('admin/dashboard', 'DashboardController@index');
+$router->post('post/comment/store', 'PostController@storeComment');
 
+$router->post('post/comment/update', 'PostController@updateComment');
 
+$router->post('post/comment/delete', 'PostController@deleteComment');
+
+$router->post('post/like', 'PostController@toggleLike');
