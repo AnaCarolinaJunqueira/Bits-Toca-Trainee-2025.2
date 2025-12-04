@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
 </head>
 
-<body>
-    <?php require 'app/views/site/navbar.view.php'; ?>
+<?php require 'app/views/site/navbar.view.php'; ?>
 
+<body>
     <main>
         <div class="content">
             <a href="/" class="button-back"><i class="bi bi-arrow-left-short"></i></a>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="likes-text">
                         <p><?= htmlspecialchars($total_likes) ?></p>
-                        <p>curtidas</p>
+                        <p>curtida<?php if (htmlspecialchars($total_likes) != 1): ?>s<?php endif; ?></p>
                     </div>
                 </a>
                 <div class="stars-content">

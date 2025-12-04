@@ -1,7 +1,7 @@
 const botaomissao = document.getElementById('missao');
 const botaovalores = document.getElementById('valores');
 const botaovisao = document.getElementById('visao');
-const container = document.getElementById('LogoBitsToca');
+const container = document.querySelector('.LogoBitsToca');
 const logo = document.getElementById('logo-footer');
 const missaocontent = document.getElementById('missao-footer');
 const valorescontent = document.getElementById('valores-footer');
@@ -25,9 +25,7 @@ function showMvvContent(contentToShow) {
 
     if (contentToShow === valorescontent) {
       container.classList.add('valores');
-      container.classList.remove('centralizado');
     } else {
-      container.classList.add('centralizado');
       container.classList.remove('valores');
     }
   }

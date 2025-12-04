@@ -172,7 +172,7 @@ main {
 }
 
 @media (max-width: 1300px) {
-    body {
+    main {
         padding: 5vh 4vw;
     }
 
@@ -232,7 +232,7 @@ main {
 }
 
 @media (max-width: 480px) {
-    body {
+    main {
         padding: 3vh 3vw;
     }
     
