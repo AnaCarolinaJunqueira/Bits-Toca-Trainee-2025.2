@@ -53,4 +53,3 @@ function windowcheck()
 
 windowcheck();
 window.addEventListener('resize', windowcheck); //Confere se o tamanho está mudando e chama windowcheck
-

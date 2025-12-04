@@ -79,7 +79,7 @@ main {
 
 .side-item {
     border-radius: 8px;
-    padding: 14px;
+    /* padding: 14px;  <-- REMOVED: Padding caused the dead click zone */
     cursor: pointer;
 }
 
@@ -97,6 +97,10 @@ main {
     align-items: center;
     color: #ffffff;
     justify-content: center;
+    /* ADDED: Move padding here and force full width/height */
+    padding: 14px;
+    width: 100%;
+    height: 100%;
 }
 
 .side-item.active a {

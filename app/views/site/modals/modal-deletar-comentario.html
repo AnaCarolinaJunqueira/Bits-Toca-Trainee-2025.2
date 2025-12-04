@@ -1,0 +1,16 @@
+<div id="modal-deletar-comentario" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-deletar-comentario')">
+    <div class="modalc modal-delete">
+        <img src="/public/assets/ModalDeletarIMG.png" alt="Delete warning icon">
+        <h2>Deletar Comentário?</h2>
+        <p>Esta ação não pode ser desfeita. Você tem certeza que deseja deletar este comentário?</p>
+
+        <div class="modal-buttons">
+            <button class="btn btn-cancel-delete" onclick="fecharModal('modal-deletar-comentario')">Cancelar</button>
+            <form style="display: inline;" action="/post/comment/delete" method="POST">
+                <input type="hidden" id="delete-comment-id" name="id">
+                <input type="hidden" id="delete-comment-post-id" name="post_id">
+                <button type="submit" class="btn btn-confirm btn-delete-post">Deletar</button>
+            </form>
+        </div>
+    </div>
+</div>

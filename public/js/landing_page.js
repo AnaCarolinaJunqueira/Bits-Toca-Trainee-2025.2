@@ -291,7 +291,7 @@ if (isTouchPrimary && carouselItems.length > 0) {
 }
 
 document.querySelector('.cta-button').addEventListener('click', () => {
-    window.location.href = "index.html";
+    window.location.href = "/posts";
 });
 
 window.addEventListener('resize', () => {

@@ -1,0 +1,22 @@
+<div id="modal-editar-comentario" class="modal-overlay" onclick="if(event.target === this) fecharModal('modal-editar-comentario')">
+    <div class="modalc modal-form" style="max-width: 500px;">
+        <button class="modal-close-btn" onclick="fecharModal('modal-editar-comentario')">&times;</button>
+        <h2>EDITAR COMENTÁRIO</h2>
+        <div class="modal-divider"></div>
+
+        <form id="form-editar-comentario" action="/post/comment/update" method="POST">
+            <input type="hidden" id="edit-comment-id" name="id">
+            <input type="hidden" id="edit-comment-post-id" name="post_id">
+            
+            <div class="form-group">
+                <label for="edit-comment-conteudo">Seu Comentário</label>
+                <textarea id="edit-comment-conteudo" name="conteudo" rows="5" required></textarea>
+            </div>
+            
+            <div class="modal-buttons">
+                <button type="button" class="btn btn-cancel" onclick="fecharModal('modal-editar-comentario')">Cancelar</button>
+                <button type="submit" class="btn btn-confirm btn-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

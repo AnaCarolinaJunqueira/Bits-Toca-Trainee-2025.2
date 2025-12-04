@@ -136,7 +136,8 @@ function setupImagePreviews() {
                 img.style.top = '0';
                 img.style.left = '0';
                 
-                dropArea.appendChild(img);
+                // FIXED: Changed appendChild to prepend here too
+                dropArea.prepend(img);
             };
             reader.readAsDataURL(file);
         });
@@ -211,7 +212,9 @@ function initializeModalLogic() {
                 img.style.position = 'absolute';
                 img.style.top = '0';
                 img.style.left = '0';
-                dropArea.appendChild(img);
+                
+                // FIXED: Changed appendChild to prepend so admins can also re-upload properly
+                dropArea.prepend(img);
             } else {
                 if (placeholder) placeholder.style.display = 'flex';
             }

@@ -10,12 +10,15 @@ class PostController
 
     public function index()
     {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
         $database = App::get('database');
         $limit = 5;
         $page = isset($_GET['page']) && (int)$_GET['page'] > 0 ? (int)$_GET['page'] : 1;
 
         $searchTerm = trim(isset($_GET['search']) ? $_GET['search'] : '') ?? null;
-        $searchColumn = $searchTerm ? ['TITULO', 'CONTEUDO'] : null;
+        $searchColumn = $searchTerm ? 'TITULO' : null;
 
 
         $total_posts = $database->countAll('posts',$searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
@@ -32,7 +35,6 @@ class PostController
         $offset = ($page - 1) * $limit;
 
         $posts = $database->selectPaginated('posts', $limit, $offset, $searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
-
 
         return view('admin/listaposts', [
             'posts' => $posts,
@@ -90,8 +92,8 @@ class PostController
 
         $post = $database->findById('Posts', $id);
         $imageFeaturedPath = $post->IMAGEM;
+        
         $newFeaturedPath = $this->uploadImage('imagem_featured');
-
         if($newFeaturedPath) {
             if($imageFeaturedPath !== 'assets/images/default.png' && file_exists('public/' . $imageFeaturedPath)) {
                 @unlink('public/' . $imageFeaturedPath);
@@ -101,7 +103,6 @@ class PostController
 
         $imageRecentPath = $post->IMAGEM_RECENT ?? 'assets/images/default_recents.png';
         $newRecentPath = $this->uploadImage('imagem_recent');
-
         if($newRecentPath) {
             if($imageRecentPath !== 'assets/images/default_recents.png' && file_exists('public/' . $imageRecentPath)) {
                 @unlink('public/' . $imageRecentPath);
@@ -143,5 +144,122 @@ class PostController
         $database->deleteById('Posts', $id);
 
         return redirect('admin/listaposts');
+    }
+
+    public function storeComment()
+    {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
+
+        $database = App::get('database');
+        
+        $postId = $_POST['post_id'] ?? null;
+        $content = trim($_POST['conteudo'] ?? '');
+        $userId = $_SESSION['user']->ID;
+
+        if ($postId && !empty($content)) {
+            $parameters = [
+                'POST_ID' => $postId,
+                'USER_ID' => $userId,
+                'CONTEUDO' => $content,
+                'DATA_CRIACAO' => date('Y-m-d H:i:s')
+            ];
+
+            $database->insert('Comentarios', $parameters);
+        }
+
+        if ($postId) {
+            return redirect("post?id={$postId}");
+        }
+        
+        return redirect('posts');
+    }
+
+    public function updateComment()
+    {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
+
+        $database = App::get('database');
+        $id = $_POST['id'];
+        $postId = $_POST['post_id'];
+        $conteudo = $_POST['conteudo'];
+        $userId = $_SESSION['user']->ID;
+        $isAdmin = $_SESSION['user']->IS_ADMIN;
+
+        // Verify ownership
+        $comment = $database->findById('Comentarios', $id);
+
+        if ($comment && ($comment->USER_ID == $userId || $isAdmin == 1)) {
+            $parameters = [
+                'CONTEUDO' => $conteudo,
+                // Optional: 'DATA_EDICAO' => date('Y-m-d H:i:s') if you have this column
+            ];
+            $database->update('Comentarios', $id, $parameters);
+        }
+
+        return redirect("post?id={$postId}");
+    }
+
+    public function deleteComment()
+    {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
+
+        $database = App::get('database');
+        $id = $_POST['id'];
+        $postId = $_POST['post_id'];
+        $userId = $_SESSION['user']->ID;
+        $isAdmin = $_SESSION['user']->IS_ADMIN;
+
+        // Verify ownership
+        $comment = $database->findById('Comentarios', $id);
+
+        if ($comment && ($comment->USER_ID == $userId || $isAdmin == 1)) {
+            $database->deleteById('Comentarios', $id);
+        }
+
+        return redirect("post?id={$postId}");
+    }
+
+    // --- Added Method ---
+    public function toggleLike()
+    {
+        if (!isset($_SESSION['user'])) {
+            http_response_code(401);
+            echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
+            return;
+        }
+
+        $database = App::get('database');
+        $userId = $_SESSION['user']->ID;
+        $data = json_decode(file_get_contents('php://input'), true);
+        $postId = $data['post_id'] ?? null;
+
+        if (!$postId) {
+            http_response_code(400);
+            echo json_encode(['status' => 'error', 'message' => 'Post ID required']);
+            return;
+        }
+
+        if ($database->hasUserLikedPost($userId, $postId)) {
+            $database->removeLike($userId, $postId);
+            $liked = false;
+        } else {
+            $database->insert('Curtidas', [
+                'USER_ID' => $userId,
+                'POST_ID' => $postId
+            ]);
+            $liked = true;
+        }
+
+        $newCount = $database->getPostLikes($postId);
+
+        header('Content-Type: application/json');
+        echo json_encode(['status' => 'success', 'liked' => $liked, 'count' => $newCount]);
+        exit;
     }
 }
