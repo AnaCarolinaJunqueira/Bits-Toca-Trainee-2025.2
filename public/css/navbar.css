@@ -160,7 +160,7 @@ header{
     }
     
     .menu-itens {
-        position: fixed;
+        position: absolute;
         top: -25rem;
         left: 0;
         background-color: #55768c;

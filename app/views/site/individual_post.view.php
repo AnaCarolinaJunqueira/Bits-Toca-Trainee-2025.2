@@ -24,9 +24,9 @@
                     <img src="/public/<?= htmlspecialchars($author_post->AVATAR ?? 'assets/avatars/default.png') ?>" alt="icone do usuario">
                     <p>@<?= htmlspecialchars($author_post->NOME); ?></p>
                 </div>
-                <?php if ($post->DATA_EDICAO): ?>
+                <!-- <?php if ($post->DATA_EDICAO): ?>
                     <p class="date" style="margin-left: auto; margin-right: 1rem;">(Editado)</p>
-                <?php endif; ?>
+                <?php endif; ?> -->
                 <div class="date">
                     <p><?= date('d/m/Y', strtotime($post->DATA_POSTAGEM)) ?></p>
                     <p><?= date('H:i:s', strtotime($post->DATA_POSTAGEM)) ?></p>
