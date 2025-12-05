@@ -47,6 +47,9 @@ class LoginController
 
     public function dashboard()
     {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
         return view('admin/dashboard');
     }
 

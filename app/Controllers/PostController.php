@@ -18,7 +18,7 @@ class PostController
         $page = isset($_GET['page']) && (int)$_GET['page'] > 0 ? (int)$_GET['page'] : 1;
 
         $searchTerm = trim(isset($_GET['search']) ? $_GET['search'] : '') ?? null;
-        $searchColumn = $searchTerm ? ['TITULO', 'CONTEUDO'] : null;
+        $searchColumn = $searchTerm ? 'TITULO' : null;
 
         $total_posts = $database->countAll('posts',$searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
 
@@ -128,8 +128,8 @@ class PostController
 
         $post = $database->findById('Posts', $id);
         $imageFeaturedPath = $post->IMAGEM;
+        
         $newFeaturedPath = $this->uploadImage('imagem_featured');
-
         if($newFeaturedPath) {
             if($imageFeaturedPath !== 'assets/images/default.png' && file_exists('public/' . $imageFeaturedPath)) {
                 @unlink('public/' . $imageFeaturedPath);
@@ -139,7 +139,6 @@ class PostController
 
         $imageRecentPath = $post->IMAGEM_RECENT ?? 'assets/images/default_recents.png';
         $newRecentPath = $this->uploadImage('imagem_recent');
-
         if($newRecentPath) {
             if($imageRecentPath !== 'assets/images/default_recents.png' && file_exists('public/' . $imageRecentPath)) {
                 @unlink('public/' . $imageRecentPath);

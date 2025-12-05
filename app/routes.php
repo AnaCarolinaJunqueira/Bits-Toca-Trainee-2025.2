@@ -14,6 +14,8 @@ $router->get('admin/listaposts/delete', 'PostController@delete');
 
 $router->get('', 'SiteController@index');
 
+$router->get('posts', 'SiteController@posts');
+
 $router->post('admin/listaposts/store', 'PostController@store');
 
 $router->post('admin/listaposts/update', 'PostController@update');

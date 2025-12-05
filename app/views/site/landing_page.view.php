@@ -14,10 +14,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
-<body>
-    
+<body>    
     <?php require 'app/views/site/navbar.view.php'; ?>
-
     <main>
         <section class="hero-section">
             <div class="hero-with-image">
@@ -28,7 +26,7 @@
                 </div>
             </div>
         </section>
-        
+
         <section class="featured">
             <h2>PUBLICAÇÕES EM DESTAQUE</h2>
             <div class="featured-post">
@@ -106,6 +104,7 @@
     <?php require 'app/views/site/Footer.html'; ?>
 
     <script src="/public/js/landing_page.js"></script>
+    <script src="/public/js/konami.js"></script>
 </body>
 
 </html>

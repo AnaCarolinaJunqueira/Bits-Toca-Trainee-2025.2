@@ -1,9 +1,9 @@
 * {
     margin: 0;
     padding: 0;
-} 
+}
 
-header{
+header {
     width: 100%;
 }
 
@@ -18,7 +18,7 @@ header{
     z-index: 1000;
 }
 
-.logo{
+.logo {
     height: 4rem;
     width: auto;
 }
@@ -46,14 +46,12 @@ header{
     border-radius: 1rem;
     padding: 0.7rem 0.8rem;
     gap: 0.5rem;
-
     text-decoration: none;
     color: #faded2;
     font-size: 1rem;
-    font-family: 'Nunito';
+    font-family: 'Nunito', sans-serif;
     font-weight: 800;
     text-align: center;
-
     transition: 0.3s;
 }
 
@@ -172,6 +170,7 @@ header{
     color: #B83556;
 }
 
+/* --- Mobile Styles --- */
 .menu-hamburger {
     display: none;
     cursor: pointer;
@@ -186,16 +185,11 @@ header{
     transition: 0.3s;
 }
 
-.menu-hamburger i:hover {
-    color: #faded2;
-    transition: 0.3s;
-}
-
 @media (max-width: 768px) {
     .menu-hamburger {
         display: flex;
     }
-    
+
     .menu-itens {
         position: absolute;
         top: -25rem;
@@ -209,37 +203,39 @@ header{
         padding: 1.2rem 30vw;
         z-index: 1001;
         transition: top 0.3s ease-out;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
-    
-    .nav-item {
-        width: 100%;
-    }
-    
-    .nav-link {
-        justify-content: space-between;
-        border-radius: 2rem;
-        font-size: 1.3rem;
-        padding: 1rem 1.2rem;
-    }
-    
-    .nav-link div {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .nav-link i {
-        font-size: 1.7rem;
-    }
-    
+
     .menu-itens.active {
         top: 5.5rem;
-        transition: top 0.3s ease-in;
     }
-}
 
-@media (max-width: 480px) {
-    .menu-itens {
-        width: 60vw;
-        padding: 1.2rem 20vw;
+    .dropdown-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dropdown-menu {
+        position: static;
+        width: 80%;
+        background: rgba(255, 255, 255, 0.1);
+        margin-top: 10px;
+        box-shadow: none;
+        display: none;
+    }
+
+    .dropdown-menu.show {
+        display: flex;
+    }
+
+    .dropdown-item {
+        color: #fff;
+        justify-content: center;
+    }
+
+    .dropdown-item:hover {
+        background: rgba(255, 255, 255, 0.2);
     }
 }

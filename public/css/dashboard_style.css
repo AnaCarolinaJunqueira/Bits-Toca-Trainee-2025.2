@@ -95,6 +95,10 @@ main {
     text-decoration: none;
 }
 
+.dashboard_content a {
+    text-decoration: none;
+}
+
 .dashboard-button-pu, .dashboard-button-pp {
     background-color: var(--color-button);
     border: none;

@@ -17,7 +17,7 @@
     <?php require 'app/views/site/navbar.view.php'; ?>
     <main>
         <div class="content">
-            <a href="/" class="button-back"><i class="bi bi-arrow-left-short"></i></a>
+            <a href="/posts" class="button-back"><i class="bi bi-arrow-left-short"></i></a>
             <h1><?= htmlspecialchars($post->TITULO) ?></h1>
             <div class="post-info">
                 <div class="user">

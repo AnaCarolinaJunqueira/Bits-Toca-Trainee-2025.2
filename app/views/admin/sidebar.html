@@ -1,80 +1,64 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="/public/css/sidebar.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public/css/sidebar.css">
-    <title>Sidebar</title>
-</head>
-<body>
-    <nav id="sidebar">
-        <div id="sidebar_content">
+<nav id="sidebar">
+    <div id="sidebar_content">
         <div id="user">
-            <img src="../../../public/assets/Jotchua Minecraft.jpg" id="user_avatar" alt="avatar">
+            <img src="/public/<?= htmlspecialchars($_SESSION['user']->AVATAR ?? 'assets/avatars/default.png') ?>" id="user_avatar" alt="Avatar do Usuário" style="object-fit: cover;">
+            
             <p id="user_infos">
                 <span class="item-description">
-                    Lorem Ipsum
+                    <?= htmlspecialchars(explode(' ', $_SESSION['user']->NOME)[0]) ?>
                 </span>
-                <span class="item-description">
-                is simply dummy text
+                <span class="item-description" style="font-size: 0.8rem; opacity: 0.7;">
+                    <?= $_SESSION['user']->IS_ADMIN ? 'Administrador' : 'Usuário' ?>
                 </span>
             </p>
         </div>
 
         <ul id="side_items">
-            <li class="side-item">
-                <a href="#">
+            <li class="side-item <?= strpos($_SERVER['REQUEST_URI'], 'dashboard') !== false ? 'active' : '' ?>">
+                <a href="/admin/dashboard">
                     <i class="fa-solid fa-grip"></i>
-                    <span class="item-description">
-                        PAINEL
-                    </span>
+                    <span class="item-description">PAINEL</span>
                 </a>
             </li>
 
-            <li class="side-item">
-                <a href="#">
+            <?php if(isset($_SESSION['user']) && $_SESSION['user']->IS_ADMIN): ?>
+            <li class="side-item <?= strpos($_SERVER['REQUEST_URI'], 'listausuarios') !== false ? 'active' : '' ?>">
+                <a href="/admin/listausuarios">
                    <i class="fa-solid fa-users"></i>
-                    <span class="item-description">
-                    USUÁRIOS
-                    </span>
+                    <span class="item-description">USUÁRIOS</span>
                 </a>
-
             </li>    
+            <?php endif; ?>
 
-                    <li class="side-item">
-                <a href="#">
+            <li class="side-item <?= strpos($_SERVER['REQUEST_URI'], 'listaposts') !== false ? 'active' : '' ?>">
+                <a href="/admin/listaposts">
                    <i class="fa-solid fa-newspaper"></i>
-                    <span class="item-description">
-                    PUBLICAÇÔES
-                    </span>
+                    <span class="item-description">PUBLICAÇÕES</span>
                 </a>
             </li>    
 
-
+            <li class="side-item">
+                <a href="/">
+                   <i class="fa-solid fa-house"></i>
+                    <span class="item-description">HOME SITE</span>
+                </a>
+            </li> 
         </ul>
 
         <button id="open_btn">
             <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
         </button>
-        </div>
+    </div>
 
-        <div id="logout">
-            <button id="logout_btn">
-                <i class="fa-solid fa-right-from-bracket" style="color: white;"></i>
-                <span class="item-description">DESLOGAR</span>
-            </button>
-        </div>
-    </nav>
+    <div id="logout">
+        <a href="/logout" id="logout_btn" style="text-decoration: none; width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-right-from-bracket" style="color: white;"></i>
+            <span class="item-description">DESLOGAR</span>
+        </a>
+    </div>
+</nav>
 
-    <main>
-        <h1>Título</h1>
-    </main>
-    <script src="../../../public/js/sidebar.js"></script>    
-</body>
-</html>
+<script src="/public/js/sidebar.js"></script>

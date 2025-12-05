@@ -4,14 +4,14 @@
 <header>
     <nav class="navbar">
         <div class="logo">
-            <a href="/"><img src="/public/assets/logo-site.png" alt="Logo Bit's Toca Clara"></a>
+            <img src="/public/assets/logo-site.png" alt="Logo Bit's Toca Clara">
         </div>
         <ul class="menu-itens">
             <li class="nav-item">
                 <a href="/" class="nav-link"><i class="bi bi-house"></i><div><p>HOME</p></div></a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link"><i class="bi bi-pencil-square"></i><div><p>POSTS</p></div></a>
+                <a href="/posts" class="nav-link"><i class="bi bi-pencil-square"></i><div><p>POSTS</p></div></a>
             </li>
             <li class="nav-item">
                 <a href="/forum" class="nav-link"><i class="bi bi-person-vcard"></i><div><p>FÓRUM</p></div></a>

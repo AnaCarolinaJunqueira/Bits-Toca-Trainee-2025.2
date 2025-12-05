@@ -1,11 +1,5 @@
-<?php
-if (!isset($_SESSION['user'])) {
-    header('Location: /login');
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +31,7 @@ if (!isset($_SESSION['user'])) {
                         <i class="bi bi-menu-button-wide button-icon-pp"></i>
                     </button>
                 </a>
-                <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] === true): ?>
+                <?php if(isset($_SESSION['user']) && $_SESSION['user']->IS_ADMIN): ?>
                     <a href="/admin/listausuarios" class="dashboard-buttons">
                         <button class="dashboard-button-pu"><p>PÁGINA DE USUÁRIOS</p>
                             <i class="bi bi-person-badge button-icon-pu"></i>

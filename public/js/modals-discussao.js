@@ -1,4 +1,4 @@
-/* --- Modal Open/Close Logic --- */
+
 function abrirModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
@@ -16,7 +16,6 @@ function fecharModal(modalId) {
             form.reset();
         }
 
-        // Reset file upload areas
         const dropAreas = modal.querySelectorAll('.file-drop-area');
         dropAreas.forEach(dropArea => {
             const oldPreview = dropArea.querySelector('img.preview');
@@ -33,7 +32,6 @@ function fecharModal(modalId) {
     }
 }
 
-/* --- Form Validation Logic --- */
 function showError(inputElement, message) {
     const formGroup = inputElement.closest('.form-group');
     if (!formGroup) return;
@@ -76,7 +74,6 @@ function validateForm(event) {
 
     const select = form.querySelector('select:not([disabled])');
     if (select && select.hasAttribute('required') && !select.value) {
-        // Handle custom select validation if needed
         isValid = false;
     }
 
@@ -85,7 +82,6 @@ function validateForm(event) {
     }
 }
 
-/* --- Custom Select Logic (for Categories) --- */
 function setCustomSelectValue(originalSelect, newValue) {
     if (!originalSelect) return;
     originalSelect.value = newValue;
@@ -99,7 +95,6 @@ function setCustomSelectValue(originalSelect, newValue) {
     }
 }
 
-/* --- Image Preview Logic --- */
 function setupImagePreviews() {
     const fileInputs = document.querySelectorAll('.file-input');
 
@@ -142,22 +137,17 @@ function setupImagePreviews() {
     });
 }
 
-/* --- Initialization --- */
 document.addEventListener('DOMContentLoaded', () => {
-    // Validate Forms
     const formNovaDiscussao = document.getElementById('form-nova-discussao');
     if (formNovaDiscussao) formNovaDiscussao.addEventListener('submit', validateForm);
 
     const formEditDiscussao = document.getElementById('form-editar-discussao');
     if (formEditDiscussao) formEditDiscussao.addEventListener('submit', validateForm);
 
-    // Set up Image Previews
     setupImagePreviews();
     
-    // Initialize Custom Selects
     initializeCustomSelects();
 
-    // Logic for "Edit Discussion" Button
     document.body.addEventListener('click', event => {
         const editButton = event.target.closest('.btn-edit-discussion');
         if (editButton) {
@@ -197,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- GOTO PAGE MODAL LOGIC ---
     const gotoBtns = document.querySelectorAll('.open-goto-modal');
     gotoBtns.forEach(btn => {
         btn.addEventListener('click', () => {

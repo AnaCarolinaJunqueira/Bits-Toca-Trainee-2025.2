@@ -8,11 +8,16 @@
 
     <link rel="stylesheet" href="/public/css/listaposts.css">
     <link rel="stylesheet" href="/public/css/modals.css">
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Roboto:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    
+    <style>
+        body { display: flex; overflow-x: hidden; }
+        main { flex: 1; width: 100%; }
+        @media (max-width: 768px) { body { display: block; } }
+    </style>
 </head>
 
 <body>
@@ -30,6 +35,7 @@
                 </div>
                 <div class="espaço"> </div>
             </div>
+            
             <div class="botoes">
                 <form method="GET" action="/admin/listaposts" class="barra-pesquisa">
                     <img src="/public/assets/icon_pesquisa.png" alt="icone de pesquisa">
@@ -41,6 +47,7 @@
                     <i class="bi bi-plus-circle"></i>
                 </div>
             </div>
+
             <div class="container-tabela">
                 <div class="tabela">
                     <table>
@@ -121,7 +128,6 @@
     <?php require 'app/views/admin/modals/modal-deletar-post.html'; ?>
     <?php require 'app/views/admin/modals/modal-visualizar-post.html'; ?>
     <?php require 'app/views/admin/modals/modal-goto-page.html'; ?>
-
     <script src="/public/js/listaposts.js"></script>
     <script src="/public/js/modals.js"></script>
 </body>
