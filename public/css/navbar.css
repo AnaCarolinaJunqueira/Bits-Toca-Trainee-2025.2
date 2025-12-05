@@ -76,64 +76,101 @@ header{
     transition: 0.3s;
 }
 
+/* --- DROPDOWN STYLES --- */
+
+.dropdown-container {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
 .nav-link-user {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: #b83556;
-    height: 4rem;
-    width: 4rem;
+    border-radius: 1rem;
+    padding: 0.7rem 15px 0.7rem 5px;
+    gap: 10px;
+    height: 1.2rem;
+    min-width: 140px;
+    transition: transform 0.2s;
+    border: 2px solid transparent;
+}
+
+.nav-link-user:hover {
+    border-color: #FADED2;
+}
+
+.nav-link-user .avatar-img {
+    width: 2.0rem;
+    height: 2.0rem;
     border-radius: 50%;
-    padding: 0.2rem;
-    
-    /* text-decoration: none;
-    color: #faded2;
-    font-family: 'Nunito';
+    object-fit: cover;
+    border: 2px solid #FADED2;
+}
+
+.user-name-display {
+    color: #FADED2;
+    font-family: 'Nunito', sans-serif;
     font-weight: 800;
-    text-align: center; */
-    
-    transition: 0.3s;
+    font-size: 1rem;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.nav-link-user img {
-    /* height: 100%;
-    width: auto;
-    border-radius: 50%; */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: calc(132px + 2rem);
     display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1001;
 }
 
-.logout-content {
-    /* display: none; */
+.dropdown-menu.show {
     display: flex;
-    flex-direction: column;
-    line-height: 1.5rem;
-    /* gap: 0.3rem; */
-    
-    /* font-size: 0.9rem; */
-    
-    /* align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    color: #faded2;
-    transition: 0.3s; */
 }
 
-/* .nav-link-user:hover img {
-    display: none;
-} */
-
-/* .logout-content:hover {
+.dropdown-item {
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
     display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-
-    
     align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    color: #faded2;
-    transition: 0.3s;
-} */
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.dropdown-item i {
+    font-size: 1.1rem;
+    color: #55768C;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-item.logout-item {
+    color: #B83556;
+    border-top: 1px solid #eee;
+}
+
+.dropdown-item.logout-item i {
+    color: #B83556;
+}
 
 .menu-hamburger {
     display: none;
