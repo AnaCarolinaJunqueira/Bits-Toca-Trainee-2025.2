@@ -52,37 +52,6 @@ class QueryBuilder
         }
     }
 
-    public function countLikesPost($post_id)
-    {
-        $sql = "select COUNT(*) from curtidas WHERE POST_ID = :post_id";
-
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['post_id' => $post_id]);
-            return $stmt->fetchColumn();
-
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function findLike($post_id, $user_id)
-    {
-        $sql = "SELECT * from curtidas WHERE POST_ID = :post_id AND USER_ID = :user_id";
-
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([
-                'post_id' => $post_id,
-                'user_id' => $user_id
-            ]);
-            return $stmt->fetch(PDO::FETCH_OBJ);
-
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
     public function selectPaginated($table, $limit, $offset, $searchColumn = null, $searchTerm = null, $autor_id = null, $is_admin = null)
     {
         $limit = (int) $limit;
@@ -366,6 +335,53 @@ class QueryBuilder
 
         } catch (Exception $e) {
             die($e->getMessage());
+        }
+    }
+
+    public function countLikesPost($post_id)
+    {
+        $sql = "select COUNT(*) from curtidas WHERE POST_ID = :post_id";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['post_id' => $post_id]);
+            return $stmt->fetchColumn();
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function findLike($post_id, $user_id)
+    {
+        $sql = "SELECT * from curtidas WHERE POST_ID = :post_id AND USER_ID = :user_id";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([
+                'post_id' => $post_id,
+                'user_id' => $user_id
+            ]);
+            return $stmt->fetch(PDO::FETCH_OBJ);
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function getPostComments($postId)
+    {
+        $sql = "SELECT c.*, u.NOME as AUTOR_NOME, u.AVATAR 
+                FROM Comentarios c
+                JOIN Usuarios u ON c.USER_ID = u.ID
+                WHERE c.POST_ID = :post_id
+                ORDER BY c.DATA_CRIACAO DESC";
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['post_id' => $postId]);
+            return $stmt->fetchAll(PDO::FETCH_CLASS);
+        } catch (Exception $e) {
+            return [];
         }
     }
 }

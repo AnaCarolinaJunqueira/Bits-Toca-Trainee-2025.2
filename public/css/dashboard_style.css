@@ -19,7 +19,7 @@
     box-sizing: border-box;
 }
 
-body {
+main {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/fundo.png');
     background-size: contain;
     font-family: 'VT323', monospace;

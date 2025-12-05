@@ -377,7 +377,7 @@ fieldset {
     font-size: 0.85rem;
     font-weight: 500;
     margin-top: 0.2rem;
-    display: none; /* Hidden by default */
+    display: none;
     text-align: left;
 }
 
@@ -452,7 +452,7 @@ fieldset {
 
 .password-wrapper input {
     width: 100%;
-    padding-right: 40px; /* Space for the eye icon */
+    padding-right: 40px;
 }
 
 .toggle-password {

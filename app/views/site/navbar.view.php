@@ -39,7 +39,7 @@
                 <li class="nav-item">
                     <a href="/logout" class="nav-link">
                         <!-- <img src="/public/assets/images/1763943169_6923a301eb2fd_Avatar2.jpeg" alt="User Avatar" class="avatar-img"> -->
-                        <i class="bi bi-door-open"></i>
+                        <i class="bi bi-box-arrow-right"></i>
                         <div>
                             <p>LOGOUT</p>
                         </div>

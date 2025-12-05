@@ -10,7 +10,7 @@ class LoginController
 
     public function index()
     {
-        return view('site/loginpage');
+        return view('site/login');
     }
 
     public function login()

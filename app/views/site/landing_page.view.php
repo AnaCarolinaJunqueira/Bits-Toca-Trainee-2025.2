@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -38,7 +35,7 @@ session_start();
                 <div class="featured-container">
                     <?php if (!empty($featuredPosts)): ?>
                         <?php foreach ($featuredPosts as $post): ?>
-                            <a href="/individual_post?id=<?= $post->ID ?>" class="featured-slide">
+                            <a href="/post?id=<?= $post->ID ?>" class="featured-slide">
                                 <img src="/public/<?= htmlspecialchars($post->IMAGEM) ?>" alt="<?= htmlspecialchars($post->TITULO) ?>" class="featured-image">
                                 <div class="featured-text">
                                     <p class="featured-slide-title"><?= htmlspecialchars($post->TITULO) ?></p>
@@ -59,8 +56,7 @@ session_start();
                         </div>
                     <?php endif; ?>
                 </div>
-                <div class="featured-dots">
-                    </div>
+                <div class="featured-dots"></div>
             </div>
         </section>
 
@@ -69,7 +65,7 @@ session_start();
             <div class="carousel">
                 <?php if (!empty($recentPosts)): ?>
                     <?php foreach ($recentPosts as $post): ?>
-                        <a href="/individual_post?id=<?= $post->ID ?>" class="carousel-item">
+                        <a href="/post?id=<?= $post->ID ?>" class="carousel-item">
                             <img src="/public/<?= htmlspecialchars($post->IMAGEM_RECENT) ?>" alt="<?= htmlspecialchars($post->TITULO) ?>">
                             <div class="carousel-item-glass">
                                 <p class="carousel-item-title"><?= htmlspecialchars($post->TITULO) ?></p>
@@ -82,7 +78,7 @@ session_start();
                         </a>
                     <?php endforeach; ?>
                 <?php else: ?>
-                     <p style="text-align: center; color: white;">Nenhum post recente encontrado.</p>
+                    <p style="text-align: center; color: white;">Nenhum post recente encontrado.</p>
                 <?php endif; ?>
             </div>
             <div class="carousel-controls">

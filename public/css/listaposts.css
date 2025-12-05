@@ -4,8 +4,14 @@
     box-sizing: border-box;
 }
 
-main {
+ body {
+    display: flex;
+    overflow-x: hidden;
     background: linear-gradient(#55768C, #2B3B46);
+}
+
+main {
+    width: 100%;
     padding: 5vh 10vw;
     min-height: 100vh;
     display: flex;

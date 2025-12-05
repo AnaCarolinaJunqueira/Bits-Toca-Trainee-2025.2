@@ -10,13 +10,15 @@ class PostController
 
     public function index()
     {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
         $database = App::get('database');
         $limit = 5;
         $page = isset($_GET['page']) && (int)$_GET['page'] > 0 ? (int)$_GET['page'] : 1;
 
         $searchTerm = trim(isset($_GET['search']) ? $_GET['search'] : '') ?? null;
         $searchColumn = $searchTerm ? ['TITULO', 'CONTEUDO'] : null;
-
 
         $total_posts = $database->countAll('posts',$searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
 
@@ -32,7 +34,6 @@ class PostController
         $offset = ($page - 1) * $limit;
 
         $posts = $database->selectPaginated('posts', $limit, $offset, $searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
-
 
         return view('admin/listaposts', [
             'posts' => $posts,
@@ -60,8 +61,6 @@ class PostController
         $author = $database->findById('usuarios', $postIndividual->AUTOR_ID);
         $totalLikes = $database->countLikesPost($id);
 
-        session_start();
-
         $isLike = false;
         if (isset($_SESSION['user'])) {
             $liked = $database->findLike($postIndividual->ID, $_SESSION['user']->ID);            
@@ -70,45 +69,15 @@ class PostController
             }
         }
 
-        // $comentarios = $database->getPostsComments($id);
+        $comentarios = $database->getPostComments($id);
 
         return view('site/individual_post', [
-            'individual_post' => $postIndividual,
+            'post' => $postIndividual,
             'author_post' => $author,
             'total_likes' => $totalLikes,
             'is_like' => $isLike,
-            // 'comentarios' => $comentarios
+            'comments' => $comentarios
         ]);
-    }
-
-    public function like()
-    {
-        session_start();
-        if (!isset($_SESSION['user'])) {
-            return redirect('login');
-        }
-
-        $database = App::get('database');
-        $postId = $_GET['post_id'] ?? null;
-        $userId = $_GET['user_id'] ?? null;
-
-        if (!$postId || !$userId) {
-            redirect('');
-        }
-
-        $liked = $database->findLike($postId, $userId);
-        if ($liked) {
-            $database->deleteById('curtidas', $liked->ID);
-        } else {
-            $parameters = [
-                'POST_ID' => $postId,
-                'USER_ID' => $userId,
-                'DATA_CURTIDA' => date('Y-m-d H:i:s')
-            ];
-            $database->insert('curtidas', $parameters);
-        }
-
-        return redirect('individual_post?id=' . $postId);
     }
 
     private function uploadImage($fileInputName) {
@@ -183,6 +152,7 @@ class PostController
             'CONTEUDO' => $_POST['conteudo'],
             'AVALIACAO' => $_POST['rating'],
             'CATEGORIA' => $_POST['categoria'],
+            'DATA_POSTAGEM' => $post->DATA_POSTAGEM,
             'DATA_EDICAO' => date('Y-m-d H:i:s'),
             'IMAGEM' => $imageFeaturedPath,
             'IMAGEM_RECENT' => $imageRecentPath
@@ -212,5 +182,110 @@ class PostController
         $database->deleteById('Posts', $id);
 
         return redirect('admin/listaposts');
+    }
+
+    public function storeComment()
+    {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
+
+        $database = App::get('database');
+        
+        $postId = $_POST['post_id'] ?? null;
+        $content = trim($_POST['conteudo'] ?? '');
+        $userId = $_SESSION['user']->ID;
+
+        if ($postId && !empty($content)) {
+            $parameters = [
+                'POST_ID' => $postId,
+                'USER_ID' => $userId,
+                'CONTEUDO' => $content,
+                'DATA_CRIACAO' => date('Y-m-d H:i:s')
+            ];
+
+            $database->insert('Comentarios', $parameters);
+        }
+
+        if ($postId) {
+            return redirect("post?id={$postId}");
+        }
+        
+        return redirect('posts');
+    }
+
+    public function updateComment()
+    {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
+
+        $database = App::get('database');
+        $id = $_POST['id'];
+        $postId = $_POST['post_id'];
+        $conteudo = $_POST['conteudo'];
+        $userId = $_SESSION['user']->ID;
+        $isAdmin = $_SESSION['user']->IS_ADMIN;
+
+        $comment = $database->findById('Comentarios', $id);
+
+        if ($comment && ($comment->USER_ID == $userId || $isAdmin == 1)) {
+            $parameters = [
+                'CONTEUDO' => $conteudo,
+            ];
+            $database->update('Comentarios', $id, $parameters);
+        }
+
+        return redirect("post?id={$postId}");
+    }
+
+    public function deleteComment()
+    {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
+
+        $database = App::get('database');
+        $id = $_POST['id'];
+        $postId = $_POST['post_id'];
+        $userId = $_SESSION['user']->ID;
+        $isAdmin = $_SESSION['user']->IS_ADMIN;
+
+        $comment = $database->findById('Comentarios', $id);
+
+        if ($comment && ($comment->USER_ID == $userId || $isAdmin == 1)) {
+            $database->deleteById('Comentarios', $id);
+        }
+
+        return redirect("post?id={$postId}");
+    }
+    
+    public function like()
+    {
+        if (!isset($_SESSION['user'])) {
+            return redirect('login');
+        }
+
+        $database = App::get('database');
+        $postId = $_GET['post_id'] ?? null;
+        $userId = $_SESSION['user']->ID ?? null;
+
+        if (!$postId || !$userId) {
+            redirect('');
+        }
+
+        $liked = $database->findLike($postId, $userId);
+        if ($liked) {
+            $database->deleteById('curtidas', $liked->ID);
+        } else {
+            $parameters = [
+                'POST_ID' => $postId,
+                'USER_ID' => $userId,
+                'DATA_CURTIDA' => date('Y-m-d H:i:s')
+            ];
+            $database->insert('curtidas', $parameters);
+        }
+
+        return redirect('post?id=' . $postId);
     }
 }

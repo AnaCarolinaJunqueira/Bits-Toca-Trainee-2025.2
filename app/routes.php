@@ -20,10 +20,6 @@ $router->post('admin/listaposts/update', 'PostController@update');
 
 $router->post('admin/listaposts/delete', 'PostController@delete');
 
-$router->get('individual_post', 'PostController@show');
-
-$router->get('like', 'PostController@like');
-
 $router->get('forum', 'ForumController@index');
 
 $router->get('forum/discussion', 'ForumController@show');
@@ -59,3 +55,13 @@ $router->post('login', 'LoginController@login');
 $router->get('logout', 'LoginController@logout');
 
 $router->get('admin/dashboard', 'LoginController@dashboard');
+
+$router->post('post/comment/store', 'PostController@storeComment');
+
+$router->post('post/comment/update', 'PostController@updateComment');
+
+$router->post('post/comment/delete', 'PostController@deleteComment');
+
+$router->get('post', 'PostController@show');
+
+$router->get('post/like', 'PostController@like');
