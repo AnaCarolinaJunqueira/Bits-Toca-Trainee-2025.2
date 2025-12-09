@@ -38,20 +38,6 @@ $router->post('forum/reply/delete', 'ForumController@deleteReply');
 
 $router->post('forum/reply/store', 'ForumController@storeReply');
 
-$router->get('admin/listausuarios', 'UserController@index');
-
-$router->get('admin/listausuarios/store', 'UserController@store');
-
-$router->get('admin/listausuarios/update', 'UserController@update');
-
-$router->get('admin/listausuarios/delete', 'UserController@delete');
-
-$router->post('admin/listausuarios/store', 'UserController@store');
-
-$router->post('admin/listausuarios/update', 'UserController@update');
-
-$router->post('admin/listausuarios/delete', 'UserController@delete');
-
 $router->get('login', 'LoginController@index');
 
 $router->post('login', 'LoginController@login');
@@ -67,3 +53,7 @@ $router->post('post/comment/update', 'PostController@updateComment');
 $router->post('post/comment/delete', 'PostController@deleteComment');
 
 $router->post('post/like', 'PostController@toggleLike');
+
+$router->get('admin/users', 'UserController@index');
+
+$router->post('/admin/listausuarios/store', 'UserController@create');
