@@ -12,12 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    
-    <style>
-        body { display: flex; overflow-x: hidden; }
-        main { flex: 1; width: 100%; }
-        @media (max-width: 768px) { body { display: block; } }
-    </style>
 </head>
 
 <body>
@@ -114,9 +108,9 @@
                 <!-- FIGURINHAS ALEATORIAS -->
                 <?php $figs = range(1, 50);
                 $random_keys = array_rand($figs, 3); ?>
-                <img src="/public/assets/figurinhas/<?= $figs[$random_keys[0]] ?>.png" class="figurinha" id="fig1" alt="figurinha 1">
-                <img src="/public/assets/figurinhas/<?= $figs[$random_keys[1]] ?>.png" class="figurinha" id="fig2" alt="figurinha 2">
-                <img src="/public/assets/figurinhas/<?= $figs[$random_keys[2]] ?>.png" class="figurinha" id="fig3" alt="figurinha 3">
+                <img src="/public/assets/figurinhas/<?= $figs[$random_keys[0]] ?>.png" class="figurinha" id="fig1" alt="figurinha 1" onclick="classList.toggle('active');">
+                <img src="/public/assets/figurinhas/<?= $figs[$random_keys[1]] ?>.png" class="figurinha" id="fig2" alt="figurinha 2" onclick="classList.toggle('active');">
+                <img src="/public/assets/figurinhas/<?= $figs[$random_keys[2]] ?>.png" class="figurinha" id="fig3" alt="figurinha 3" onclick="classList.toggle('active');">
 
                 <?php require 'app/views/admin/components/paginacao.php'; ?>
             </div>
@@ -128,7 +122,6 @@
     <?php require 'app/views/admin/modals/modal-deletar-post.html'; ?>
     <?php require 'app/views/admin/modals/modal-visualizar-post.html'; ?>
     <?php require 'app/views/admin/modals/modal-goto-page.html'; ?>
-    <script src="/public/js/listaposts.js"></script>
     <script src="/public/js/modals.js"></script>
 </body>
 </html>

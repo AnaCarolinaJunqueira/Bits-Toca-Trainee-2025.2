@@ -27,7 +27,7 @@ class QueryBuilder
         }
     }
 
-    public function countAll($table, $searchColumn = null, $searchTerm = null, $autor_id, $is_admin)
+    public function countAll($table, $searchColumn = null, $searchTerm = null, $autor_id = null, $is_admin = null)
     {
         $sql = "select COUNT(*) from {$table}";
         $parameters = [];
@@ -58,6 +58,7 @@ class QueryBuilder
         $offset = (int) $offset;
         $parameters = [];
         $whereClause = "";
+        $whereUsuario = "";
 
         if ($searchColumn && $searchTerm) {
             $whereClause = " WHERE {$searchColumn} LIKE :searchTerm";

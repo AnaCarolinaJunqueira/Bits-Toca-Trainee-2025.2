@@ -20,7 +20,7 @@ class PostController
         $searchTerm = trim(isset($_GET['search']) ? $_GET['search'] : '') ?? null;
         $searchColumn = $searchTerm ? 'TITULO' : null;
 
-        $total_posts = $database->countAll('posts',$searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
+        $total_posts = $database->countAll('posts',$searchColumn, $searchTerm, $_SESSION['user']->ID, $_SESSION['user']->IS_ADMIN);
 
         $total_pages = ceil($total_posts / $limit);
 
@@ -33,7 +33,7 @@ class PostController
 
         $offset = ($page - 1) * $limit;
 
-        $posts = $database->selectPaginated('posts', $limit, $offset, $searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
+        $posts = $database->selectPaginated('posts', $limit, $offset, $searchColumn, $searchTerm, $_SESSION['user']->ID, $_SESSION['user']->IS_ADMIN);
 
         return view('admin/listaposts', [
             'posts' => $posts,
@@ -111,7 +111,7 @@ class PostController
             'IMAGEM' => $imageFeaturedPath,
             'IMAGEM_RECENT' => $imageRecentPath,
             'CATEGORIA' => $_POST['categoria'],
-            'AUTOR_ID' => $_SESSION['id'],
+            'AUTOR_ID' => $_SESSION['user']->ID,
             'DATA_POSTAGEM' => date('Y-m-d H:i:s')
         ];
 
@@ -153,6 +153,7 @@ class PostController
             'CATEGORIA' => $_POST['categoria'],
             'DATA_POSTAGEM' => $post->DATA_POSTAGEM,
             'DATA_EDICAO' => date('Y-m-d H:i:s'),
+            'AUTOR_ID' => $post->AUTOR_ID,
             'IMAGEM' => $imageFeaturedPath,
             'IMAGEM_RECENT' => $imageRecentPath
         ];

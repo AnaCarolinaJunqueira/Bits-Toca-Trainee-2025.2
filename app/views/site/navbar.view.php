@@ -33,7 +33,7 @@
                            data-id="<?= $_SESSION['user']->ID ?>"
                            data-nome="<?= htmlspecialchars($_SESSION['user']->NOME) ?>"
                            data-email="<?= htmlspecialchars($_SESSION['user']->EMAIL) ?>"
-                           data-avatar="<?= htmlspecialchars($_SESSION['user']->AVATAR) ?>"
+                           data-avatar="<?= htmlspecialchars($_SESSION['user']->AVATAR) ?>">
                             <i class="bi bi-person-gear"></i> Editar Perfil
                         </a>
                         <a href="/logout" class="dropdown-item logout-item">
@@ -52,4 +52,7 @@
         </div>
     </nav>
 </header>
+
+<?php if(isset($_SESSION['user'])) require 'app/views/admin/modals/modal-editar-usuario-notadmin.html'; ?>
+<script src="/public/js/modals-usuarios.js"></script>
 <script src="/public/js/navbar.js"></script>
