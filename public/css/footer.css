@@ -4,54 +4,59 @@
      padding: 0;
  }
 
+
+
  footer {
      background-color: #55768C;
-     width: 100%;
-     font-family: 'VT323', monospace;
-}
-    
-.FooterPrincipal {
-    display: flex;
-     justify-content: center;
+     width: 100vw;
+ }
+
+ .FooterPrincipal {
+     display: flex;
+     justify-content: space-between;
      align-items: center;
-     /* flex-direction: row; */
-     /* padding: 20px 0; */
+     flex-direction: row;
+     padding: 20px 0;
      color: #faded2;
      padding: 0 50px;
-     min-height: 200px;
-     height: auto;
+     height: 200px;
  }
 
  .LogoBitsToca.active-content {
      overflow-y: auto;
-     /* padding-top: 20px; */
+     padding-top: 20px;
      line-height: 1.5;
      display: flex;
      align-items: right;
  }
 
- /* .LogoBitsToca.active-content p {
+ .LogoBitsToca.active-content p {
      font-size: 0.7rem;
      margin-bottom: 0.3rem;
- } */
+ }
 
- /* .LogoBitsToca.active-content.centralizado {
+ .LogoBitsToca.active-content.centralizado {
+
      justify-content: center;
      text-align: center;
+
  }
 
  .LogoBitsToca.active-content.valores {
-     justify-content: center;
-     text-align: center;
- } */
 
- /* .LogoBitsToca.active-content strong {
+     justify-content: center;
+     text-align: left;
+ }
+
+ .LogoBitsToca.active-content strong {
      color: #B83556;
- } */
+ }
+
 
  .LogoBitsToca img {
-     width: 7em;
+     width: 150px;
      height: auto;
+
  }
 
  .MVV {
@@ -62,12 +67,15 @@
      padding: 10px 50px;
      border-top: 2px solid rgba(51, 51, 51, 0.35);
      font-size: 1.5rem;
+
  }
 
  .Logos {
      display: flex;
      flex-direction: row;
      gap: 10px;
+
+
  }
 
  .Logos img {
@@ -75,11 +83,7 @@
      height: auto;
  }
 
-.MVVBUTTON {
-    width: 33%;
- }
-
- .MVVBUTTON p {
+ .MVVBUTTON {
      cursor: pointer;
  }
 
@@ -101,34 +105,26 @@
      align-items: center;
      gap: 10px;
      font-size: 1.5rem;
-     text-wrap: nowrap;
  }
 
  .LogoBitsToca {
-    width: 60rem;
-    max-width: 100%;
-    /* margin-left: 170px; */
-    font-size: 1.2rem;
-    text-align: center;
-    justify-items: center;
+    max-width: 400px;
+    min-width: 0.33vw;
+     margin-left: 170px;
+     font-size: 1.2rem;
+     text-align: center;
  }
 
  .Redes-Sociais {
      display: flex;
      flex-direction: column;
      gap: 1vw;
-    justify-self: left;
  }
 
  .Contato {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5vw;
-    justify-self: right;
- }
-
- .space {
-    width: 50%;
+     display: flex;
+     flex-direction: column;
+     gap: 0.5vw;
  }
 
  .missao {
@@ -150,21 +146,14 @@
      font-size: 1.5rem;
  }
 
- #visao {
-    text-align: center;
- }
- #valores {
-    text-align: right;
- }
-
- @media screen and (max-width: 1300px) {
+ @media screen and (max-width: 1100px) {
      .FooterPrincipal {
-         /* padding: 20px 30px; */
+         padding: 20px 30px;
      }
 
-    .LogoBitsToca {
-        width: 30rem;
-    }
+     .LogoBitsToca {
+         margin-left: 100px;
+     }
 
      .MVV {
          padding: 10px 30px;
@@ -175,16 +164,15 @@
      }
  }
 
- @media screen and (max-width: 934px) {
-     /* .FooterPrincipal {
+ @media screen and (max-width: 824px) {
+     .FooterPrincipal {
          padding: 20px 20px;
-        min-height: fit-content;
-     } */
+         height: auto;
+     }
 
-    .LogoBitsToca {
-        width: 50%;
-        padding: 5px;
-    }
+     .LogoBitsToca {
+         margin-left: 20px;
+     }
 
      .MVV {
          padding: 10px 20px;
@@ -204,18 +192,8 @@
      }
 
      .LogoBitsToca {
-         justify-content: center;
-         width: 100%;
-         padding: 0;
+         margin-left: 0;
      }
-
-     .space {
-        width: 100%;
-     }
-     
-    .Contato, .Redes-Sociais {
-        justify-self: center;
-    }
 
      .MVV {
          gap: 15px;
@@ -231,6 +209,8 @@
          height: 40px;
          width: 37px;
      }
+
+     ;
  }
 
  @media screen and (max-width: 480px) {
