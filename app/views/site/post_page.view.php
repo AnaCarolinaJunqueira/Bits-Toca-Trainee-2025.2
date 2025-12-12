@@ -21,7 +21,6 @@
         <h1>RECENTES</h1>
     </div>
 
-    <div class="container-filtro-pesquisa">
     <div id="filtro-pesquisa">
         <div id="filtro">
             <div class="form-group" style="margin-bottom: 0; min-width: 220px;">
@@ -64,7 +63,6 @@
             </button>
             <img id="fliperama-icon" src="/public/assets/download (3)-Photoroom 1.png" alt="Arcade">
         </form>
-    </div>
     </div>
 
     <div id="posteres">
