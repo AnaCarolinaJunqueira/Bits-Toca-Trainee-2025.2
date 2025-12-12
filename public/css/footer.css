@@ -1,234 +1,459 @@
- * {
-     /* border:1px solid red; */
-     margin: 0;
-     padding: 0;
- }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*border: 1px solid red;*/
+}
 
+footer {
+    background-color: #55768C;
+    width: 100%;
+}
 
+.FooterPrincipal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 20px 0;
+    color: #faded2;
+    height: 200px;
+}
 
- footer {
-     background-color: #55768C;
-     width: 100vw;
- }
+.LogoBitsToca.active-content {
+    height: 100%;
+    width: calc(100%/4);
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
- .FooterPrincipal {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
-     flex-direction: row;
-     padding: 20px 0;
-     color: #faded2;
-     padding: 0 50px;
-     height: 200px;
- }
+.LogoBitsToca.active-content p {
+    font-size: 0.7rem;
+    margin-bottom: 0.3rem;
+}
 
- .LogoBitsToca.active-content {
-     overflow-y: auto;
-     padding-top: 20px;
-     line-height: 1.5;
-     display: flex;
-     align-items: right;
- }
+.LogoBitsToca.active-content.centralizado {
+    justify-content: center;
+    text-align: center;
+}
 
- .LogoBitsToca.active-content p {
-     font-size: 0.7rem;
-     margin-bottom: 0.3rem;
- }
+.LogoBitsToca.active-content.valores {
+    justify-content: center;
+    text-align: left;
+}
 
- .LogoBitsToca.active-content.centralizado {
+.LogoBitsToca.active-content strong {
+    color: #B83556;
+}
 
-     justify-content: center;
-     text-align: center;
+.LogoBitsToca img {
+    width: 150px;
+    height: auto;
+}
 
- }
+.MVV {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #Faded2;
+    padding: 10px 0px;
+    border-top: 2px solid rgba(51, 51, 51, 0.35);
+    font-size: 1.5rem;
+}
 
- .LogoBitsToca.active-content.valores {
+.Logos {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
 
-     justify-content: center;
-     text-align: left;
- }
+.Logos img {
+    width: 30px;
+    height: auto;
+}
 
- .LogoBitsToca.active-content strong {
-     color: #B83556;
- }
+.MVVBUTTON {
+    height: 100%;
+    width: calc(100%/4);
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
+.Redes-Sociais h2 {
+    font-family: VT323, monospace;
+    font-size: 2.0rem;
+    text-align: center;
+}
 
- .LogoBitsToca img {
-     width: 150px;
-     height: auto;
+.Contato h2 {
+    justify-content: center;
+    font-family: VT323, monospace;
+    font-size: 2.0rem;
+    text-align: center;
+}
 
- }
+.Contato p {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-left: 0;
+    gap: 10px;
+    font-size: 1.1rem;
+}
 
- .MVV {
-     display: flex;
-     flex-direction: row;
-     justify-content: space-between;
-     color: #Faded2;
-     padding: 10px 50px;
-     border-top: 2px solid rgba(51, 51, 51, 0.35);
-     font-size: 1.5rem;
+.Contato img {
+    width: 25px;
+    height: auto;
+}
 
- }
+.LogoBitsToca {
+    width: calc(2*(100%/4));
+    height: 100%;
+    font-size: 1.2rem;
+    padding-left: 0.2%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
 
- .Logos {
-     display: flex;
-     flex-direction: row;
-     gap: 10px;
+.LogoBitsToca #logo-footer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
 
+.LogoBitsToca #logo-footer[hidden] {
+    display: none !important;
+}
 
- }
+.Redes-Sociais {
+    height: 100%;
+    width: calc(100%/4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vw;
+}
 
- .Logos img {
-     width: 30px;
-     height: auto;
- }
+.Contato {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    height: 100%;
+    width: calc(100%/4);
+    justify-content: center;
+}
 
- .MVVBUTTON {
-     cursor: pointer;
- }
+.missao,
+.visao,
+.valores {
+    display: none;
+}
 
- .Redes-Sociais h2 {
-     font-family: VT323, monospace;
-     font-size: 2.0rem;
-     text-align: center;
- }
+#missao,
+#visao,
+#valores {
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+}
 
- .Contato h2 {
-     justify-content: center;
-     font-family: VT323, monospace;
-     font-size: 2.0rem;
-     text-align: center;
- }
+#missao-footer p,
+#visao-footer p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+}
 
- .Contato p {
-     display: flex;
-     align-items: center;
-     gap: 10px;
-     font-size: 1.5rem;
- }
+#valores-footer p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+}
 
- .LogoBitsToca {
-    max-width: 400px;
-    min-width: 0.33vw;
-     margin-left: 170px;
-     font-size: 1.2rem;
-     text-align: center;
- }
+@media (max-width: 1300px) {
+    .Redes-Sociais,
+    .Contato,
+    .LogoBitsToca,
+    .LogoBitsToca.active-content,
+    .MVVBUTTON {
+        width: calc(100% / 3);
+    }
 
- .Redes-Sociais {
-     display: flex;
-     flex-direction: column;
-     gap: 1vw;
- }
+    .hero-overlay {
+        width: 60vw;
+    }
 
- .Contato {
-     display: flex;
-     flex-direction: column;
-     gap: 0.5vw;
- }
+    .featured-post {
+        width: 90%;
+    }
 
- .missao {
-     display: none;
- }
+    .featured-post img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
 
- .visao {
-     display: none;
- }
+    .carousel-section {
+        width: 95%;
+    }
+}
 
- .valores {
-     display: none;
- }
+@media (max-width: 1100px) {
+    .FooterPrincipal {
+        padding: 20px 30px;
+    }
 
- #missao,
- #visao,
- #valores {
-     font-family: 'VT323', monospace;
-     font-size: 1.5rem;
- }
+    .MVV {
+        padding: 10px 30px;
+    }
 
- @media screen and (max-width: 1100px) {
-     .FooterPrincipal {
-         padding: 20px 30px;
-     }
+    .Contato p {
+        font-size: 1.1rem;
+    }
+}
 
-     .LogoBitsToca {
-         margin-left: 100px;
-     }
+@media (max-width: 1024px) {
+    .hero-with-image {
+        height: auto;
+        background-size: cover;
+        min-height: 60vh;
+    }
 
-     .MVV {
-         padding: 10px 30px;
-     }
+    .hero-with-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-     .Contato p {
-         font-size: 1.3rem;
-     }
- }
+    .hero-overlay {
+        width: 80vw;
+        height: auto;
+        padding: 40px;
+    }
 
- @media screen and (max-width: 824px) {
-     .FooterPrincipal {
-         padding: 20px 20px;
-         height: auto;
-     }
+    .hero-overlay h1 {
+        font-size: 3rem;
+    }
 
-     .LogoBitsToca {
-         margin-left: 20px;
-     }
+    .hero-overlay p {
+        font-size: 1.2rem;
+    }
 
-     .MVV {
-         padding: 10px 20px;
-     }
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
 
-     .Contato p {
-         font-size: 1.0rem;
-     }
- }
+    .featured-post {
+        width: 95%;
+    }
 
- @media screen and (max-width: 768px) {
-     .FooterPrincipal {
-         flex-direction: column;
-         align-items: center;
-         text-align: center;
-         gap: 20px;
-     }
+    .featured-text {
+        font-size: 1.5rem;
+        height: auto;
+        min-height: 60px;
+    }
 
-     .LogoBitsToca {
-         margin-left: 0;
-     }
+    .featured-description {
+        font-size: 1rem;
+    }
 
-     .MVV {
-         gap: 15px;
-         padding: 10px 20px;
-     }
+    .carousel {
+        gap: 15px;
+    }
 
-     .Redes-Sociais {
-         padding-top: 30px;
-         gap: 30px;
-     }
+    .carousel-item {
+        flex: 0 0 calc((100% - 30px) / 3);
+        width: calc((100% - 30px) / 3);
+    }
 
-     .Logos img {
-         height: 40px;
-         width: 37px;
-     }
+    .carousel-item img {
+        object-fit: cover;
+    }
+}
 
-     ;
- }
+@media (max-width: 824px) {
+    .FooterPrincipal {
+        padding: 20px 20px;
+        height: auto;
+        min-height: 200px;
+    }
 
- @media screen and (max-width: 480px) {
-     .FooterPrincipal {
-         padding: 15px;
-     }
+    .MVV {
+        padding: 10px 20px;
+    }
 
-     .MVV {
-         padding: 10px 15px;
-         font-size: 1.2rem;
-     }
+    .Contato p {
+        font-size: 1.0rem;
+    }
+}
 
-     .Redes-Sociais h2,
-     .Contato h2 {
-         font-size: 2.0rem;
-     }
+@media (max-width: 768px) {
+    .FooterPrincipal {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        height: auto;
+        padding-bottom: 40px;
+    }
 
-     .Contato p {
-         font-size: 1.2rem;
-     }
- }
+    .LogoBitsToca,
+    .Redes-Sociais,
+    .Contato,
+    .MVVBUTTON,
+    .LogoBitsToca.active-content {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+    }
+
+    .LogoBitsToca {
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .MVV {
+        gap: 15px;
+        padding: 10px 20px;
+        justify-content: center;
+    }
+
+    .Redes-Sociais {
+        padding-top: 30px;
+        gap: 30px;
+    }
+
+    .Contato p {
+        justify-content: center;
+        padding-left: 0;
+    }
+
+    .Logos img {
+        height: 40px;
+        width: 37px;
+    }
+
+    .hero-overlay h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-overlay p {
+        font-size: 1rem;
+    }
+
+    .featured-post img {
+        aspect-ratio: 4/3;
+    }
+
+    .carousel-item {
+        flex: 0 0 calc((100% - 15px) / 2);
+        width: calc((100% - 15px) / 2);
+    }
+
+    .carousel-item-title {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .FooterPrincipal {
+        padding: 15px;
+    }
+
+    .MVV {
+        padding: 10px 15px;
+        font-size: 1.2rem;
+    }
+
+    .Redes-Sociais h2,
+    .Contato h2 {
+        font-size: 2.0rem;
+    }
+
+    .Contato p {
+        font-size: 1.2rem;
+    }
+
+    .hero-with-image {
+        min-height: 50vh;
+    }
+
+    .hero-overlay {
+        width: 90vw;
+        padding: 20px;
+        gap: 15px;
+    }
+
+    .hero-overlay h1 {
+        font-size: 2rem;
+    }
+
+    .hero-overlay p {
+        font-size: 0.9rem;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+
+    .featured h2,
+    .carousel-section h2,
+    .about h2 {
+        font-size: 2rem;
+    }
+
+    .featured-post {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .featured-post img {
+        border-radius: 0;
+        aspect-ratio: 1/1;
+    }
+
+    .featured-text {
+        position: relative;
+        background: var(--color-background-end);
+        border-radius: 0;
+    }
+
+    .featured-dots {
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+    }
+
+    .carousel {
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .carousel-item {
+        flex: 0 0 70%;
+        width: 70%;
+    }
+
+    .about {
+        width: 95vw;
+        padding: 20px;
+    }
+
+    .about-content img {
+        width: 80px;
+        height: 80px;
+    }
+}
