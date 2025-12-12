@@ -18,10 +18,9 @@ class PostController
         $page = isset($_GET['page']) && (int)$_GET['page'] > 0 ? (int)$_GET['page'] : 1;
 
         $searchTerm = trim(isset($_GET['search']) ? $_GET['search'] : '') ?? null;
-        $searchColumn = $searchTerm ? 'TITULO' : null;
+        $searchColumn = $searchTerm ? ['TITULO', 'CONTEUDO'] : null;
 
-
-        $total_posts = $database->countAll('posts',$searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
+        $total_posts = $database->countAll('posts',$searchColumn, $searchTerm, $_SESSION['user']->ID, $_SESSION['user']->IS_ADMIN);
 
         $total_pages = ceil($total_posts / $limit);
 
@@ -34,13 +33,50 @@ class PostController
 
         $offset = ($page - 1) * $limit;
 
-        $posts = $database->selectPaginated('posts', $limit, $offset, $searchColumn, $searchTerm, $_SESSION['id'], $_SESSION['user']->IS_ADMIN);
+        $posts = $database->selectPaginated('posts', $limit, $offset, $searchColumn, $searchTerm, $_SESSION['user']->ID, $_SESSION['user']->IS_ADMIN);
 
         return view('admin/listaposts', [
             'posts' => $posts,
             'current_page' => $page,
             'total_pages' => $total_pages,
             'search_term' => $searchTerm
+        ]);
+    }
+
+    public function show()
+    {
+        $database = App::get('database');
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            redirect('');
+        }
+
+        $postIndividual = $database->findById('posts', $id);
+        
+        if (!$postIndividual) {
+            redirect('');
+        }
+
+        $author = $database->findById('usuarios', $postIndividual->AUTOR_ID);
+        $totalLikes = $database->countLikesPost($id);
+
+        $isLike = false;
+        if (isset($_SESSION['user'])) {
+            $liked = $database->findLike($postIndividual->ID, $_SESSION['user']->ID);            
+            if ($liked) {
+                $isLike = true;
+            }
+        }
+
+        $comentarios = $database->getPostComments($id);
+
+        return view('site/individual_post', [
+            'post' => $postIndividual,
+            'author_post' => $author,
+            'total_likes' => $totalLikes,
+            'is_like' => $isLike,
+            'comments' => $comentarios
         ]);
     }
 
@@ -75,7 +111,7 @@ class PostController
             'IMAGEM' => $imageFeaturedPath,
             'IMAGEM_RECENT' => $imageRecentPath,
             'CATEGORIA' => $_POST['categoria'],
-            'AUTOR_ID' => $_SESSION['id'],
+            'AUTOR_ID' => $_SESSION['user']->ID,
             'DATA_POSTAGEM' => date('Y-m-d H:i:s')
         ];
 
@@ -115,7 +151,9 @@ class PostController
             'CONTEUDO' => $_POST['conteudo'],
             'AVALIACAO' => $_POST['rating'],
             'CATEGORIA' => $_POST['categoria'],
+            'DATA_POSTAGEM' => $post->DATA_POSTAGEM,
             'DATA_EDICAO' => date('Y-m-d H:i:s'),
+            'AUTOR_ID' => $post->AUTOR_ID,
             'IMAGEM' => $imageFeaturedPath,
             'IMAGEM_RECENT' => $imageRecentPath
         ];
@@ -221,41 +259,33 @@ class PostController
 
         return redirect("post?id={$postId}");
     }
-
-    public function toggleLike()
+    
+    public function like()
     {
         if (!isset($_SESSION['user'])) {
-            http_response_code(401);
-            echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
-            return;
+            return redirect('login');
         }
 
         $database = App::get('database');
-        $userId = $_SESSION['user']->ID;
-        $data = json_decode(file_get_contents('php://input'), true);
-        $postId = $data['post_id'] ?? null;
+        $postId = $_GET['post_id'] ?? null;
+        $userId = $_SESSION['user']->ID ?? null;
 
-        if (!$postId) {
-            http_response_code(400);
-            echo json_encode(['status' => 'error', 'message' => 'Post ID required']);
-            return;
+        if (!$postId || !$userId) {
+            redirect('');
         }
 
-        if ($database->hasUserLikedPost($userId, $postId)) {
-            $database->removeLike($userId, $postId);
-            $liked = false;
+        $liked = $database->findLike($postId, $userId);
+        if ($liked) {
+            $database->deleteById('curtidas', $liked->ID);
         } else {
-            $database->insert('Curtidas', [
+            $parameters = [
+                'POST_ID' => $postId,
                 'USER_ID' => $userId,
-                'POST_ID' => $postId
-            ]);
-            $liked = true;
+                'DATA_CURTIDA' => date('Y-m-d H:i:s')
+            ];
+            $database->insert('curtidas', $parameters);
         }
 
-        $newCount = $database->getPostLikes($postId);
-
-        header('Content-Type: application/json');
-        echo json_encode(['status' => 'success', 'liked' => $liked, 'count' => $newCount]);
-        exit;
+        return redirect('post?id=' . $postId);
     }
 }

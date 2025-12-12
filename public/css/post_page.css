@@ -145,23 +145,30 @@ input[type="text"] {
     transform: translateY(-10px);
 }
 
+#posteres .card {
+    height: 480px;
+    background-color: transparent;
+}
+
 #posteres .card #heron-section {
     width: 100%;
-    height: 320px;
+    height: 300px;
     border-radius: 16px 16px 0px 0px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
     overflow: hidden;
 }
 
 #posteres .card #heron-section img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .texto-card {
     background-color: rgba(0, 0, 0, 0.3);
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -176,10 +183,16 @@ input[type="text"] {
 #titulo-card {
     font-family: 'VT323', monospace;
     color: #FADED2;
-    font-size: 38px;
-    line-height: 1;
-    margin-bottom: 10px;
+    font-size: 1.8rem;
+    line-height: 1.1;
+    margin-bottom: 12px;
     text-align: left;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 #texto-card {
@@ -189,10 +202,10 @@ input[type="text"] {
     text-align: left;
     display: -webkit-box;
     -webkit-line-clamp: 4;
+    line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-
 
 #paginação {
     margin-bottom: 50px;

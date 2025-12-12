@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <?php require 'app/views/site/navbar.html'; ?>
+    <?php require 'app/views/site/navbar.view.php'; ?>
 
     <main>
         <div class="top-bar">

@@ -9,39 +9,101 @@ function fecharModal(modalId) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.classList.remove('active');
+        const form = modal.querySelector('form');
+        if (form) {
+            resetValidation(form);
+            form.reset();
+        }
 
-        if (modalId === 'modal-novo' || modalId === 'modal-editar') {
-            const dropArea = modal.querySelector('.file-drop-area');
-            if (dropArea) {
+        if (modalId.includes('novo') || modalId.includes('editar')) {
+            const dropAreas = modal.querySelectorAll('.file-drop-area');
+            dropAreas.forEach(dropArea => {
                 const oldPreview = dropArea.querySelector('img.preview');
-                if (oldPreview) {
-                    oldPreview.remove();
-                }
+                if (oldPreview) oldPreview.remove();
+                
                 const icon = dropArea.querySelector('i');
                 const text = dropArea.querySelector('p');
                 if (icon) icon.style.display = 'block';
                 if (text) text.style.display = 'block';
+                
+                const placeholder = dropArea.querySelector('.circle-placeholder');
+                if (placeholder) placeholder.style.display = 'flex';
+
                 const fileInput = dropArea.querySelector('input[type="file"]');
                 if (fileInput) fileInput.value = null;
-            }
-        }
-
-        if (modalId === 'modal-visualizar') {
-            const viewImageContainer = modal.querySelector('.file-drop-area');
-            if (viewImageContainer) {
-                viewImageContainer.innerHTML = '<i class="bi bi-image-fill" style="font-size: 3rem; color: #ccc;"></i>';
-            }
+            });
         }
     }
 }
 
+function showError(inputElement, message) {
+    const formGroup = inputElement.closest('.form-group');
+    if (!formGroup) return;
+    const errorSpan = formGroup.querySelector('.error-message');
+    if (errorSpan) {
+        errorSpan.innerText = message || "Campo inválido";
+        errorSpan.classList.add('active');
+    }
+    inputElement.classList.add('input-error');
+}
+
+function removeError(inputElement) {
+    const formGroup = inputElement.closest('.form-group');
+    if (!formGroup) return;
+    const errorSpan = formGroup.querySelector('.error-message');
+    if (errorSpan) {
+        errorSpan.classList.remove('active');
+    }
+    inputElement.classList.remove('input-error');
+}
+
+function resetValidation(form) {
+    const inputs = form.querySelectorAll('input, textarea, select');
+    inputs.forEach(input => removeError(input));
+}
+
+function validateForm(event) {
+    const form = event.target;
+    let isValid = true;
+
+    const textInputs = form.querySelectorAll('input[type="text"]:not([disabled]), textarea:not([disabled]), input[type="email"]:not([disabled]), input[type="password"]:not([disabled])');
+    textInputs.forEach(input => {
+        if (input.name === 'senha' && form.id === 'form-editar-usuario' && !input.value.trim()) {
+            return;
+        }
+        
+        if (input.hasAttribute('required') && !input.value.trim()) {
+            showError(input, 'Este campo é obrigatório.');
+            isValid = false;
+        } else {
+            removeError(input);
+        }
+    });
+
+    const select = form.querySelector('select:not([disabled])');
+    if (select && select.hasAttribute('required') && !select.value) {
+        const wrapper = select.closest('.custom-select');
+        const errorSpan = wrapper.parentElement.querySelector('.error-message');
+        if (errorSpan) errorSpan.classList.add('active');
+        if (wrapper) wrapper.querySelector('.select-styled').classList.add('input-error');
+        isValid = false;
+    } else if (select) {
+        const wrapper = select.closest('.custom-select');
+        const errorSpan = wrapper.parentElement.querySelector('.error-message');
+        if (errorSpan) errorSpan.classList.remove('active');
+        if (wrapper) wrapper.querySelector('.select-styled').classList.remove('input-error');
+    }
+
+    if (!isValid) {
+        event.preventDefault();
+    }
+}
+
+
 function setStarRating(starGroup, ratingValue) {
     const stars = starGroup.querySelectorAll('.bi');
     const ratingInput = starGroup.querySelector('input[type="hidden"]');
-
-    if (ratingInput) {
-        ratingInput.value = ratingValue;
-    }
+    if (ratingInput) ratingInput.value = ratingValue;
 
     stars.forEach(star => {
         const starValue = parseInt(star.dataset.value);
@@ -59,73 +121,112 @@ function setStarRating(starGroup, ratingValue) {
 
 function setCustomSelectValue(originalSelect, newValue) {
     if (!originalSelect) return;
-
     originalSelect.value = newValue;
-
     const customSelectWrapper = originalSelect.closest('.custom-select');
     if (!customSelectWrapper) return;
-
     const styledSelect = customSelectWrapper.querySelector('.select-styled');
     const optionsList = customSelectWrapper.querySelector('.select-options');
 
     if (styledSelect) {
-        const selectedOption = originalSelect.options[originalSelect.selectedIndex];
+        const selectedOption = Array.from(originalSelect.options).find(opt => opt.value === newValue);
         styledSelect.textContent = selectedOption ? selectedOption.textContent : 'Selecione uma categoria';
     }
-
     if (optionsList) {
         optionsList.querySelectorAll('div').forEach(div => div.classList.remove('is-selected'));
         const selectedOptionDiv = optionsList.querySelector(`div[data-value="${newValue}"]`);
-        if (selectedOptionDiv) {
-            selectedOptionDiv.classList.add('is-selected');
+        if (selectedOptionDiv) selectedOptionDiv.classList.add('is-selected');
+    }
+}
+
+function setupImagePreviews() {
+    const fileInputs = document.querySelectorAll('.file-input');
+
+    fileInputs.forEach(fileInput => {
+        fileInput.addEventListener('change', event => {
+            const dropArea = fileInput.closest('.file-drop-area');
+            const file = event.target.files[0];
+            const icon = dropArea.querySelector('i');
+            const text = dropArea.querySelector('p');
+            const placeholder = dropArea.querySelector('.circle-placeholder');
+
+
+            const oldPreview = dropArea.querySelector('img.preview');
+            if (oldPreview) oldPreview.remove();
+
+            if (!file) {
+                if (icon) icon.style.display = 'block';
+                if (text) text.style.display = 'block';
+                if (placeholder) placeholder.style.display = 'flex';
+                return;
+            }
+
+            if (!file.type.startsWith('image/')) {
+                alert("Por favor, selecione um arquivo de imagem.");
+                fileInput.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = e => {
+                if (icon) icon.style.display = 'none';
+                if (text) text.style.display = 'none';
+                if (placeholder) placeholder.style.display = 'none';
+
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'preview';
+                
+                if (dropArea.classList.contains('image-upload-circle')) {
+                    img.style.cssText = "width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: absolute; top: 0; left: 0;";
+                } else {
+                    img.style.cssText = "max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 0.5rem; margin-bottom: 1rem;";
+                }
+                
+                dropArea.prepend(img);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+}
+
+function helperLoadImageIntoArea(areaId, imagePath) {
+    const area = document.getElementById(areaId);
+    if (!area) return;
+
+    area.innerHTML = '';
+
+    if (imagePath && imagePath !== 'assets/images/default.png') {
+        area.innerHTML = `<img src="/public/${imagePath}" class="preview" style="max-width: 100%; max-height: 300px;">`;
+    } else {
+        area.innerHTML = '<i class="bi bi-image-fill" style="font-size: 3rem; color: #ccc;"></i><p>Sem imagem</p>';
+        const inputName = areaId.includes('featured') ? 'imagem_featured' : 'imagem_recent';
+        if (!areaId.includes('view')) {
+            area.innerHTML = `<i class="bi bi-cloud-arrow-up-fill"></i><p>Alterar img</p><input type="file" name="${inputName}" class="file-input" accept="image/*">`;
+            setupImagePreviews();
         }
     }
 }
 
-function setupImagePreview(modalSelector) {
-    const modal = document.querySelector(modalSelector);
-    if (!modal) return;
 
-    const fileInput = modal.querySelector('input[type="file"][name="imagem"]');
-    const dropArea = modal.querySelector('.file-drop-area');
-
-    if (!fileInput || !dropArea) return;
-
-    const icon = dropArea.querySelector('i');
-    const text = dropArea.querySelector('p');
-
-    fileInput.addEventListener('change', event => {
-        const file = event.target.files[0];
-
-        const oldPreview = dropArea.querySelector('img.preview');
-        if (oldPreview) oldPreview.remove();
-
-        if (!file) {
-            if (icon) icon.style.display = 'block';
-            if (text) text.style.display = 'block';
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = e => {
-            if (icon) icon.style.display = 'none';
-            if (text) text.style.display = 'none';
-
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            img.className = 'preview';
-            img.style = "max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 0.5rem; margin-bottom: 1rem;";
-            dropArea.prepend(img);
-        };
-        reader.readAsDataURL(file);
-    });
-}
 function initializeModalLogic() {
+
+    const formNovo = document.getElementById('form-novo-post');
+    if (formNovo) formNovo.addEventListener('submit', validateForm);
+
+    const formEdit = document.getElementById('form-editar-post');
+    if (formEdit) formEdit.addEventListener('submit', validateForm);
+    
+    const formNovaDiscussao = document.getElementById('form-nova-discussao');
+    if (formNovaDiscussao) formNovaDiscussao.addEventListener('submit', validateForm);
+
+    const formEditDiscussao = document.getElementById('form-editar-discussao');
+    if (formEditDiscussao) formEditDiscussao.addEventListener('submit', validateForm);
+
 
     const novoPostButton = document.querySelector('.botao-post');
     if (novoPostButton) {
         novoPostButton.addEventListener('click', () => {
-            document.getElementById('novo-autor').value = 'Admin (ID 1)';
+            document.getElementById('novo-autor').value = 'Admin';
             document.getElementById('novo-data').value = new Date().toISOString().split('T')[0];
             setStarRating(document.querySelector('#modal-novo .star-rating'), 0);
             abrirModal('modal-novo');
@@ -141,16 +242,14 @@ function initializeModalLogic() {
             document.getElementById('view-conteudo').value = data.conteudo;
             document.getElementById('view-autor').value = data.autor_nome;
             document.getElementById('view-data').value = data.data;
-
             document.getElementById('view-categoria').value = data.categoria;
             document.getElementById('view-data-edicao').textContent = data.data_edicao ? `Última edição: ${data.data_edicao}` : '';
 
-            const viewImageContainer = document.querySelector('#modal-visualizar .file-drop-area');
-            if (data.imagem) {
-                viewImageContainer.innerHTML = `<img src="/public/${data.imagem}" alt="Imagem do Post" style="max-width: 100%; max-height: 300px; object-fit: contain; border-radius: 0.5rem;">`;
-            } else {
-                viewImageContainer.innerHTML = '<i class="bi bi-image-fill" style="font-size: 3rem; color: #ccc;"></i>';
-            }
+            const areaFeatured = document.getElementById('view-img-featured-area');
+            const areaRecent = document.getElementById('view-img-recent-area');
+
+            areaFeatured.innerHTML = data.imagem ? `<img src="/public/${data.imagem}" style="max-width: 100%; max-height: 200px;">` : 'Sem imagem';
+            areaRecent.innerHTML = data.imagem_recent ? `<img src="/public/${data.imagem_recent}" style="max-width: 100%; max-height: 200px;">` : 'Sem imagem';
 
             const viewStars = document.querySelector('#modal-visualizar .star-rating');
             viewStars.querySelectorAll('.bi').forEach((star, index) => {
@@ -179,29 +278,31 @@ function initializeModalLogic() {
             document.getElementById('edit-data').value = data.data;
             document.getElementById('edit-data-edicao').textContent = data.data_edicao ? `Última edição: ${data.data_edicao}` : '';
 
-            const editImageContainer = document.querySelector('#modal-editar .file-drop-area');
-            const icon = editImageContainer.querySelector('i');
-            const text = editImageContainer.querySelector('p');
+            const populateEditPreview = (areaId, imgSrc, inputName) => {
+                const area = document.getElementById(areaId);
+                const oldP = area.querySelector('img.preview');
+                if (oldP) oldP.remove();
 
-            const oldPreview = editImageContainer.querySelector('img.preview');
-            if (oldPreview) {
-                oldPreview.remove();
-            }
+                const icon = area.querySelector('i');
+                const p = area.querySelector('p');
 
-            if(data.imagem) {
-                const img = document.createElement('img');
-                img.src = `/public/${data.imagem}`;
-                img.className = 'preview';
-                img.style = "max-width: 100%; max-height: 300px; object-fit: contain; border-radius: 0.5rem;";
-                editImageContainer.prepend(img);
+                if (imgSrc && imgSrc !== 'assets/images/default.png') {
+                    const img = document.createElement('img');
+                    img.src = `/public/${imgSrc}`;
+                    img.className = 'preview';
+                    img.style = "max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 0.5rem; margin-bottom: 1rem;";
+                    area.prepend(img);
+                    if (icon) icon.style.display = 'none';
+                    if (p) p.style.display = 'none';
+                } else {
+                    if (icon) icon.style.display = 'block';
+                    if (p) p.style.display = 'block';
+                }
+            };
 
-                if (icon) icon.style.display = 'none';
-                if (text) text.style.display = 'none';
-            } else {
-                if (icon) icon.style.display = ''; 
-                if (text) text.style.display = ''; 
-            }
-            
+            populateEditPreview('drop-edit-featured', data.imagem, 'imagem_featured');
+            populateEditPreview('drop-edit-recent', data.imagem_recent, 'imagem_recent');
+
             const editStars = document.querySelector('#modal-editar .star-rating');
             setStarRating(editStars, parseInt(data.rating));
 
@@ -221,71 +322,82 @@ function initializeModalLogic() {
         }
     });
 
-    document.querySelectorAll('.file-drop-area').forEach(dropArea => {
-        const fileInput = dropArea.querySelector('.file-input');
-        const textElement = dropArea.querySelector('p');
-
-        if (!fileInput || !textElement) {
-            return;
-        }
-
-        fileInput.addEventListener('dragover', () => {
-            dropArea.style.borderColor = '#DC97A5';
-            dropArea.style.backgroundColor = '#fff';
-        });
-
-        fileInput.addEventListener('dragleave', () => {
-            dropArea.style.borderColor = '#ccc';
-            dropArea.style.backgroundColor = '#fafafa';
-        });
-
-        fileInput.addEventListener('drop', () => {
-            dropArea.style.borderColor = '#ccc';
-            dropArea.style.backgroundColor = '#fafafa';
-        });
-    });
-
-    document.querySelectorAll('#modal-novo .star-rating, #modal-editar .star-rating').forEach(starGroup => {
-
+    document.querySelectorAll('.star-rating').forEach(starGroup => {
         const stars = starGroup.querySelectorAll('.bi');
         const ratingInput = starGroup.querySelector('input[type="hidden"]');
 
-        function updateHoverVisuals(hoverValue) {
-            stars.forEach(star => {
-                const starValue = parseInt(star.dataset.value);
-                if (starValue <= hoverValue) {
-                    star.classList.remove('bi-star');
-                    star.classList.add('bi-star-fill');
-                    star.style.color = '#f39c12';
-                } else {
-                    star.classList.remove('bi-star-fill');
-                    star.classList.add('bi-star');
-                    star.style.color = '#ccc';
-                }
-            });
-        }
-
         stars.forEach(star => {
             star.addEventListener('click', () => {
+                if (starGroup.closest('#modal-visualizar')) return;
                 const newRating = parseInt(star.dataset.value);
-                const currentSavedRating = parseInt(ratingInput.value) || 0;
-
-                const finalRating = (newRating === currentSavedRating) ? 0 : newRating;
-
-                setStarRating(starGroup, finalRating);
+                setStarRating(starGroup, newRating);
             });
-
-            star.addEventListener('mouseover', () => {
-                const hoverValue = parseInt(star.dataset.value);
-                updateHoverVisuals(hoverValue);
-            });
-        });
-
-        starGroup.addEventListener('mouseleave', () => {
-            const currentSavedRating = parseInt(ratingInput.value) || 0;
-            setStarRating(starGroup, currentSavedRating);
         });
     });
+
+    document.body.addEventListener('click', event => {
+        const editButton = event.target.closest('.btn-edit-discussion');
+        if (editButton) {
+            const data = editButton.dataset;
+            const discussionId = data.id;
+
+            document.getElementById('edit-discussao-id').value = discussionId;
+            document.getElementById('edit-discussao-titulo').value = data.titulo;
+            document.getElementById('edit-discussao-conteudo').value = data.conteudo;
+            
+            const editSelect = document.getElementById('edit-discussao-categoria');
+            setCustomSelectValue(editSelect, data.categoria);
+
+            const dropAreaId = 'drop-edit-discussao-imagem';
+            const area = document.getElementById(dropAreaId);
+            const imgSrc = data.imagem;
+
+            const oldP = area.querySelector('img.preview');
+            if (oldP) oldP.remove();
+
+            const icon = area.querySelector('i');
+            const p = area.querySelector('p');
+            const fileInput = area.querySelector('input[type="file"]');
+            if(fileInput) fileInput.value = null; // Clear file input value
+
+            if (imgSrc) {
+                const img = document.createElement('img');
+                img.src = `/public/${imgSrc}`;
+                img.className = 'preview';
+                img.style = "max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 0.5rem; margin-bottom: 1rem;";
+                area.prepend(img);
+                if (icon) icon.style.display = 'none';
+                if (p) p.style.display = 'none';
+            } else {
+                if (icon) icon.style.display = 'block';
+                if (p) p.style.display = 'block';
+            }
+            
+            abrirModal('modal-editar-discussao');
+        }
+    });
+
+    document.body.addEventListener('click', event => {
+        const deleteButton = event.target.closest('.btn-delete-discussion-modal');
+        if (deleteButton) {
+            const discussionId = deleteButton.dataset.id;
+            const inputId = document.getElementById('delete-discussion-id');
+            if (inputId) inputId.value = discussionId;
+            abrirModal('modal-delete-discussion');
+        }
+    });
+
+    document.body.addEventListener('click', event => {
+        const deleteButton = event.target.closest('.btn-delete-reply-modal');
+        if (deleteButton) {
+            const replyId = deleteButton.dataset.id;
+            
+            const inputId = document.getElementById('delete-reply-id');
+            if (inputId) inputId.value = replyId;
+            abrirModal('modal-delete-reply');
+        }
+    });
+
     const gotoBtns = document.querySelectorAll('.open-goto-modal');
     gotoBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -298,12 +410,9 @@ function initializeModalLogic() {
             modal.dataset.totalPages = totalPages;
             input.max = totalPages;
             label.textContent = `Digite uma página (1 - ${totalPages})`;
-
             input.value = '';
             errorEl.style.display = 'none';
-            
             abrirModal('modal-goto-page');
-
             setTimeout(() => input.focus(), 100);
         });
     });
@@ -314,7 +423,6 @@ function initializeModalLogic() {
             const modal = document.getElementById('modal-goto-page');
             const input = document.getElementById('goto-page-input');
             const errorEl = document.getElementById('goto-page-error');
-            
             const pageNumber = parseInt(input.value);
             const totalPages = parseInt(modal.dataset.totalPages);
 
@@ -324,21 +432,13 @@ function initializeModalLogic() {
                 input.focus();
             } else {
                 errorEl.style.display = 'none';
-                window.location.href = `?page=${pageNumber}`;
+                const currentSearchParams = new URLSearchParams(window.location.search);
+                currentSearchParams.set('page', pageNumber);
+                const baseUrl = window.location.pathname;
+                window.location.href = `${baseUrl}?${currentSearchParams.toString()}`;
             }
         });
-
-        const gotoInput = document.getElementById('goto-page-input');
-        if (gotoInput) {
-            gotoInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    confirmGotoBtn.click();
-                }
-            });
-        }
     }
-
 }
 
 function initializeCustomSelects() {
@@ -346,68 +446,69 @@ function initializeCustomSelects() {
         const select = wrapper.querySelector('select');
         if (!select) return;
 
-        const styledSelect = document.createElement('div');
-        styledSelect.className = 'select-styled';
+        let styledSelect = wrapper.querySelector('.select-styled');
+        if (!styledSelect) {
+            styledSelect = document.createElement('div');
+            styledSelect.className = 'select-styled';
+            wrapper.appendChild(styledSelect);
+        }
         styledSelect.textContent = select.options[select.selectedIndex].textContent;
-        wrapper.appendChild(styledSelect);
 
-        const optionsList = document.createElement('div');
-        optionsList.className = 'select-options';
+        let optionsList = wrapper.querySelector('.select-options');
+        if (!optionsList) {
+            optionsList = document.createElement('div');
+            optionsList.className = 'select-options';
+            wrapper.appendChild(optionsList);
+        } else {
+            optionsList.innerHTML = '';
+        }
 
         Array.from(select.options).forEach((option, index) => {
             if (option.disabled) return;
-
             const optionDiv = document.createElement('div');
             optionDiv.textContent = option.textContent;
             optionDiv.dataset.value = option.value;
-
-            if (index === select.selectedIndex) {
-                optionDiv.classList.add('is-selected');
-            }
+            if (index === select.selectedIndex) optionDiv.classList.add('is-selected');
 
             optionDiv.addEventListener('click', () => {
                 styledSelect.textContent = option.textContent;
-
                 select.value = option.value;
+
+                const errorSpan = wrapper.parentElement.querySelector('.error-message');
+                if (errorSpan) errorSpan.classList.remove('active');
+                styledSelect.classList.remove('input-error');
 
                 optionsList.querySelectorAll('div').forEach(div => div.classList.remove('is-selected'));
                 optionDiv.classList.add('is-selected');
-
                 styledSelect.classList.remove('active');
                 optionsList.classList.remove('active');
             });
-
             optionsList.appendChild(optionDiv);
         });
 
-        wrapper.appendChild(optionsList);
-
-        styledSelect.addEventListener('click', (e) => {
+        styledSelect.onclick = (e) => {
             e.stopPropagation();
-            closeAllSelects(styledSelect);
+            document.querySelectorAll('.select-styled').forEach(s => {
+                if (s !== styledSelect) {
+                    s.classList.remove('active');
+                    if (s.nextElementSibling) s.nextElementSibling.classList.remove('active');
+                }
+            });
             styledSelect.classList.toggle('active');
             optionsList.classList.toggle('active');
-        });
-    });
-}
-
-function closeAllSelects(exceptThisOne) {
-    document.querySelectorAll('.select-styled').forEach(styled => {
-        if (styled !== exceptThisOne) {
-            styled.classList.remove('active');
-            styled.nextElementSibling.classList.remove('active');
-        }
+        };
     });
 }
 
 document.addEventListener('click', () => {
-    closeAllSelects(null);
+    document.querySelectorAll('.select-styled').forEach(s => {
+        s.classList.remove('active');
+        if (s.nextElementSibling) s.nextElementSibling.classList.remove('active');
+    });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeModalLogic();
     initializeCustomSelects();
-
-    setupImagePreview('#modal-novo');
-    setupImagePreview('#modal-editar');
+    setupImagePreviews();
 });

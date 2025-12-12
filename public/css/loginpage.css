@@ -1,76 +1,65 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/fundo.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-size: contain;
     font-family: 'VT323', monospace;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-}
-
-.tamanho-body {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100vh;
 }
 
 .login-overlay {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     background-color: rgba(0, 0, 0, 0.60);
     backdrop-filter: blur(15px);
-    width: 90%;
-    max-width: 500px;
-    padding: 2rem;
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.button {
-    align-self: flex-start;
-    width: 100%;
-    margin-bottom: -1rem;
-}
-
-.button a {
-    text-decoration: none;
-}
-
-.button a img {
-    width: 50px;
+    width: 80%;
     height: auto;
-    transition: transform 0.2s;
+    padding: 2rem 2rem 2.8rem 2rem;
+    border-radius: 1rem;
+    max-width: 600px;
 }
 
-.button a img:hover {
-    transform: scale(1.1);
+.login-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button-back,
+.space {
+    width: 50%;
+}
+
+.button-back i {
+    color: #C75F77;
+    font-size: 2.8rem;
+    margin: 0.1rem;
+    cursor: pointer;
+}
+
+.button-back i:hover {
+    margin: 0;
+    font-size: 3rem;
 }
 
 .LogoBitsToca img {
-    width: 180px;
+    margin-top: 0.8rem;
+    width: 10em;
     height: auto;
-    margin-top: 0.5rem;
 }
 
 h2 {
     font-family: 'VT323', monospace;
-    font-size: 4.5rem;
-    color: #FADED2;
-    margin: 0;
-    line-height: 1;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-size: 5.0rem;
+    color: #FADED2  ;
 }
 
 form {
@@ -78,138 +67,114 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 0.8rem;
     width: 100%;
-    margin-top: 1rem;
 }
 
-input[type="email"],
-.password {
+.input-content, .button-content {
     background-color: #A9B0C2;
     border: none;
-    padding: 0 1.5rem;
+    padding: 1em;
     border-radius: 16px;
-    width: 80% !important; 
-    height: 3.5rem;
-    font-family: 'VT323', monospace;
-    font-size: 1.5rem;
-    color: #000;
-    outline: none;
-    display: flex;
-    align-items: center;
-    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);
-}
-
-input[type="email"]::placeholder {
-    color: #55768C;
-    opacity: 0.8;
-}
-
-
-.password {
+    width: 70%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: auto;
+    outline: none;
+    font-weight: 800;
 }
 
-.password input {
-    background: transparent;
+.button-content {
+    background-color: #B83556;
+}
+
+.senha,
+.email,
+.login-button {
+    background-color: transparent;
     border: none;
-    outline: none;
+    width: 100%;
     font-family: 'VT323', monospace;
     font-size: 1.5rem;
-    width: 85% !important;
-    height: 100%;
-    color: #000;
+    outline: none;
 }
 
-.password input::placeholder {
+form input::placeholder {
     color: #55768C;
-    opacity: 0.8;
 }
 
 #togglePassword {
     color: #55768C;
-    font-size: 1.2rem;
+    font-size: 16px;
     cursor: pointer;
-    transition: color 0.3s;
 }
 
-#togglePassword:hover {
-    color: #2B3B46;
-}
-
-.botao-loginpage {
-    background-color: #B83556;
+.login-button {
+    margin: -0.5rem;
+    font-size: 2.5rem;
     color: #FADED2;
-    border: none;
-    border-radius: 16px;
-    width: 80%;
-    height: 3.5rem;
-    font-family: 'VT323', monospace;
-    font-size: 2rem;
-    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
-    margin-top: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
-.botao-loginpage:hover {
-    transform: translateY(-2px);
-    background-color: #a0485d;
-    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+.login-button:hover {
+    transform: scale(1.05);
 }
 
-p {
-    font-size: 1.2rem;
-    text-align: center;
+.mensagem {
+    font-family: 'VT323', monospace;
+    color: #B83556;
+    font-size: 2rem;
+}
+
+@media (max-width: 1300px) {
+    .input-content,
+    .button-content {
+        width: 65%;
+    }
+
+    .email,
+    .senha {
+        font-size: 1.3rem;
+    }
+
+    .login-button {
+        font-size: 2.2rem;
+    }
+
 }
 
 @media (max-width: 768px) {
-    .login-overlay {
-        width: 85%;
-        padding: 1.5rem;
+    .input-content,
+    .button-content {
+        width: 80%;
     }
     
     h2 {
-        font-size: 3.5rem;
+        font-size: 4.5rem;
     }
 
-    input[type="email"],
-    .password,
-    .botao-loginpage {
-        width: 90% !important;
-        height: 3rem;
-        font-size: 1.3rem;
-    }
-    
-    .botao-loginpage {
-        font-size: 1.8rem;
+    .mensagem {
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
     .login-overlay {
-        padding: 1rem;
-        gap: 0.8rem;
+        padding: 1rem 1rem 1.5rem 1rem;
     }
 
-    .LogoBitsToca img {
-        width: 140px;
+    .input-content,
+    .button-content {
+        width: 90%;
     }
 
     h2 {
         font-size: 3rem;
     }
 
-    .button a img {
-        width: 40px;
-    }
-    
-    input[type="email"],
-    .password,
-    .botao-loginpage {
-        width: 100% !important;
+    .LogoBitsToca img {
+        margin-top: 0.5rem;
+        width: 8em;
     }
 }

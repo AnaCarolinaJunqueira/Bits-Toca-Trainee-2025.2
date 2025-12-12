@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <?php require 'app/views/site/navbar.html'; ?>
+    <?php require 'app/views/site/navbar.view.php'; ?>
 
     <div id="título-pagina-post">
         <h1>PÔSTERES</h1>

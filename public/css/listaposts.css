@@ -4,9 +4,15 @@
     box-sizing: border-box;
 }
 
-main {
+ body {
+    display: flex;
+    overflow-x: hidden;
     background: linear-gradient(#55768C, #2B3B46);
-    padding: 5vh 10vw;
+}
+
+main {
+    width: 100% ;
+    padding: 5vh 5vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -111,7 +117,7 @@ main {
     position: relative;
     margin: 1rem 0;
     width: auto;
-    height: 100%;
+    height: auto;
     font-size: 1.2rem;
 }
 

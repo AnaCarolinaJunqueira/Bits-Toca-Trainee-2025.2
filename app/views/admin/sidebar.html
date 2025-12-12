@@ -19,15 +19,15 @@
         <ul id="side_items">
             <li class="side-item <?= strpos($_SERVER['REQUEST_URI'], 'dashboard') !== false ? 'active' : '' ?>">
                 <a href="/admin/dashboard">
-                    <i class="fa-solid fa-grip"></i>
-                    <span class="item-description">PAINEL</span>
+                    <div><i class="fa-solid fa-grip"></i></div>
+                    <span class="item-description">DASHBOARD</span>
                 </a>
             </li>
 
             <?php if(isset($_SESSION['user']) && $_SESSION['user']->IS_ADMIN): ?>
             <li class="side-item <?= strpos($_SERVER['REQUEST_URI'], 'listausuarios') !== false ? 'active' : '' ?>">
                 <a href="/admin/listausuarios">
-                   <i class="fa-solid fa-users"></i>
+                    <div><i class="fa-solid fa-users"></i></div>
                     <span class="item-description">USUÁRIOS</span>
                 </a>
             </li>    
@@ -35,14 +35,14 @@
 
             <li class="side-item <?= strpos($_SERVER['REQUEST_URI'], 'listaposts') !== false ? 'active' : '' ?>">
                 <a href="/admin/listaposts">
-                   <i class="fa-solid fa-newspaper"></i>
+                    <div><i class="fa-solid fa-newspaper"></i></div>
                     <span class="item-description">PUBLICAÇÕES</span>
                 </a>
             </li>    
 
             <li class="side-item">
                 <a href="/">
-                   <i class="fa-solid fa-house"></i>
+                    <div><i class="fa-solid fa-house"></i></div>
                     <span class="item-description">HOME SITE</span>
                 </a>
             </li> 
@@ -54,9 +54,9 @@
     </div>
 
     <div id="logout">
-        <a href="/logout" id="logout_btn" style="text-decoration: none; width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px;">
-            <i class="fa-solid fa-right-from-bracket" style="color: white;"></i>
-            <span class="item-description">DESLOGAR</span>
+        <a href="/logout" id="logout_btn">
+            <div><i class="fa-solid fa-right-from-bracket"></i></div>
+            <span class="item-description">LOGOUT</span>
         </a>
     </div>
 </nav>

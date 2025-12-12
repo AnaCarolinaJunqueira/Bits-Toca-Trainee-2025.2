@@ -16,8 +16,6 @@ $router->get('', 'SiteController@index');
 
 $router->get('posts', 'SiteController@posts');
 
-$router->get('post', 'SiteController@showPost');
-
 $router->post('admin/listaposts/store', 'PostController@store');
 
 $router->post('admin/listaposts/update', 'PostController@update');
@@ -68,3 +66,6 @@ $router->post('admin/listausuarios/store', 'UserController@store');
 $router->post('admin/listausuarios/update', 'UserController@update');
 
 $router->post('admin/listausuarios/delete', 'UserController@delete');
+$router->get('post', 'PostController@show');
+
+$router->get('post/like', 'PostController@like');

@@ -15,7 +15,7 @@ header {
     height: auto;
     padding: 1rem 2rem;
     position: relative;
-    z-index: 1000; /* Ensures navbar stays above other content */
+    z-index: 1000;
 }
 
 .logo {
@@ -191,18 +191,17 @@ header {
     }
 
     .menu-itens {
-        position: fixed;
-        top: -100vh;
+        position: absolute;
+        top: -25rem;
         left: 0;
         background-color: #55768c;
         flex-direction: column;
         align-items: center;
         gap: 1.2rem;
-        height: auto;
-        min-height: 50vh;
-        width: 100vw;
-        padding: 2rem 0;
-        z-index: 99;
+        height: fit-content;
+        width: 40vw;
+        padding: 1.2rem 30vw;
+        z-index: 1001;
         transition: top 0.3s ease-out;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     }
