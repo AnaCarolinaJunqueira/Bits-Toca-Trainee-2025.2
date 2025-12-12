@@ -16,7 +16,6 @@
     --overlay-boder-color: rgba(255, 255, 255, 0.7);
 }
 
-/* -------------- ESTILOS GERAIS -------------- */
 html,body {
     overflow-x: hidden;
 }
@@ -44,11 +43,11 @@ main {
     width: 100%;
 }
 
-/*-----------------------------------------------*/
+.navbar, .navbar *,
+footer, footer * {
+    box-sizing: content-box;
+}
 
-/* ---------------- COMPONENTES ---------------- */
-
-/* ---------------- Hero Section ---------------- */
 .hero-section {
     width: 100%;
     margin: 0;
@@ -130,10 +129,6 @@ main {
     transform: translateY(-2px);
 }
 
-/* ---------------------------------------------- */
-
-/* ------------- Post em destaque --------------- */
-
 .featured {
     text-align: center;
     padding: 40px 20px;
@@ -205,7 +200,6 @@ main {
     text-align: center;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 2;
-    /* Garante que o texto fique acima da imagem.*/
 }
 
 .featured-slide:hover .featured-text,
@@ -240,7 +234,6 @@ main {
     transition: opacity 0s, height 0s ease 0.5s;
     pointer-events: none;
     z-index: 3;
-    /* Garante que a descrição apareça acima do título.*/
 }
 
 .featured-slide:hover .featured-description-overlay,
@@ -296,10 +289,6 @@ main {
     transform: scale(1.1);
 }
 
-
-/* ---------------------------------------------- */
-
-/* ------------- Carrossel de Posts ------------- */
 .carousel-section {
     display: flex;
     flex-direction: column;
@@ -431,6 +420,17 @@ main {
     gap: 8px;
 }
 
+.carousel-counter {
+    display: none;
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
 .dot {
     display: inline-block;
     width: 12px;
@@ -438,7 +438,7 @@ main {
     background-color: var(--color-text-secondary);
     border-radius: 50%;
     transition: all 0.5s ease;
-    pointer-events: none;
+    cursor: pointer;
 }
 
 .dot.active {
@@ -457,10 +457,6 @@ main {
 .right-arrow:hover {
     color: #F5CD69;
 }
-
-/* ---------------------------------------------- */
-
-/* ------------------ Sobre Nós ------------------ */
 
 .about {
     width: 80vw;
@@ -538,9 +534,6 @@ main {
     text-align: center;
 }
 
-/* -------------------------------------------------------- */
-
-/* -------------------- Responsividade -------------------- */
 @media (max-width: 1300px) {
     .hero-overlay {
         width: 50vw;
@@ -603,7 +596,7 @@ main {
 
     .carousel-item {
         flex: 0 0 calc((100% - 20px) / 3);
-        width: calc(100% - 20px) / 3;
+        width: calc((100% - 20px) / 3);
         max-width: none;
         aspect-ratio: 1 / 1;
         scroll-snap-align: start;
@@ -637,7 +630,7 @@ main {
     }
 
     .carousel-item-description {
-        font-size: 2vw;
+        font-size: 1rem;
     }
 
     .featured-post {
@@ -677,6 +670,21 @@ main {
     .featured-dot.active {
         width: 20px;
         border-radius: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        flex: 0 0 calc((100% - 15px) / 2);
+        width: calc((100% - 15px) / 2);
+    }
+    
+    .carousel-dots {
+        display: none;
+    }
+
+    .carousel-counter {
+        display: block;
     }
 }
 
@@ -823,5 +831,3 @@ main {
         border-radius: 10px;
     }
 }
-
-/* -------------------------------------------------------- */

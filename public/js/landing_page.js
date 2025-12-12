@@ -3,6 +3,7 @@ const featuredSlides = document.querySelectorAll('.featured-slide');
 const featuredDotsContainer = document.querySelector('.featured-dots');
 const featuredPost = document.querySelector('.featured-post');
 
+/* ---------------- FEATURED POSTS LOGIC ---------------- */
 let featuredDots = [];
 
 if (featuredDotsContainer && featuredSlides.length > 0) {
@@ -39,9 +40,7 @@ function setFeaturedHover(index, shouldHover, relatedTarget) {
     featuredSlides.forEach((slide, slideIndex) => {
         if (slideIndex !== index) {
             if (shouldHover) {
-
                 slide.classList.remove(FEATURED_HOVER_CLASS);
-
             }
             return;
         }
@@ -56,7 +55,6 @@ function setFeaturedHover(index, shouldHover, relatedTarget) {
             if (shouldHover) {
                 featuredPost.classList.add('is-touch-active');
             } else {
-
                 const hasActiveSlide = Array.from(featuredSlides).some(activeSlide =>
                     activeSlide.classList.contains(FEATURED_HOVER_CLASS)
                 );
@@ -70,13 +68,14 @@ function setFeaturedHover(index, shouldHover, relatedTarget) {
 }
 
 function showFeaturedSlide(index, preserveHover = isFeaturedHoverLocked) {
-
     const slideWidth = featuredSlides[0].offsetWidth;
 
     featuredContainer.style.transform = `translateX(-${index * slideWidth}px)`;
     
-    featuredDots.forEach(dot => dot.classList.remove('active'));
-    featuredDots[index].classList.add('active');
+    if(featuredDots.length > 0) {
+        featuredDots.forEach(dot => dot.classList.remove('active'));
+        if(featuredDots[index]) featuredDots[index].classList.add('active');
+    }
     
     currentFeaturedIndex = index;
 
@@ -103,22 +102,22 @@ function stopFeaturedAutoPlay() {
     }
 }
 
-featuredDots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
+if(featuredDots.length > 0) {
+    featuredDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            const shouldLockHover = featuredSlides[currentFeaturedIndex].classList.contains(FEATURED_HOVER_CLASS) ||
+                featuredSlides[currentFeaturedIndex].matches(':hover');
+            isFeaturedHoverLocked = shouldLockHover;
 
-        const shouldLockHover = featuredSlides[currentFeaturedIndex].classList.contains(FEATURED_HOVER_CLASS) ||
-            featuredSlides[currentFeaturedIndex].matches(':hover');
-        isFeaturedHoverLocked = shouldLockHover;
+            showFeaturedSlide(index, isFeaturedHoverLocked);
 
-        showFeaturedSlide(index, isFeaturedHoverLocked);
-
-        stopFeaturedAutoPlay();
-        startFeaturedAutoPlay();
+            stopFeaturedAutoPlay();
+            startFeaturedAutoPlay();
+        });
     });
-});
+}
 
 if (featuredDotsContainer) {
-
     featuredDotsContainer.addEventListener('mouseenter', () => {
         if (!isFeaturedHoverLocked) {
             setFeaturedHover(currentFeaturedIndex, true);
@@ -137,19 +136,17 @@ if (featuredDotsContainer) {
     });
 }
 
-featuredPost.addEventListener('mouseenter', () => {
-    stopFeaturedAutoPlay();
-});
+if (featuredPost) {
+    featuredPost.addEventListener('mouseenter', () => {
+        stopFeaturedAutoPlay();
+    });
 
-featuredPost.addEventListener('mouseleave', () => {
-    isFeaturedHoverLocked = false;
-    clearFeaturedHover();
-    startFeaturedAutoPlay();
-});
-
-window.addEventListener('resize', () => {
-    showFeaturedSlide(currentFeaturedIndex, isFeaturedHoverLocked);
-});
+    featuredPost.addEventListener('mouseleave', () => {
+        isFeaturedHoverLocked = false;
+        clearFeaturedHover();
+        startFeaturedAutoPlay();
+    });
+}
 
 if (featuredSlides.length > 0) {
     showFeaturedSlide(0, false);
@@ -184,7 +181,7 @@ if (featuredSlides.length > 0) {
                 return;
             }
 
-            if (!featuredPost.contains(event.target)) {
+            if (featuredPost && !featuredPost.contains(event.target)) {
                 clearFeaturedHover();
                 featuredPost.classList.remove('is-touch-active');
                 isFeaturedHoverLocked = false;
@@ -194,11 +191,14 @@ if (featuredSlides.length > 0) {
     }
 }
 
+/* ---------------- CAROUSEL LOGIC ---------------- */
+
 const carousel = document.querySelector('.carousel');
 const carouselItems = document.querySelectorAll('.carousel-item');
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
-const carouselControls = document.querySelector('.carousel-controls');
+const carouselDotsContainer = document.querySelector('.carousel-dots');
+const carouselCounter = document.querySelector('.carousel-counter');
 const CAROUSEL_ACTIVE_CLASS = 'is-active';
 
 let currentIndex = 0;
@@ -207,29 +207,46 @@ let totalPages = 0;
 let dots = [];
 
 function setupCarousel() {
-    const isMobileView = window.matchMedia("(max-width: 480px)").matches;
+    const isMobileView = window.matchMedia("(max-width: 768px)").matches;
     
     itemsPerPage = isMobileView ? 2 : 3;
     
-    totalPages = Math.ceil(carouselItems.length / itemsPerPage);
+    if (carouselItems.length > 0) {
+        totalPages = Math.ceil(carouselItems.length / itemsPerPage);
+    } else {
+        totalPages = 0;
+    }
 
     if (currentIndex >= totalPages) {
         currentIndex = 0;
     }
 
-    const existingDots = carouselControls.querySelectorAll('.dot');
-    existingDots.forEach(d => d.remove());
-
-    if (totalPages > 0 && carouselControls && rightArrow) {
-        for (let i = 0; i < totalPages; i++) {
-            const dot = document.createElement('span');
-            dot.classList.add('dot');
-            if (i === currentIndex) {
-                dot.classList.add('active');
+    if (carouselDotsContainer) {
+        carouselDotsContainer.innerHTML = '';
+        if (totalPages > 0) {
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('span');
+                dot.classList.add('dot');
+                if (i === currentIndex) {
+                    dot.classList.add('active');
+                }
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateCarouselPosition();
+                });
+                carouselDotsContainer.appendChild(dot);
             }
-            carouselControls.insertBefore(dot, rightArrow);
+            dots = carouselDotsContainer.querySelectorAll('.dot');
         }
-        dots = document.querySelectorAll('.dot');
+    }
+    
+    updateCarouselCounter();
+    updateCarouselPosition();
+}
+
+function updateCarouselCounter() {
+    if (carouselCounter) {
+        carouselCounter.textContent = `${currentIndex + 1}/${totalPages}`;
     }
 }
 
@@ -240,7 +257,10 @@ function clearCarouselActiveState() {
 
 function updateCarouselPosition() {
     if(dots.length > 0) {
-        dots.forEach((d, i) => d.classList.toggle('active', i === currentIndex));
+        dots.forEach((d, i) => {
+            if (i === currentIndex) d.classList.add('active');
+            else d.classList.remove('active');
+        });
     }
 
     const targetItemIndex = currentIndex * itemsPerPage;
@@ -253,6 +273,7 @@ function updateCarouselPosition() {
         });
     }
     
+    updateCarouselCounter();
     clearCarouselActiveState();
 }
 
@@ -270,6 +291,10 @@ if (leftArrow && rightArrow) {
     });
 }
 
+if (carouselCounter) {
+    carouselCounter.addEventListener('click', openCarouselGotoModal);
+}
+
 if (isTouchPrimary && carouselItems.length > 0) {
     carouselItems.forEach(item => {
         item.addEventListener('click', event => {
@@ -284,42 +309,102 @@ if (isTouchPrimary && carouselItems.length > 0) {
     });
 
     document.addEventListener('click', event => {
+        const carouselControls = document.querySelector('.carousel-controls');
         const isInsideCarousel = (carousel && carousel.contains(event.target)) ||
             (carouselControls && carouselControls.contains(event.target));
         if (!isInsideCarousel) clearCarouselActiveState();
     });
 }
 
-document.querySelector('.cta-button').addEventListener('click', () => {
-    window.location.href = "/posts";
-});
+function openCarouselGotoModal() {
+    const modal = document.getElementById('modal-goto-page');
+    const input = document.getElementById('goto-page-input');
+    const label = document.getElementById('goto-page-label');
+    const errorEl = document.getElementById('goto-page-error');
+    
+    const oldBtn = document.getElementById('btn-confirm-goto');
+    if (!oldBtn) return;
+    
+    const newBtn = oldBtn.cloneNode(true);
+    oldBtn.parentNode.replaceChild(newBtn, oldBtn);
 
-window.addEventListener('resize', () => {
-    showFeaturedSlide(currentFeaturedIndex, isFeaturedHoverLocked);
-    setupCarousel();
-});
+    if(modal) {
+        modal.dataset.totalPages = totalPages;
+        abrirModal('modal-goto-page');
+    }
+    
+    if(input) {
+        input.max = totalPages;
+        input.value = '';
+    }
+    
+    if(label) label.textContent = `Digite uma página (1 - ${totalPages})`;
+    if(errorEl) errorEl.style.display = 'none';
+    
+    setTimeout(() => { if(input) input.focus() }, 100);
 
-document.addEventListener('DOMContentLoaded', () => {
+    newBtn.addEventListener('click', () => {
+        const pageNumber = parseInt(input.value);
+        
+        if (isNaN(pageNumber) || pageNumber < 1 || pageNumber > totalPages) {
+            if(errorEl) {
+                errorEl.textContent = `Por favor, digite um número entre 1 e ${totalPages}.`;
+                errorEl.style.display = 'block';
+            }
+            if(input) input.focus();
+        } else {
+            if(errorEl) errorEl.style.display = 'none';
+            currentIndex = pageNumber - 1;
+            updateCarouselPosition();
+            fecharModal('modal-goto-page');
+        }
+    });
+}
 
-    setupCarousel();
+const ctaButton = document.querySelector('.cta-button');
+if (ctaButton) {
+    ctaButton.addEventListener('click', () => {
+        window.location.href = "/posts";
+    });
+}
+
+function handleTextTruncation() {
+    const isMobileSmall = window.matchMedia("(max-width: 768px)").matches;
+    const maxLength = isMobileSmall ? 80 : 150; 
+    const featuredMaxLength = isMobileSmall ? 100 : 200;
 
     const carouselDescriptions = document.querySelectorAll('.carousel-item-description');
-    const maxLength = 200;
-    
     carouselDescriptions.forEach(description => {
-        const text = description.textContent.trim();
-        if (text.length > maxLength) {
-            description.textContent = text.substring(0, maxLength).trim() + '...';
+        const fullText = description.dataset.fullText;
+        if (fullText) {
+            if (fullText.length > maxLength) {
+                description.textContent = fullText.substring(0, maxLength).trim() + '...';
+            } else {
+                description.textContent = fullText;
+            }
         }
     });
 
     const featuredDescriptions = document.querySelectorAll('.featured-description');
-    const featuredMaxLength = 200;
-    
     featuredDescriptions.forEach(description => {
-        const text = description.textContent.trim();
-        if (text.length > featuredMaxLength) {
-            description.textContent = text.substring(0, featuredMaxLength).trim() + '...';
+        const fullText = description.dataset.fullText;
+        if (fullText) {
+            if (fullText.length > featuredMaxLength) {
+                description.textContent = fullText.substring(0, featuredMaxLength).trim() + '...';
+            } else {
+                description.textContent = fullText;
+            }
         }
     });
+}
+
+window.addEventListener('resize', () => {
+    showFeaturedSlide(currentFeaturedIndex, isFeaturedHoverLocked);
+    setupCarousel();
+    handleTextTruncation();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    setupCarousel();
+    handleTextTruncation();
 });

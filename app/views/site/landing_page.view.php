@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323:wght@400&family=Roboto:wght@300;400;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/public/css/landing_page_styles.css">
+    <link rel="stylesheet" href="/public/css/modals.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 
@@ -39,7 +40,7 @@
                                     <p class="featured-slide-title"><?= htmlspecialchars($post->TITULO) ?></p>
                                 </div>
                                 <div class="featured-description-overlay">
-                                    <p class="featured-description">
+                                    <p class="featured-description" data-full-text="<?= htmlspecialchars($post->CONTEUDO) ?>">
                                         <?= htmlspecialchars(mb_strimwidth($post->CONTEUDO, 0, 200, "...")) ?>
                                     </p>
                                 </div>
@@ -69,7 +70,7 @@
                                 <p class="carousel-item-title"><?= htmlspecialchars($post->TITULO) ?></p>
                             </div>
                             <div class="carousel-item-overlay">
-                                <p class="carousel-item-description">
+                                <p class="carousel-item-description" data-full-text="<?= htmlspecialchars($post->CONTEUDO) ?>">
                                     <?= htmlspecialchars(mb_strimwidth($post->CONTEUDO, 0, 150, "...")) ?>
                                 </p>
                             </div>
@@ -81,6 +82,8 @@
             </div>
             <div class="carousel-controls">
                 <span class="left-arrow">&#9664;</span>
+                <div class="carousel-dots"></div>
+                <span class="carousel-counter"></span>
                 <span class="right-arrow">&#9654;</span>
             </div>
         </section>
@@ -102,9 +105,11 @@
     </main>
 
     <?php require 'app/views/site/Footer.html'; ?>
+    <?php require 'app/views/admin/modals/modal-goto-page.html'; ?>
 
     <script src="/public/js/landing_page.js"></script>
     <script src="/public/js/konami.js"></script>
+    <script src="/public/js/modals.js"></script>
 </body>
 
 </html>
