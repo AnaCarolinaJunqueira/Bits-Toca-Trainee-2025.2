@@ -22,7 +22,20 @@
             <p class="subtitle">Antes de começar uma nova thread, faça uma busca para descobrir se já temos alguma discussão aberta sobre o time que você procura.</p>
 
             <form action="/forum" method="GET" class="search-container">
-                <input type="text" name="search" placeholder="O que você procura?" value="<?= htmlspecialchars($searchTerm) ?>">
+                <input type="text" name="search" placeholder="O que você procura?" value="<?= htmlspecialchars($searchTerm) ?>" style="<?= !empty($searchTerm) ? 'padding-right: 80px;' : '' ?>">
+                
+                <?php if(!empty($searchTerm)): ?>
+                    <?php 
+                        $resetUrl = '/forum';
+                        if(!empty($currentCategory)) {
+                            $resetUrl .= '?category=' . urlencode($currentCategory);
+                        }
+                    ?>
+                    <a href="<?= $resetUrl ?>" style="position: absolute; right: 50px; top: 50%; transform: translateY(-50%); color: #B83556; font-size: 1.5rem; text-decoration: none;" title="Limpar pesquisa">
+                        <i class="bi bi-x-circle-fill"></i>
+                    </a>
+                <?php endif; ?>
+
                 <button type="submit"><i class="bi bi-search"></i></button>
             </form>
         </div>
@@ -106,4 +119,4 @@
     <script src="/public/js/modals-discussao.js"></script>
 </body>
 
-</html> 
+</html>

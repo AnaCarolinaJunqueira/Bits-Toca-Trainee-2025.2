@@ -43,7 +43,7 @@ body {
     align-items: center;
     justify-content: space-between; 
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 60px;
     padding: 50px 0; 
     width: 90%;
     max-width: 1040px;
@@ -70,7 +70,7 @@ body {
     display: flex;
     align-items: center;
     position: relative;
-    width: 400px;
+    flex-grow: 1;
     justify-content: flex-end; 
 }
 

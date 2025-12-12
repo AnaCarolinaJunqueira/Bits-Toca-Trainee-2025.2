@@ -31,15 +31,20 @@ class QueryBuilder
     {
         $sql = "select COUNT(*) from {$table}";
         $parameters = [];
+        $whereClauses = [];
 
         if($searchColumn && $searchTerm) {
-            $sql .= " WHERE ({$searchColumn[0]} LIKE :searchTerm OR {$searchColumn[1]} LIKE :searchTerm)";
+            $whereClauses[] = "({$searchColumn[0]} LIKE :searchTerm OR {$searchColumn[1]} LIKE :searchTerm)";
             $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
 
         if ($autor_id && $is_admin !== 1) {
-            $sql .= " WHERE AUTOR_ID = :autor_id";
+            $whereClauses[] = "AUTOR_ID = :autor_id";
             $parameters['autor_id'] = $autor_id;
+        }
+
+        if (!empty($whereClauses)) {
+            $sql .= " WHERE " . implode(' AND ', $whereClauses);
         }
 
         try {
@@ -57,17 +62,21 @@ class QueryBuilder
         $limit = (int) $limit;
         $offset = (int) $offset;
         $parameters = [];
-        $whereClause = "";
-        $whereUsuario = "";
+        $whereClauses = [];
 
         if ($searchColumn && $searchTerm) {
-            $whereClause = " WHERE ({$searchColumn[0]} LIKE :searchTerm OR {$searchColumn[1]} LIKE :searchTerm)";
+            $whereClauses[] = "({$searchColumn[0]} LIKE :searchTerm OR {$searchColumn[1]} LIKE :searchTerm)";
             $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
 
         if ($autor_id && $is_admin !== 1) {
-            $whereUsuario = " WHERE AUTOR_ID = :autor_id";
+            $whereClauses[] = "AUTOR_ID = :autor_id";
             $parameters['autor_id'] = $autor_id;
+        }
+
+        $whereSql = "";
+        if (!empty($whereClauses)) {
+            $whereSql = " WHERE " . implode(' AND ', $whereClauses);
         }
 
         $sql = "";
@@ -76,11 +85,11 @@ class QueryBuilder
             $sql = "SELECT posts.*, usuarios.NOME as AUTOR_NOME 
                     FROM posts
                     JOIN usuarios ON posts.AUTOR_ID = usuarios.ID
-                    {$whereClause} {$whereUsuario}
+                    {$whereSql}
                     ORDER BY posts.ID ASC 
                     LIMIT {$limit} OFFSET {$offset}";
         } else {
-            $sql = "select * from {$table} {$whereClause} {$whereUsuario} ORDER BY ID ASC LIMIT {$limit} OFFSET {$offset}";
+            $sql = "select * from {$table} {$whereSql} ORDER BY ID ASC LIMIT {$limit} OFFSET {$offset}";
         }
 
         try {
@@ -104,7 +113,7 @@ class QueryBuilder
                 JOIN Usuarios u ON p.AUTOR_ID = u.ID";
 
         if ($searchTerm) {
-            $whereClauses[] = "p.TITULO LIKE :searchTerm";
+            $whereClauses[] = "(p.TITULO LIKE :searchTerm OR p.CONTEUDO LIKE :searchTerm)";
             $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
 
@@ -135,7 +144,7 @@ class QueryBuilder
         $whereClauses = [];
 
         if ($searchTerm) {
-            $whereClauses[] = "TITULO LIKE :searchTerm";
+            $whereClauses[] = "(TITULO LIKE :searchTerm OR CONTEUDO LIKE :searchTerm)";
             $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
         if ($category) {

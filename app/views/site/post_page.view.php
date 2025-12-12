@@ -52,10 +52,22 @@
         </div>
 
         <form id="barra-pesquisa" action="/posts" method="GET">
-            <input type="text" name="search" value="<?= htmlspecialchars($searchTerm ?? '') ?>" placeholder="Pesquisar...">
+            <input type="text" name="search" value="<?= htmlspecialchars($searchTerm ?? '') ?>" placeholder="Pesquisar..." style="<?= !empty($searchTerm) ? 'padding-right: 90px;' : '' ?>">
             
             <?php if(!empty($currentCategory)): ?>
                 <input type="hidden" name="category" value="<?= htmlspecialchars($currentCategory) ?>">
+            <?php endif; ?>
+
+            <?php if(!empty($searchTerm)): ?>
+                <?php 
+                    $resetUrl = '/posts';
+                    if(!empty($currentCategory)) {
+                        $resetUrl .= '?category=' . urlencode($currentCategory);
+                    }
+                ?>
+                <a href="<?= $resetUrl ?>" style="position: absolute; right: 60px; top: 50%; transform: translateY(-50%); color: #B83556; font-size: 1.5rem; text-decoration: none; z-index: 10;" title="Limpar pesquisa">
+                    <i class="bi bi-x-circle-fill"></i>
+                </a>
             <?php endif; ?>
 
             <button type="submit" style="background: none; border: none; cursor: pointer;">

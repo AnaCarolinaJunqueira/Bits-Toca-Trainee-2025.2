@@ -31,9 +31,16 @@
             </div>
             
             <div class="botoes">
-                <form method="GET" action="/admin/listaposts" class="barra-pesquisa">
+                <form method="GET" action="/admin/listaposts" class="barra-pesquisa" style="position: relative;">
                     <img src="/public/assets/icon_pesquisa.png" alt="icone de pesquisa">
-                    <input type="text" id="pesquisa" name="search" placeholder="Pesquisar..." value="<?= htmlspecialchars($search_term ?? '') ?>">
+                    <input type="text" id="pesquisa" name="search" placeholder="Pesquisar..." value="<?= htmlspecialchars($search_term ?? '') ?>" style="<?= !empty($search_term) ? 'padding-right: 35px;' : '' ?>">
+                    
+                    <?php if(!empty($search_term)): ?>
+                        <a href="/admin/listaposts" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #B83556; font-size: 1.2rem; text-decoration: none; cursor: pointer;" title="Limpar pesquisa">
+                            <i class="bi bi-x-circle-fill"></i>
+                        </a>
+                    <?php endif; ?>
+                    
                     <button type="submit" style="display: none;"></button>
                 </form>
                 <div class="botao-post">
@@ -105,7 +112,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- FIGURINHAS ALEATORIAS -->
                 <?php $figs = range(1, 50);
                 $random_keys = array_rand($figs, 3); ?>
                 <img src="/public/assets/figurinhas/<?= $figs[$random_keys[0]] ?>.png" class="figurinha" id="fig1" alt="figurinha 1" onclick="classList.toggle('active');">
