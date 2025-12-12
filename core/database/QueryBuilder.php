@@ -27,13 +27,13 @@ class QueryBuilder
         }
     }
 
-    public function countAll($table, $searchColumn = null, $searchTerm = null, $autor_id, $is_admin)
+    public function countAll($table, $searchColumn = null, $searchTerm = null, $autor_id = null, $is_admin = null)
     {
         $sql = "select COUNT(*) from {$table}";
         $parameters = [];
 
         if($searchColumn && $searchTerm) {
-            $sql .= " WHERE {$searchColumn} LIKE :searchTerm";
+            $sql .= " WHERE {$searchColumn[0]} LIKE :searchTerm OR {$searchColumn[1]} LIKE :searchTerm";
             $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
 
@@ -58,9 +58,10 @@ class QueryBuilder
         $offset = (int) $offset;
         $parameters = [];
         $whereClause = "";
+        $whereUsuario = "";
 
         if ($searchColumn && $searchTerm) {
-            $whereClause = " WHERE {$searchColumn} LIKE :searchTerm";
+            $whereClause = " WHERE {$searchColumn[0]} LIKE :searchTerm OR {$searchColumn[1]} LIKE :searchTerm";
             $parameters['searchTerm'] = '%' . $searchTerm . '%';
         }
 
@@ -396,36 +397,52 @@ class QueryBuilder
         }
     }
 
-    public function getPostLikes($postId)
+    public function verificaLogin($email, $senha)
     {
-        $sql = "SELECT COUNT(*) FROM Curtidas WHERE POST_ID = :post_id";
+        $sql = sprintf("SELECT * FROM usuarios WHERE EMAIL = :email AND SENHA = :senha");
+
         try {
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['post_id' => $postId]);
+            $stmt->execute([
+                'email' => $email,
+                'senha' => $senha
+            ]);
+
+            $usuario = $stmt->fetch(PDO::FETCH_OBJ);
+
+            return $usuario;
+
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function countLikesPost($post_id)
+    {
+        $sql = "select COUNT(*) from curtidas WHERE POST_ID = :post_id";
+
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['post_id' => $post_id]);
             return $stmt->fetchColumn();
+
         } catch (Exception $e) {
-            return 0;
+            die($e->getMessage());
         }
     }
 
-    public function hasUserLikedPost($userId, $postId)
+    public function findLike($post_id, $user_id)
     {
-        $sql = "SELECT COUNT(*) FROM Curtidas WHERE USER_ID = :user_id AND POST_ID = :post_id";
-        try {
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['user_id' => $userId, 'post_id' => $postId]);
-            return $stmt->fetchColumn() > 0;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
+        $sql = "SELECT * from curtidas WHERE POST_ID = :post_id AND USER_ID = :user_id";
 
-    public function removeLike($userId, $postId)
-    {
-        $sql = "DELETE FROM Curtidas WHERE USER_ID = :user_id AND POST_ID = :post_id";
         try {
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(['user_id' => $userId, 'post_id' => $postId]);
+            $stmt->execute([
+                'post_id' => $post_id,
+                'user_id' => $user_id
+            ]);
+            return $stmt->fetch(PDO::FETCH_OBJ);
+
         } catch (Exception $e) {
             die($e->getMessage());
         }

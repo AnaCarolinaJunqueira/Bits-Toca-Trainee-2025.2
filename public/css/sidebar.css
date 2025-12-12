@@ -1,72 +1,56 @@
-* {
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Inter", sans-serif;
-    font-weight: 500;
-}
-
-body {
-    display: flex;
-    min-height: 100vh;
-    background-color: blueviolet;
-}
-
-main {
-    padding: 20px;
-    position: fixed;
-    z-index: 1;
-    padding-left: calc(82px + 20px);
+main {    
+    margin-left: 102px;
 }
 
 #sidebar {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
     display: flex; 
     flex-direction: column;
     justify-content: space-between;
-    background-color: #B83556;
-    height: 100vh;
+    background-color: #D1798D;
+    height: 100%;
     border-radius: 0px 20px 20px 0px;
-    position: relative;
+    position: fixed;
     transition: all .5s;
-    min-width: 82px;
+    width: 102px;
     z-index: 2;
 }
 
 #sidebar_content {
-    padding: 12px;
-    padding-top: 50px;
+    padding: 50px 16px;
+    width: 100%;
 }
 
 #user {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 24px;
+    gap: 14px;
+    padding: 12px;
     text-align: center;
-
 }
 
-
 #user_avatar {
-    width: 40px;
-    height: 40px;
+    width: 46px;
+    height: 46px;
     object-fit: cover;
-    border-radius: 20px;
+    border-radius: 23px;
 }
 
 #user_infos {
     display: flex;
     flex-direction: column;
-
-
+    width: 100%;
+    text-align: center;
 }
 
 #user_infos span:first-child {
-    color: #e3e9f7;
+    color: #ffffff;
+    font-size: 14px;
 }
 
 #user_infos span:last-child {
-    color: rgba(255, 255, 255, 0.74);
+    color: white;
     font-size: 12px;
 }
 
@@ -74,21 +58,23 @@ main {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    list-style: none;
+    list-style: none;    
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 .side-item {
     border-radius: 8px;
-    /* padding: 14px;  <-- REMOVED: Padding caused the dead click zone */
+    padding: 0 12px;
     cursor: pointer;
 }
 
 .side-item.active {
-    background-color: rgba(85, 118, 140, 0.5);
+    background-color: rgba(85, 118, 140, 0.3);
 }
 
 .side-item:hover:not(.active), #logout_btn:hover {
-    background-color:  rgba(85, 118, 140, 0.5);;
+    background-color:  rgba(85, 118, 140, 0.3);;
 }
 
 .side-item a {
@@ -96,22 +82,23 @@ main {
     display: flex;
     align-items: center;
     color: #ffffff;
-    justify-content: center;
-    /* ADDED: Move padding here and force full width/height */
-    padding: 14px;
+    justify-content: flex-start;
+    padding: 13px;
     width: 100%;
     height: 100%;
+    font-size: 16px;
+    gap: 14px;
 }
 
 .side-item.active a {
     color: #e3e9f7;
 }
 
-.side-item a i {
+.side-item a div {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
+    min-width: 20px;
     height: 20px;
 }
 
@@ -122,63 +109,67 @@ main {
 }
 
 #logout_btn {
-    border: none;
-    padding: 12px;
-    font-size: 14px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
     border: 8px;
     text-align: start;
     cursor: pointer;
     background-color: transparent;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
+#logout_btn i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
 
 .item-description {
-    width: 0px;
+    width: 0%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 10px;
-    transition: width .6s;
-    height: 0px;
+    font-size: 12px;
+    transition: all .5s;
     color: rgba(255, 255, 255, 0.84);
 }
 
 #sidebar.open-sidebar {
-    min-width: 15%;
+    width: 260px;
 }
 
 #sidebar.open-sidebar .item-description {
-    width: 150px;
-    height: auto;
-}
-
-#sidebar.open-sidebar .side-item a{
-    justify-content: flex-start;
-    gap: 14px;
+    width: 100%;
 }
 
 #open_btn {
   display: none;
 }
 
-
-@media screen and (max-width: 440px) {
-    
-    #sidebar{
-        height: 100vh;
+@media (max-width: 480px) {
+    main {
+        margin-left: 20px;
     }
 
+    #sidebar{
+        left: -82px;
+    }
     
     #open_btn {
     display: block;
     position: absolute;
-    top: 30px;
+    top: 50px;
     right: -10px;
-    background-color: #ffffff;
-    color: #B83556;
+    background-color: whitesmoke;
+    color: #D1798D;
     border-radius: 100%;
     width: 30px;
     height: 30px;
@@ -195,8 +186,7 @@ main {
     }
 
     #sidebar.open-sidebar {
-    width: 90%;
-}
-
-    
+        left: 0;
+        width: 90%;
+    }    
 }
