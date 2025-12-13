@@ -226,7 +226,7 @@ function initializeModalLogic() {
     const novoPostButton = document.querySelector('.botao-post');
     if (novoPostButton) {
         novoPostButton.addEventListener('click', () => {
-            document.getElementById('novo-autor').value = 'Admin';
+            // document.getElementById('novo-autor').value = 'Admin';
             document.getElementById('novo-data').value = new Date().toISOString().split('T')[0];
             setStarRating(document.querySelector('#modal-novo .star-rating'), 0);
             abrirModal('modal-novo');

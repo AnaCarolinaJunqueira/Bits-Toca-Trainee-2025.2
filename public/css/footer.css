@@ -6,6 +6,7 @@
 }
 
 footer {
+    font-family: 'VT323', monospace;
     background-color: #55768C;
     width: 100%;
 }
@@ -17,12 +18,13 @@ footer {
     flex-direction: row;
     padding: 20px 0;
     color: #faded2;
-    height: 200px;
+    min-height: 200px;
+    height: auto;
 }
 
 .LogoBitsToca.active-content {
-    height: 100%;
-    width: calc(100%/4);
+    height: auto;
+    width: calc(100%/3);
     line-height: 1.5;
     display: flex;
     align-items: center;
@@ -41,7 +43,7 @@ footer {
 
 .LogoBitsToca.active-content.valores {
     justify-content: center;
-    text-align: left;
+    text-align: center;
 }
 
 .LogoBitsToca.active-content strong {
@@ -84,14 +86,12 @@ footer {
 }
 
 .Redes-Sociais h2 {
-    font-family: VT323, monospace;
     font-size: 2.0rem;
     text-align: center;
 }
 
 .Contato h2 {
     justify-content: center;
-    font-family: VT323, monospace;
     font-size: 2.0rem;
     text-align: center;
 }
@@ -162,20 +162,13 @@ footer {
 #missao,
 #visao,
 #valores {
-    font-family: 'VT323', monospace;
     font-size: 1.5rem;
 }
 
 #missao-footer p,
-#visao-footer p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
-}
-
+#visao-footer p,
 #valores-footer p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     margin-bottom: 0.3rem;
 }
 
