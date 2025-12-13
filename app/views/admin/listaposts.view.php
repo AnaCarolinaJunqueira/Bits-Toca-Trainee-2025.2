@@ -21,15 +21,14 @@
             <div class="cabeçalho">
                 <div class="logo">
                     <div id="logo">
-                        <img src="/public/assets/Logo Blog.png" alt="Logo Bits Toca Branca">
+                        <img src="/public/assets/logo-site.png" alt="Logo Bits Toca Branca">
                     </div>
                 </div>
                 <div class="titulo">
                     <h1>Tabela de Posts</h1>
                 </div>
                 <div class="espaço"> </div>
-            </div>
-            
+            </div>            
             <div class="botoes">
                 <form method="GET" action="/admin/listaposts" class="barra-pesquisa" style="position: relative;">
                     <img src="/public/assets/icon_pesquisa.png" alt="icone de pesquisa">
@@ -48,7 +47,6 @@
                     <i class="bi bi-plus-circle"></i>
                 </div>
             </div>
-
             <div class="container-tabela">
                 <div class="tabela">
                     <table>
