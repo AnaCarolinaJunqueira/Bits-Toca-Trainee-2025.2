@@ -185,7 +185,17 @@ header {
     transition: 0.3s;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+    .menu-itens{
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 855px) {
+    .logo {
+        height: 4.5rem;
+    }
+
     .menu-hamburger {
         display: flex;
     }
@@ -203,11 +213,11 @@ header {
         padding: 1.2rem 30vw;
         z-index: 1001;
         transition: top 0.3s ease-out;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
     }
 
     .menu-itens.active {
-        top: 5.5rem;
+        top: 6rem;
     }
 
     .dropdown-container {
@@ -219,8 +229,7 @@ header {
 
     .dropdown-menu {
         position: static;
-        width: 80%;
-        background: rgba(255, 255, 255, 0.1);
+        /* background: rgba(255, 255, 255, 0.1); */
         margin-top: 10px;
         box-shadow: none;
         display: none;
@@ -230,12 +239,12 @@ header {
         display: flex;
     }
 
-    .dropdown-item {
+    /* .dropdown-item {
         color: #fff;
         justify-content: center;
-    }
+    } */
 
-    .dropdown-item:hover {
+    /* .dropdown-item:hover {
         background: rgba(255, 255, 255, 0.2);
-    }
+    } */
 }

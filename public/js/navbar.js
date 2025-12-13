@@ -12,11 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const userBtn = document.getElementById('user-dropdown-btn');
     const userMenu = document.getElementById('user-dropdown-menu');
+    const seta = document.querySelector('#user-dropdown-btn i');
 
     if (userBtn && userMenu) {
         userBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             userMenu.classList.toggle("show");
+            seta.classList.toggle("bi-caret-down-fill");
+            seta.classList.toggle("bi-caret-up-fill");
         });
 
         document.addEventListener('click', (e) => {
