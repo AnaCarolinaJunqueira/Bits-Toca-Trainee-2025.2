@@ -6,8 +6,9 @@
 
  body {
     display: flex;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     background: linear-gradient(#55768C, #2B3B46);
+    max-width: 100vw;
 }
 
 main {
