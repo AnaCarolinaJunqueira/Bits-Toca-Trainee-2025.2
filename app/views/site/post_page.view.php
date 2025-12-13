@@ -17,7 +17,7 @@
     <?php require 'app/views/site/navbar.view.php'; ?>
 
     <div id="título-pagina-post">
-        <h1>PÔSTERES</h1>
+        <h1>POSTS</h1>
         <h1>RECENTES</h1>
     </div>
 
@@ -65,13 +65,13 @@
                         $resetUrl .= '?category=' . urlencode($currentCategory);
                     }
                 ?>
-                <a href="<?= $resetUrl ?>" style="position: absolute; right: 60px; top: 50%; transform: translateY(-50%); color: #B83556; font-size: 1.5rem; text-decoration: none; z-index: 10;" title="Limpar pesquisa">
+                <a href="<?= $resetUrl ?>" style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); color: #B83556; font-size: 1.5rem; text-decoration: none; z-index: 10;" title="Limpar pesquisa">
                     <i class="bi bi-x-circle-fill"></i>
                 </a>
             <?php endif; ?>
 
             <button type="submit" style="background: none; border: none; cursor: pointer;">
-                <img id="lupa-icon" src="/public/assets/استعمليه ماوس💖💖-Photoroom 1.png" alt="Search">
+                <img id="lupa-icon" src="/public/assets/icon_pesquisa.png" alt="Search">
             </button>
             <img id="fliperama-icon" src="/public/assets/download (3)-Photoroom 1.png" alt="Arcade">
         </form>
@@ -95,7 +95,7 @@
                 </a>
             <?php endforeach; ?>
         <?php else: ?>
-            <p style="text-align: center; color: white; font-family: 'VT323', monospace; font-size: 2rem;">Nenhum post encontrado.</p>
+            <p style="text-align: center; color: white; font-family: 'VT323', monospace; font-size: 2rem; text-shadow: 2px 4px 6px rgba(0,0,0,0.1);">Nenhum post encontrado.</p>
         <?php endif; ?>
     </div>
 
