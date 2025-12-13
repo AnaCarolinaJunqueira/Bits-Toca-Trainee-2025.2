@@ -63,14 +63,17 @@ class UserController {
 
         if(!$avatar) $avatar = 'assets/avatars/default.png';
 
+        $senhaHash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+
         $parameters = [
             'nome' => $_POST['nome'],
             'email' => $_POST['email'],
-            'senha' => $_POST['senha'],
+            'senha' => $senhaHash,
             'avatar' => $avatar,
+            'is_admin' => isset($_POST['is_admin']) ? 1 : 0,
         ];
 
-        App::get('database')->insert('usuarios',$parameters);
+        $database->insert('usuarios',$parameters);
         return redirect('admin/listausuarios');
     }
 
@@ -88,31 +91,41 @@ class UserController {
         $id = $_POST['id'];
 
         $user = $database->findById('usuarios', $id);
-        $useravatar = $user->AVATAR;
+        $userAvatar = $user->AVATAR;
         
         $avatar = $this->uploadImage('avatar');
         if($avatar) {
-            if($useravatar !== 'assets/avatars/default.png' && file_exists('public/' . $useravatar)) {
-                @unlink('public/' . $useravatar);
+            if($userAvatar !== 'assets/avatars/default.png' && file_exists('public/' . $userAvatar)) {
+                @unlink('public/' . $userAvatar);
             }
-            $useravatar = $avatar;
+            $userAvatar = $avatar;
         }
+
+        if (isset($_POST['senha']) && !empty($_POST['senha'])) {
+            $senhaHash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        } else {
+            $senhaHash = $user->SENHA;
+        }        
 
         $parameters = [
             'ID' => $_POST['id'],
             'NOME' => $_POST['nome'],
             'EMAIL' => $_POST['email'],
-            'SENHA' => $_POST['senha'],
-            'IS_ADMIN' => isset($_POST['is_admin']) ? 1 : 0,    
-            'AVATAR' => $useravatar,
-            
+            'SENHA' => $senhaHash,
+            'IS_ADMIN' => (isset($_POST['is_admin']) || ($_SESSION['user']->IS_ADMIN && $_SESSION['user']->ID == $id)) ? 1 : 0,
+            'AVATAR' => $userAvatar,            
         ];
 
         $database->update('usuarios', $id, $parameters);
-        return redirect('admin/listausuarios');
+
+        if ($_SESSION['user']->ID == $id) {
+            $_SESSION['user'] = $database->findById('usuarios', $id);
+        }   
+
+        if ($_SESSION['user']->IS_ADMIN) {
+            return redirect('admin/listausuarios');
+        } else {            
+            return redirect('');
+        }
     }
-
-
-      
-
 }
