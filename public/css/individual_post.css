@@ -365,6 +365,12 @@ footer, footer * {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
+.comment-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 @media (max-width: 1300px) {
     main {
         padding: 5vh 4vw;
@@ -426,6 +432,16 @@ footer, footer * {
     .stars-icons {
         gap: 1.2rem;
     }
+
+    .comment-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .comment-info {
+        flex-direction: row-reverse;
+    }
 }
 
 @media (max-width: 480px) {
@@ -485,7 +501,7 @@ footer, footer * {
         text-align: center;
     }
 
-    .comments-section p {
+    .no-comments {
         text-align: center;
     }
 

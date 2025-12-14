@@ -86,7 +86,7 @@
                                     <img src="/public/<?= htmlspecialchars($comment->AVATAR ?? 'assets/avatars/default.png') ?>" alt="Avatar">
                                     <span class="comment-author">@<?= htmlspecialchars($comment->AUTOR_NOME) ?></span>
                                 </div>
-                                <div style="display: flex; align-items: center; gap: 15px;">
+                                <div class="comment-info">
                                     <?php if (isset($_SESSION['user']) && ($_SESSION['user']->ID == $comment->USER_ID)): ?>
                                     <button class="btn-icon btn-edit-comment"
                                             data-id="<?= $comment->ID ?>"
