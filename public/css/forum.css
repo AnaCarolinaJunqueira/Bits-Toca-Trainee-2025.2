@@ -327,7 +327,11 @@ main {
     }
 
     .forum-grid {
-        flex-direction: column;
+        flex-direction: column-reverse;
+    }
+
+    .sidebar-categories {
+        max-width: 100%;
     }
     .table-header { display: none; }
     .thread-row {
