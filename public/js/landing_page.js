@@ -241,7 +241,7 @@ function setupCarousel() {
     }
     
     updateCarouselCounter();
-    updateCarouselPosition();
+    updateCarouselPosition(false);
 }
 
 function updateCarouselCounter() {
@@ -255,7 +255,7 @@ function clearCarouselActiveState() {
     carouselItems.forEach(item => item.classList.remove(CAROUSEL_ACTIVE_CLASS));
 }
 
-function updateCarouselPosition() {
+function updateCarouselPosition(shouldScroll = true) {
     if(dots.length > 0) {
         dots.forEach((d, i) => {
             if (i === currentIndex) d.classList.add('active');
@@ -265,7 +265,7 @@ function updateCarouselPosition() {
 
     const targetItemIndex = currentIndex * itemsPerPage;
     
-    if (carouselItems[targetItemIndex]) {
+    if (shouldScroll && carouselItems[targetItemIndex]) {
         carouselItems[targetItemIndex].scrollIntoView({
             behavior: 'smooth',
             block: 'nearest',

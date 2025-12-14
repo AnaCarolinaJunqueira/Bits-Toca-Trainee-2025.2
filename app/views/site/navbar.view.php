@@ -1,10 +1,11 @@
 <link rel="stylesheet" href="/public/css/navbar.css">
 <link rel="stylesheet" href="/public/css/modals.css">
+<link rel="stylesheet" href="/public/css/modal_video.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap">
 <header>
     <nav class="navbar">
         <div class="logo">
-            <img src="/public/assets/logo-site.png" alt="Logo Bit's Toca Clara">
+            <img src="/public/assets/logo-site.png" alt="Logo Bit's Toca Clara" id="navbar-logo">
         </div>
         <ul class="menu-itens">
             <li class="nav-item">
@@ -54,5 +55,6 @@
 </header>
 
 <?php if(isset($_SESSION['user'])) require 'app/views/admin/modals/modal-editar-usuario-notadmin.html'; ?>
+<?php require 'app/views/site/modals/modal_video.html'; ?>
 <script src="/public/js/modals-usuarios.js"></script>
 <script src="/public/js/navbar.js"></script>
