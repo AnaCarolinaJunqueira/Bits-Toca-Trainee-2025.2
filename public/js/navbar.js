@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 clickCount = 0;
             }, 500);
 
-            if (clickCount === 4) {
+            if (clickCount === 3) {
                 videoModal.style.display = 'block';
                 videoElement.play();
                 clickCount = 0;

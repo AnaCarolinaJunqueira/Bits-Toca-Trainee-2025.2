@@ -110,6 +110,7 @@
     <script src="/public/js/landing_page.js"></script>
     <script src="/public/js/konami.js"></script>
     <script src="/public/js/modals.js"></script>
+    <script src="/public/js/tetra.js"></script>
 </body>
 
 </html>
