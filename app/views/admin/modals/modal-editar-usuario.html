@@ -6,6 +6,7 @@
 
         <form id="form-editar-usuario" action="/admin/listausuarios/update" method="POST" enctype="multipart/form-data" novalidate>
             <input type="hidden" id="edit-usuario-id" name="id">
+            <input type="hidden" name="from_admin" value="1">
 
             <div class="form-group" style="align-items: center; margin-bottom: 1rem;">
                 <div class="image-upload-circle file-drop-area" id="drop-edit-user-photo">

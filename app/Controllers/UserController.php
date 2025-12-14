@@ -99,7 +99,7 @@ class UserController {
         
         $avatar = $this->uploadImage('avatar');
         if($avatar) {
-            if($userAvatar !== 'assets/avatars/default.png' && file_exists('public/' . $userAvatar)) {
+            if(($userAvatar !== 'assets/avatars/default.png' && $userAvatar !== 'assets/avatars/perfil_default_admin.png') && file_exists('public/' . $userAvatar)) {
                 @unlink('public/' . $userAvatar);
             }
             $userAvatar = $avatar;
@@ -124,11 +124,16 @@ class UserController {
 
         if ($_SESSION['user']->ID == $id) {
             $_SESSION['user'] = $database->findById('usuarios', $id);
-        }   
+        } 
 
-        if ($_SESSION['user']->IS_ADMIN) {
+        $pageAdmin = isset($_POST['from_admin']) && $_POST['from_admin'] == 1;
+
+        if ($pageAdmin) {
             return redirect('admin/listausuarios');
-        } else {            
+        } else {   
+            if (isset($_POST['redirect_to']) && !empty($_POST['redirect_to'])) {
+                return redirect($_POST['redirect_to']);
+            }         
             return redirect('');
         }
     }
