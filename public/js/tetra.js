@@ -1,4 +1,4 @@
-var allowedKeys = {
+var allowedTetraKeys = {
   84: 't',
   69: 'e',
   82: 'r',
@@ -9,7 +9,7 @@ var secretCode = ['t', 'e', 't', 'r', 'a'];
 var secretCodePosition = 0;
 
 document.addEventListener('keydown', function(e) {
-  var key = allowedKeys[e.keyCode];
+  var key = allowedTetraKeys[e.keyCode];
   var requiredKey = secretCode[secretCodePosition];
 
   if (key == requiredKey) {
