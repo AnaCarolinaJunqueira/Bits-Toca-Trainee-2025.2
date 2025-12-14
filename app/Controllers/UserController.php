@@ -61,7 +61,11 @@ class UserController {
 
         $avatar = $this->uploadImage('avatar');
 
-        if(!$avatar) $avatar = 'assets/avatars/default.png';
+        if(!$avatar && $_POST['is_admin'] == 1) {
+            $avatar = 'assets/avatars/perfil_default_admin.png';
+        } elseif (!$avatar) {
+            $avatar = 'assets/avatars/default.png';
+        }
 
         $senhaHash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
