@@ -26,6 +26,7 @@
 #### Links Úteis:
 
 * [Trello]()
+* [![Manual PDF](https://img.shields.io/badge/View-PDF-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](./manual_de_uso.pdf)
 
 
 
