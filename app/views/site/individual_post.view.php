@@ -87,13 +87,15 @@
                                     <span class="comment-author">@<?= htmlspecialchars($comment->AUTOR_NOME) ?></span>
                                 </div>
                                 <div style="display: flex; align-items: center; gap: 15px;">
-                                    <?php if (isset($_SESSION['user']) && ($_SESSION['user']->ID == $comment->USER_ID || $_SESSION['user']->IS_ADMIN)): ?>
-                                        <button class="btn-icon btn-edit-comment"
+                                    <?php if (isset($_SESSION['user']) && ($_SESSION['user']->ID == $comment->USER_ID)): ?>
+                                    <button class="btn-icon btn-edit-comment"
                                             data-id="<?= $comment->ID ?>"
                                             data-post-id="<?= $post->ID ?>"
                                             data-conteudo="<?= htmlspecialchars($comment->CONTEUDO) ?>">
                                             <i class="bi bi-pencil-fill" style="color: #55768C;"></i>
                                         </button>
+                                    <?php endif; ?>
+                                    <?php if (isset($_SESSION['user']) && ($_SESSION['user']->ID == $comment->USER_ID || $_SESSION['user']->IS_ADMIN || $post->AUTOR_ID == $_SESSION['user']->ID)): ?>
                                         <button class="btn-icon btn-delete-comment"
                                             data-id="<?= $comment->ID ?>"
                                             data-post-id="<?= $post->ID ?>">
