@@ -83,4 +83,51 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    const logo = document.getElementById('navbar-logo');
+    const videoModal = document.getElementById('video-modal');
+    const videoElement = document.getElementById('video');
+    const closeBtn = document.querySelector('.close-video-modal');
+
+    let clickCount = 0;
+    let clickTimeout;
+
+    if (logo && videoModal && videoElement) {
+        logo.addEventListener('click', (e) => {
+            if (!document.querySelector('.hero-section')) return;
+
+            e.preventDefault(); 
+            
+            clickCount++;
+
+            clearTimeout(clickTimeout);
+            clickTimeout = setTimeout(() => {
+                clickCount = 0;
+            }, 500);
+
+            if (clickCount === 4) {
+                videoModal.style.display = 'block';
+                videoElement.play();
+                clickCount = 0;
+            }
+        });
+
+        const closeModal = () => {
+            videoModal.style.display = 'none';
+            videoElement.pause();
+            videoElement.currentTime = 0;
+        };
+
+        videoElement.addEventListener('ended', closeModal);
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeModal);
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeModal();
+            }
+        });
+    }
 });
